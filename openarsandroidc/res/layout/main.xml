@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:onClick='""'>
+    <ImageView 
+    	android:src="@drawable/logo_transparent_hd" 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:id="@+id/iv_logo"
+    	android:layout_margin="17dip"
+    	>
+    </ImageView>
+    <EditText 
+    	android:text="Enter poll ID" 
+    	android:layout_width="wrap_content" 
+    	android:id="@+id/et_pollID" 
+    	android:layout_height="wrap_content"
+    	android:width="130dip" 
+    	android:layout_margin="7dip"
+    	android:maxLines="1"
+    ></EditText>
+    <Button 
+    	android:id="@+id/btn_go" 
+    	android:layout_width="wrap_content" 
+    	android:text="GO" 
+    	android:textStyle="bold"
+    	android:textColor="#000000"
+    	android:textSize="25sp"
+    	android:typeface="sans"
+    	android:layout_height="wrap_content" 
+    	android:width="130dip" 
+    	android:height="40dip">
+    </Button>
+</LinearLayout>
