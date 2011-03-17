@@ -36,10 +36,11 @@ public class openarsActivity extends Activity {
         /**
          * make a single choice answer layout
          */
-        
+        /*
         lView.setAdapter(new ArrayAdapter<String>(this,
     			android.R.layout.simple_list_item_single_choice,lv_items));
         lView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        */
     }
     
          
