@@ -10,7 +10,6 @@ import org.json.JSONObject;
 import android.app.*;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
@@ -67,25 +66,6 @@ public class openarsActivity extends Activity {
 			e.printStackTrace();
 		}
 
-        
-        /**
-         * make a multiple choice answer layout
-         */
-        
-        /*
-        lView.setAdapter(new ArrayAdapter<String>(this,
-        			android.R.layout.simple_list_item_multiple_choice,lv_items));
-        lView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        
-        Button btn_mult = (Button)findViewById(R.id.btn_vote_multiple);
-        btn_mult.setOnClickListener(VoteBtnListener);
-   
-        */
-        
-        /**
-         * make a single choice answer layout
-         */
-        
         lView.setAdapter(new ArrayAdapter<String>(this,
     			android.R.layout.simple_list_item_single_choice,lv_items));
         
