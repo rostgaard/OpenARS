@@ -19,12 +19,15 @@
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content"
     	android:gravity="left"
-    	android:textSize="20sp"></TextView>
+    	android:textSize="30sp"></TextView>
     	
-    <ListView android:layout_height="wrap_content" android:id="@+id/listView1" android:layout_width="match_parent"></ListView>
-        
-        
-	    
+    <ListView 
+    	android:layout_height="wrap_content" 
+    	android:id="@+id/lv_questions" 
+    	android:layout_width="fill_parent"
+    	android:choiceMode="multipleChoice"
+    	></ListView>
+            
     
 </LinearLayout>
 
