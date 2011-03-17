@@ -14,14 +14,14 @@
     	>
     </ImageView>
     <EditText 
-    	android:text="Enter poll ID" 
+    	android:hint="Enter poll ID"
     	android:layout_width="wrap_content" 
     	android:id="@+id/et_pollID" 
     	android:layout_height="wrap_content"
     	android:width="130dip" 
     	android:layout_margin="7dip"
     	android:maxLines="1"
-    ></EditText>
+   		android:inputType="number"></EditText>
     <Button 
     	android:id="@+id/btn_go" 
     	android:layout_width="wrap_content" 
