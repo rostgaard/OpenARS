@@ -1,4 +1,37 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-#{welcome /}
+
+    
+	<b></b>
+	<p>
+		
+	<table width="60%" align=center>
+	    <h1>OpenARS</h1>
+	<fieldset>
+	<legend>Join poll</legend>
+	<input type="text" name="ID" value="Poll ID"/>
+	<input type="submit" value="&{'make_poll'}" />
+	</fieldset>
+
+	
+		<tr>
+		 <td width="50%">
+		 <fieldset>
+	<legend>Make new poll</legend>
+		   <a href="Application/makenewpoll"><button name="submit" value="Make New Poll" >Make new poll</button></a>
+		 </td>
+		 </fieldset>
+		 <td width="50%">
+		   <fieldset>
+	<legend>Manage poll</legend>
+		   <input type="text" name="ID" value="ID"/>
+		   <input type="text" name="Password" value="Password"/>
+		   <a href="Application/makenewpoll"><input type="button" value="Submit" /></a>
+		   </field>
+		 </td>
+		
+		</tr>
+	</table>
+
+
