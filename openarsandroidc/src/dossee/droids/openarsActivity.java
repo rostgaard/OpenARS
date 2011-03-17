@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import android.app.*;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
@@ -49,13 +50,18 @@ public class openarsActivity extends Activity {
 			String multipleAllowed = questionJSON.getString("multipleAllowed");
 			
 			//checkboxes / radio buttons (mulltiple Allowed?)
-			if(multipleAllowed.equals("true")) 
+			if(multipleAllowed.equals("true")) {
+				lView.setAdapter(new ArrayAdapter<String>(this,
+		    			android.R.layout.simple_list_item_multiple_choice,lv_items));
 				lView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-			else
+			} else {
+				lView.setAdapter(new ArrayAdapter<String>(this,
+		    			android.R.layout.simple_list_item_single_choice,lv_items));
 				lView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-			
+			}
+
 			//set data
-			((TextView)findViewById(R.id.tv_pollID)).setText(pollID);
+			((TextView)findViewById(R.id.tv_pollID)).setText("Poll #" + pollID);
 			((TextView)findViewById(R.id.tv_question)).setText(question);
 	
 			for (int i = 0; i < answersArray.length(); i++) {
@@ -65,10 +71,11 @@ public class openarsActivity extends Activity {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-
-        lView.setAdapter(new ArrayAdapter<String>(this,
-    			android.R.layout.simple_list_item_single_choice,lv_items));
-        
+		
+		lv_items.add("answer");
+		lv_items.add("answer");
+		lv_items.add("answer");
+		
         Button btn = (Button)findViewById(R.id.btn_vote);
         btn.setOnClickListener(VoteBtnListener);
     }
@@ -86,7 +93,8 @@ public class openarsActivity extends Activity {
 				ctx = getApplicationContext();
 				int duration = 2000;
 				
-				//Log.i("SELECTED ITEM", lView.getSelectedItem().toString());
+				//lView = (ListView)findViewById(R.id.lv_questions);	
+				Log.i("SELECTED ITEM", lView.getSelectedItem().toString());
 				
 				if (lView.getSelectedItem()!=null) {
 					
