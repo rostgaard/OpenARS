@@ -2,8 +2,12 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+# Import CRUD routes
+*		/admin									module:crud
+
 # Home page
 GET     /                                       Application.index
+GET		/admin									Tasks.list
 GET     /json                                   Json.json
 
 # Map static resources from the /app/public folder to the /public path
@@ -11,3 +15,4 @@ GET     /public/                                staticDir:public
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+

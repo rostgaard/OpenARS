@@ -1,3 +1,19 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
+password=Password
+join_poll=JOIN POLL
+make_poll=MAKE NEW POLL
+manage_poll=MANAGE POLL
+question=Question
+answer=Answer
+name=Name
+option=Option
+poll_keyword=Keyword of Poll
+submit=Submit
+edit=Edit
+stats=Stats
+activate=Activate
+poll=Poll
+total=Total
+ 
