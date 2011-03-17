@@ -30,6 +30,5 @@
     	android:choiceMode="singleChoice"
     	></ListView>
             
-    
 </LinearLayout>
 
