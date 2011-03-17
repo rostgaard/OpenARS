@@ -1,4 +1,14 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-#{welcome /}
+<form action="@{Application.sayHello()}" method="GET">
+    <input type="text" name="myName" />
+    <input type="submit" value="Say hello!" />
+</form>
+
+Question: ${question.question} <br/>
+<ul>
+    #{list items:question.Answers, as:'answer' }
+        <li>Option: ${answer.answer}</li>
+    #{/list}
+</ul>

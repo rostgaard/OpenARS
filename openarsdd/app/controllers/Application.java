@@ -1,16 +1,28 @@
 package controllers;
 
-import play.*;
+import models.Answer;
+import models.Question;
 import play.mvc.*;
 
-import java.util.*;
 
-import models.*;
-
+//import models.*;
 public class Application extends Controller {
 
     public static void index() {
-        render();
+        Question q = new Question("1234", "2345", "What is the capital of Spain?", false);
+        Answer a1 = new Answer(q, "Madrid", true);
+        Answer a2 = new Answer(q, "Oslo", false);
+        
+        q.save();
+        a1.save();
+        a2.save();
+
+        Question question = Question.find("byStudentLink", "2345").first();
+        
+        render(question);
     }
 
+    public static void sayHello(String myName) {
+        render(myName);
+    }
 }
