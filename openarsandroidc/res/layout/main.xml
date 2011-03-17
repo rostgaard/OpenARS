@@ -21,7 +21,8 @@
     	android:width="130dip" 
     	android:layout_margin="7dip"
     	android:maxLines="1"
-   		android:inputType="number"></EditText>
+	    android:inputType="number"></EditText>
+
     <Button 
     	android:id="@+id/btn_go" 
     	android:layout_width="wrap_content" 
