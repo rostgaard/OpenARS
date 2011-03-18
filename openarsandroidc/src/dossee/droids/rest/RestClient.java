@@ -27,7 +27,7 @@ import org.json.JSONObject;
 public class RestClient{
 
     private static RestClient instance;
-	private static String server_address = "http://devel1.openars.dk";
+	private static String server_address = "http://devel2.openars.dk";
     private static int server_port = 80;
     private int response_code;
     private String message;
@@ -162,8 +162,8 @@ public class RestClient{
      * Handle method
      * @return get question encapsulated in JSONObject
      */
-    public JSONObject getQuestion() {
-        return this.getService(StaticQuery.get_question);
+    public JSONObject getPoll(String pollID) {
+        return this.getService(StaticQuery.get_poll + "/" + pollID);
     }
 
     
@@ -171,7 +171,7 @@ public class RestClient{
      * Private class for identifying base URL for services
      */
     private class StaticQuery {
-        public final static String get_question = "question.json";
+        public final static String get_poll = "";
     }
 	
 }

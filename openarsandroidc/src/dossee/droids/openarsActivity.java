@@ -18,7 +18,7 @@ public class openarsActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        Log.i("test","0");
+        Log.i("openarsActivity","onCreate");
         btn_go = (Button)findViewById(R.id.btn_go);
         btn_go.setOnClickListener(VoteBtnListener);
     }
@@ -27,16 +27,17 @@ public class openarsActivity extends Activity {
 	   	new OnClickListener(){
 
 			public void onClick(View v) {
-				Log.i("test","0.5");
+				Log.i("VoteBtnListener - openarsActivity","onClick");
 				EditText et_pollID = (EditText)findViewById(R.id.et_pollID);
 				String pollID = et_pollID.getText().toString();
 				
 				if(pollID.length() == 0) {
 					Toast.makeText(getApplicationContext(), "Please, enter the poll ID", 2000).show();
 				} else {
-					Log.i("test","1");
+					Log.i("VoteBtnListener - openarsActivity","startActivity");
 					Intent intent = new Intent(openarsActivity.this, QuestionActivity.class);
 					startActivity(intent);
+					openarsActivity.this.finish();
 				}
 			}
    };
