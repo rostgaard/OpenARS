@@ -1,9 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 		
-	<table width="60%" align=center>
+	<table border="1" align=center>
 	    <tr><td colspan="2">
-	    <div> <img src="public/images/logo.png" /></div>
+	    <div> <img src="/public/images/logo.png"/></div>
 	    </td>
 	    </tr>
 	    <tr>
@@ -19,8 +19,8 @@
 		<tr>
 		 <td width="50%">
 		 <fieldset>
-	<legend>Make new poll</legend>
-		   <a href="Application/makenewpoll"><button name="submit" value="Make New Poll" >Make new poll</button></a>
+	<legend>&{'make_poll'}</legend>
+		   <a href="/Application/makenewpoll"><button name="submit" value="Make New Poll" >Make new poll</button></a>
 		 </td>
 		 </fieldset>
 		 <td width="50%">
@@ -28,7 +28,7 @@
 	<legend>Manage poll</legend>
 		   <input type="text" name="ID" value="ID"/>
 		   <input type="text" name="Password" value="Password"/>
-		   <a href="Application/makenewpoll"><input type="button" value="Submit" /></a>
+		   <a href="/Application/managepoll"><input type="button" value="Submit" /></a>
 		   </field>
 		 </td>
 		
