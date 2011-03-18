@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">openARS</string>
+    <string name="thanks">Kiitos äänestäsi!</string>
+    <string name="choose">Valitse vastauksesi!</string>
+    <string name="hint">Syötä äänestystunnus</string>
+    <string name="go">Alkaa</string>
+    <string name="vote">Äänestä</string>
+    <string name="exit">Poistu</string>
+    <string name="inactive">Tämä äänestys on suljettu.</string>
+    <string name="refresh">Yritä uudelleen</string>
+    <string name="no_poll">Äänestystä ei löytynyt.</string>
+    <string name="remaining">Aikaa jäljellä</string>
+   
+</resources>

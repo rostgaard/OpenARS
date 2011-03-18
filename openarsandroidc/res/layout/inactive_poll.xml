@@ -29,7 +29,7 @@
     <TextView 
     	android:layout_gravity="center_horizontal"
     	android:gravity="center_horizontal"
-    	android:text="seconds remaining: "
+    	android:text="@string/remaining"
     	android:id="@+id/tv_seconds_remaining" 
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content"

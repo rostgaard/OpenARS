@@ -10,5 +10,6 @@
     <string name="inactive">This poll is inactive.</string>
     <string name="refresh">TRY AGAIN</string>
     <string name="no_poll">There is no such poll.</string>
+    <string name="remaining">seconds remaining: </string>
    
 </resources>
