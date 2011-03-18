@@ -43,14 +43,13 @@ public class QuestionActivity extends Activity {
 			String questionID = questionJSON.getString("questionID");
 			final String question = questionJSON.getString("question");
 			final JSONArray answersArray = questionJSON.getJSONArray("answers");
-			final String multipleAllowed = "false"; //questionJSON.getString("multipleAllowed");
-			Integer duration = 5;//Integer.parseInt(questionJSON.getString("duration"));
+			final String multipleAllowed = questionJSON.getString("multipleAllowed");
+			Integer duration = Integer.parseInt(questionJSON.getString("duration"));
 			
 			//Gson gson = new Gson();
 			//String test = "answers":["Orangeeee","Humaaaaan","Meeee"]";
 			//Question questionClass = gson.fromJson(questionJSON.toString(), Question.class);
 			//Log.i("Question answers", questionClass.getAnswers().toString());
-			
 			
 			if(duration == 0) {
 				Toast.makeText(getApplicationContext(), "Poll is INACTIVE", 2000).show();

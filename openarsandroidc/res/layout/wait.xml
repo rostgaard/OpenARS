@@ -17,15 +17,39 @@
     <TextView 
     	android:layout_gravity="center_horizontal"
     	android:gravity="center_horizontal"
-    	android:text="@string/inactive"
+    	android:text="@string/wait"
     	android:id="@+id/tv_inactive" 
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content"
     	android:textSize="30sp"
-    	android:paddingTop="80dip"
+    	android:paddingTop="14dip"
     	android:paddingBottom="10dip"
     	android:textColor="#ffffff"></TextView>
-
+    	
+    <TextView 
+    	android:layout_gravity="center_horizontal"
+    	android:gravity="center_horizontal"
+    	android:text="@string/remaining"
+    	android:id="@+id/tv_time_remaining" 
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+    	android:textSize="20sp"
+    	android:paddingTop="10dip"
+    	android:paddingBottom="10dip"></TextView>
+    	
+    <TextView 
+    	android:layout_gravity="center_horizontal"
+    	android:gravity="center_horizontal"
+    	android:text="10"
+    	android:id="@+id/tv_seconds" 
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+    	android:textSize="70sp"
+    	android:paddingTop="10dip"
+    	android:paddingBottom="10dip"
+    	android:textColor="#96bf3b"
+    	android:textStyle="bold"></TextView>
+    <!--
     <Button 
     	android:layout_gravity="center_horizontal"
     	android:text="@string/refresh" 
@@ -34,9 +58,9 @@
     	android:layout_height="wrap_content"
     	android:height="50dip"
     	android:width="150dip"
-    	android:layout_marginTop="20dip"
+    	android:layout_marginTop="10dip"
     	android:layout_marginBottom="10dip"
     	android:textSize="25sp"
     	></Button>
-
+	-->
 </LinearLayout>

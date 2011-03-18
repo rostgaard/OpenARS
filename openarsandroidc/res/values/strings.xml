@@ -8,8 +8,8 @@
     <string name="vote">Vote</string>
     <string name="exit">Exit</string>
     <string name="inactive">This poll is inactive.</string>
+    <string name="wait">Please wait, the results will be displayed in few seconds</string>
+    <string name="remaining">time remaining:</string>
     <string name="refresh">TRY AGAIN</string>
     <string name="no_poll">There is no such poll.</string>
-    <string name="remaining">seconds remaining: </string>
-   
 </resources>
