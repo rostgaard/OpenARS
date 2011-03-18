@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, openarsActivity!</string>
     <string name="app_name">openARS</string>
     <string name="thanks">Thank you for voting!</string>
     <string name="choose">Please choose your answer!</string>
@@ -8,4 +7,7 @@
     <string name="go">GO</string>
     <string name="vote">Vote</string>
     <string name="exit">Exit</string>
+    <string name="inactive">This poll is inactive.</string>
+    <string name="refresh">Refresh</string>
+    <string name="no_poll">There is no such poll.</string>
 </resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">openARS</string>
+    <string name="thanks">¡Gracias por votar!</string>
+    <string name="choose">¡Por favor elige tu respuesta!</string>
+    <string name="hint">Introduce el ID de la encuesta</string>
+    <string name="go">ENTRAR</string>
+    <string name="vote">Votar</string>
+    <string name="exit">Salir</string>
+    <string name="inactive">La encuesta esta inactiva.</string>
+    <string name="refresh">Recargar</string>
+    <string name="no_poll">El identificador de la encuesta no es correcto.</string>
+</resources>
