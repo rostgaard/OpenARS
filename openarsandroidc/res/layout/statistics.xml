@@ -35,8 +35,5 @@
     	android:width="120dip"
     	android:textSize="20sp"
     	android:layout_marginTop="30dip"></Button>
-   
-  
-    
 </LinearLayout>
 

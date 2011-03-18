@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <TextView 
+    	android:id="@+id/tv_pollID"
+    	android:gravity="right" 
+    	android:paddingBottom="10dip"
+    	android:layout_height="wrap_content" 
+    	android:layout_width="fill_parent" 
+    	android:text="#0000"
+    	android:textSize="20sp"
+    	android:lines="1"></TextView>
+    <TextView 
+    	android:layout_gravity="center_horizontal"
+    	android:gravity="center_horizontal"
+    	android:text="The poll is INACTIVE"
+    	android:id="@+id/tv_inactive" 
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+    	android:textSize="30sp"
+    	android:paddingTop="100dip"
+    	android:paddingBottom="10dip"></TextView>
+    
+    <Button 
+    	android:layout_gravity="center_horizontal"
+    	android:text="TRY AGAIN" 
+    	android:id="@+id/btn_refresh" 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content"
+    	android:height="50dip"
+    	android:width="150dip"
+    	android:layout_marginTop="10dip"
+    	android:layout_marginBottom="10dip"
+    	android:textSize="25sp"
+    	></Button>
+
+</LinearLayout>

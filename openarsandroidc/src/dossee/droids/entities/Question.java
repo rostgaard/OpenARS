@@ -1,4 +1,4 @@
-package dossee.droids;
+package dossee.droids.entities;
 
 public class Question {
 	private String[] answers;
