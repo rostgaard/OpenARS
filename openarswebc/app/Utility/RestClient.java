@@ -9,7 +9,6 @@ import java.net.URISyntaxException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.auth.AuthScope;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -20,7 +19,7 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RestClient{
+public class RestClient{ 
 
     private static RestClient instance;
 	private static String server_address = "http://devel2.openars.dk";
@@ -109,6 +108,7 @@ public class RestClient{
 
         try {
         	this.executeRequest(hrb, service, null);
+        	System.out.println(this.response);
             jso = new JSONObject(this.response);
         } catch (JSONException ex) {
         } finally {
@@ -155,7 +155,7 @@ public class RestClient{
      * Private class for identifying base URL for services
      */
     private class StaticQuery {
-        public final static String get_question = "question.json";
+        public final static String get_question = "2345";
     }
 	
 }

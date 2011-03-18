@@ -1,6 +1,7 @@
 package controllers;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import play.mvc.Controller;
@@ -17,23 +18,16 @@ public class Application extends Controller {
         render();
     }
     
-    public static void joinpoll(String id) {
+    public static void joinpoll(String id) throws JSONException {
     	JSONObject questionJSON = RestClient.getInstance().getQuestion();
-    	try {
-        //Log.i("openarsActivity.java", "question JSON.toString()" + questionJSON.toString());
-        
-        	String pollID = questionJSON.getString("pollId");
-			String questionID = questionJSON.getString("questionId");
-			String question = questionJSON.getString("question");
-			JSONArray answersArray = questionJSON.getJSONArray("answers");
-
-			String multipleAllowed = questionJSON.getString("multipleAllowed");
+       	String pollID = questionJSON.getString("pollID");
+		String questionID = questionJSON.getString("questionID");
+		String question = questionJSON.getString("question");
+		JSONArray answersArray = questionJSON.getJSONArray("answers");
+		//String multipleAllowed = questionJSON.getString("multipleAllowed");
+		String duration = questionJSON.getString("duration");
 			
-			render(pollID, questionID, question, answersArray, multipleAllowed);
-    	}
-    	catch(Exception e) {
-    		
-    	}
+		render(id, pollID, questionID, question, answersArray, duration);
 	}
     
     public static void managepoll() {
