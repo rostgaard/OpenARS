@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">openARS</string>
+    <string name="thanks">Paldies par balsojumu!</string>
+    <string name="choose">Lūdzu, izvēlēties Jūsu atbildi!</string>
+    <string name="hint">Ievadiet balsojuma numuru</string>
+    <string name="go">Ienākt</string>
+    <string name="vote">Balsot</string>
+    <string name="exit">Iziet</string>
+    <string name="inactive">Intervija vēl nav aktivēta.</string>
+    <string name="refresh">Atjaunot</string>
+    <string name="no_poll">Intervija ar šo numuru neeksistē.</string>
+  
+</resources>
