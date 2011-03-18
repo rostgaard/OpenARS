@@ -8,17 +8,17 @@ package jsons;
  *
  * @author veri
  */
-public class RequestNewJSON {
+public class RequestQuestionJSON {
 
     private long responderID;
     private long pollID;
 
-    public RequestNewJSON(long responderID, long pollID) {
+    public RequestQuestionJSON(long responderID, long pollID) {
         this.responderID = responderID;
         this.pollID = pollID;
     }
 
-    public RequestNewJSON() {
+    public RequestQuestionJSON() {
     }
 
     public long getPollID() {

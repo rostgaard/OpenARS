@@ -4,6 +4,10 @@
  */
 package jsons;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import models.Answer;
 import models.Question;
 
 /**
@@ -16,8 +20,18 @@ public class QuestionJSON {
     private long questionID;
     private String question;
     private String[] answers;
+    private boolean[] correctAnswers;
+    private boolean multipleAllowed;
     private long responderID;
     private int duration;
+
+    public boolean isMultipleAllowed() {
+        return multipleAllowed;
+    }
+
+    public void setMultipleAllowed(boolean multipleAllowed) {
+        this.multipleAllowed = multipleAllowed;
+    }
 
     public int getDuration() {
         return duration;
@@ -28,17 +42,17 @@ public class QuestionJSON {
     }
 
     /**
-     * 
      * @param question
      * @param responderID
      */
     public QuestionJSON(Question question, long responderID) {
         this.pollID = question.studentLink;
         this.questionID = question.id;
-        this.answers = getAnswersFromQuestion(question);
+        this.answers = getAnswersArray(question);
         this.responderID = responderID;
         this.question = question.question;
         this.duration = question.duration;
+        this.multipleAllowed = question.multipleAllowed;
 
     }
 
@@ -82,12 +96,50 @@ public class QuestionJSON {
         this.question = question;
     }
 
-    public final String[] getAnswersFromQuestion(Question question) {
-        int size = question.Answers.size();
+    public boolean[] getCorrectAnswers() {
+        return correctAnswers;
+    }
+
+    public void setCorrectAnswers(boolean[] correctAnswers) {
+        this.correctAnswers = correctAnswers;
+    }
+
+    /**
+     * Gets all answers from model to be inserted into QuestionJSON
+     * @param question
+     * @return
+     */
+    public final String[] getAnswersArray(Question question) {
+        int size = question.answers.size();
         String[] answersArray = new String[size];
         for (int i = 0; i < size; i++) {
-            answersArray[i] = question.Answers.get(i).answer;
+            answersArray[i] = question.answers.get(i).answer;
         }
         return answersArray;
     }
+
+    /**
+     * Gets all answers from JSON to be inserted into Question (model)
+     * @param question
+     * @return
+     */
+    public final List<Answer> getAnswersList(Question question) {
+        List<Answer> list = new ArrayList<Answer>();
+        for (int i = 0; i < answers.length; i++) {
+            Answer a = new Answer(question, answers[i], correctAnswers[i]);
+            list.add(a);
+        }
+        return list;
+    }
+
+    /**
+     * Makes Question object (model) from JSON object
+     * @return
+     */
+    public Question makeModelFromJSON() {
+        Question q = new Question(pollID, question, multipleAllowed);
+        return q;
+    }
+
+
 }

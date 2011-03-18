@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Random;
 import jsons.QuestionJSON;
-import jsons.RequestNewJSON;
+import jsons.RequestQuestionJSON;
+import models.Answer;
 import models.Question;
 import play.mvc.*;
 
@@ -30,7 +32,7 @@ public class Application extends Controller {
         render(myName);
     }
 
-    public static void processRequest(RequestNewJSON request) {
+    public static void processRequest(RequestQuestionJSON request) {
         Long id = params.get("id", Long.class);
         Question question = Question.find("byStudentLink", id).first();
 
@@ -48,7 +50,7 @@ public class Application extends Controller {
     }
 
     public static void test() {
-        Long id = params.get("id", Long.class);
+        Long urlID = params.get("id", Long.class);
 
         // RequestNew message to test:  {"responderID":6547,"pollID":2345}
 
@@ -56,12 +58,15 @@ public class Application extends Controller {
         try {
             String json = reader.readLine();
             Gson gson = new Gson();
-            RequestNewJSON requestNewMsg = gson.fromJson(json, RequestNewJSON.class);
+            RequestQuestionJSON requestNewMsg = gson.fromJson(json, RequestQuestionJSON.class);
 
             Question question = Question.find("byStudentLink", requestNewMsg.getPollID()).first();
 
             // if there is no question or URL is not corresponding to JSON body, render blank string
-            if (question == null || question.studentLink != id) {
+            if (question == null
+                    || question.studentLink != urlID
+                    || question.duration <= 0) {
+                
                 renderJSON(new String());
             }
 
@@ -69,6 +74,43 @@ public class Application extends Controller {
             QuestionJSON testQ = new QuestionJSON(question, requestNewMsg.getResponderID());
             testQ.setDuration(5);
             renderJSON(testQ);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            renderJSON(new String());
+        }
+
+    }
+
+    public static void createQuestion() {
+
+        // RequestNew message to test:  {"responderID":6547,"pollID":2345}
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(request.body));
+        try {
+            String json = reader.readLine();
+            Gson gson = new Gson();
+            QuestionJSON questionMsg = gson.fromJson(json, QuestionJSON.class);
+
+            Question question = questionMsg.makeModelFromJSON();
+
+            // generate data
+            long pollID = new Random(System.currentTimeMillis()).nextInt(Integer.MAX_VALUE);
+            String password = Question.getRandomString(8);
+
+            // put generated data into model
+            question.studentLink = pollID;
+            question.password = password;
+
+            question.save();
+            for (Answer answer : questionMsg.getAnswersList(question)) {
+                answer.save();
+            }
+
+            question = Question.find("byStudentLink", question.studentLink).first();
+
+            renderJSON(question);
+
 
         } catch (IOException ex) {
             ex.printStackTrace();
