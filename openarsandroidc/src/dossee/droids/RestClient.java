@@ -27,7 +27,7 @@ import org.json.JSONObject;
 public class RestClient{
 
     private static RestClient instance;
-	private static String server_address = "http://devel1.openars.dk";
+	private static String server_address = "http://devel2.openars.dk";
     private static int server_port = 80;
     private int response_code;
     private String message;

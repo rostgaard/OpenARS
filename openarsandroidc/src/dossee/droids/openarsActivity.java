@@ -11,6 +11,7 @@ import android.app.*;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
@@ -28,9 +29,9 @@ public class openarsActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        // setContentView(R.layout.main);
-        setContentView(R.layout.answers);
+        setContentView(R.layout.question);
         
-        lView = (ListView)findViewById(R.id.lv_questions);
+        lView = (ListView)findViewById(R.id.lv_options);
        
         //get question JSON from server
         try {
@@ -72,10 +73,6 @@ public class openarsActivity extends Activity {
 			e.printStackTrace();
 		}
 		
-		lv_items.add("answer");
-		lv_items.add("answer");
-		lv_items.add("answer");
-		
         Button btn = (Button)findViewById(R.id.btn_vote);
         btn.setOnClickListener(VoteBtnListener);
     }
@@ -90,14 +87,18 @@ public class openarsActivity extends Activity {
 				 * 
 				 * Else make an ask-for-response toast
 				 */
+				
+				
 				ctx = getApplicationContext();
 				int duration = 2000;
 				
-				//lView = (ListView)findViewById(R.id.lv_questions);	
-				Log.i("SELECTED ITEM", lView.getSelectedItem().toString());
+				int counter = 0;
+				for(int i = 0; i < lView.getChildCount(); i++) {
+					if(lView.getCheckedItemPositions().get(i))
+						counter++;
+				}
 				
-				if (lView.getSelectedItem()!=null) {
-					
+				if (counter != 0) {
 					CharSequence thank_text = "Thank you for voting!";
 					
 					vote = Toast.makeText(ctx, thank_text, duration);
