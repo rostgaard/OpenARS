@@ -1,0 +1,66 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<script type="text/javascript">
+var chart;
+$(document).ready(function() {
+   chart = new Highcharts.Chart({
+      chart: {
+         renderTo: 'container',
+         defaultSeriesType: 'column',
+         marginRight: 10,
+         events: {
+             load: function() {
+                // set up the updating of the chart each second
+                var series = this.series[0];
+                setInterval(function() {
+                    $.getJSON('http://localhost:9000/json', function(data) {
+                        var votes = data.votes;
+                        var polldata = [];
+                        $.each(data.results, function(i, result) {
+                        	polldata[i] = result;
+                        });
+                        series.setData(polldata);
+                    });
+                }, 1000);
+             }
+   		}
+      },
+      title: {
+         text: 'When cheese gets its picture taken, what does it say?'
+      },
+      xAxis: {
+			categories: [
+			 			'Orangeeee',
+			 			'Humaaaaan', 
+			 			'Meeee'
+			]
+	  },
+	  yAxis: {
+			min: 0,
+			title: {
+				text: '# of votes'
+			}
+		},
+		tooltip: {
+			formatter: function() {
+				return ''+ this.x +': '+ this.y +' votes';
+			}
+		},
+      legend: {
+         enabled: false
+      },
+      exporting: {
+         enabled: false
+      },
+      series: [{
+			name: 'Tokyo',
+			data: [0, 0, 0]
+		}]
+   });
+   
+   
+});
+</script>
+
+<div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>

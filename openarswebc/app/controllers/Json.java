@@ -1,11 +1,11 @@
 package controllers;
 
-import models.Question;
-import play.mvc.*;
+import models.QuestionResult;
+import play.mvc.Controller;
 
 public class Json extends Controller {
 
     public static void json() {
-    	renderJSON(new Question());
+    	renderJSON(new QuestionResult());
     }
 }
