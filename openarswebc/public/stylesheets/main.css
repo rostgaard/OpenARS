@@ -17,6 +17,11 @@ H1 {		text-align: center;
              margin-bottom: 5px; /* okraje */
    }
 
+table {		border-width: 0px;}
+
+td 		{	border-width: 0px;}
+tr		{	border-width: 0px;}
+
 .bold	{font-size: 35px;}
 
 img
