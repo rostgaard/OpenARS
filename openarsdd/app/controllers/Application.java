@@ -1,5 +1,9 @@
 package controllers;
 
+import com.google.gson.Gson;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import jsons.QuestionJSON;
 import jsons.RequestNewJSON;
 import models.Question;
@@ -45,16 +49,31 @@ public class Application extends Controller {
 
     public static void test() {
         Long id = params.get("id", Long.class);
-        Question question = Question.find("byStudentLink", id).first();
 
-        // if there is no question render blank string
-        if (question == null) {
+        // RequestNew message to test:  {"responderID":6547,"pollID":2345}
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(request.body));
+        try {
+            String json = reader.readLine();
+            Gson gson = new Gson();
+            RequestNewJSON requestNewMsg = gson.fromJson(json, RequestNewJSON.class);
+
+            Question question = Question.find("byStudentLink", requestNewMsg.getPollID()).first();
+
+            // if there is no question or URL is not corresponding to JSON body, render blank string
+            if (question == null || question.studentLink != id) {
+                renderJSON(new String());
+            }
+
+            // otherwise render json of Question message
+            QuestionJSON testQ = new QuestionJSON(question, requestNewMsg.getResponderID());
+            testQ.setDuration(5);
+            renderJSON(testQ);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
             renderJSON(new String());
         }
 
-        // otherwise render json of Question message
-        QuestionJSON testQ = new QuestionJSON(question, -1);
-        testQ.setDuration(5);
-        renderJSON(testQ);
     }
 }
