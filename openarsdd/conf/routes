@@ -5,6 +5,8 @@
 # Home page
 GET     /                                       Application.index
 GET     /hello                                  Application.sayHello
+GET     /{<[0-9]+>id}                           Application.processRequest
+POST    /{<[0-9]+>id}                           Application.test
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public

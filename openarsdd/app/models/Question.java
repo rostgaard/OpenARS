@@ -13,19 +13,22 @@ import play.db.jpa.*;
 public class Question extends Model {
 
     @Required
-    public String adminLink;
-    public String studentLink; //pollID
+    public long studentLink; //pollID
+    public long adminLink;
     public String question;
     public boolean MultipleAllowed;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
     public List<Answer> Answers;
+    public int duration;
 
-    public Question(String adminLink, String studentLink, String question, boolean MultipleAllowed) {
-        this.adminLink = adminLink;
+    public Question(long studentLink, String question, boolean MultipleAllowed) {
         this.studentLink = studentLink;
         this.question = question;
         this.MultipleAllowed = MultipleAllowed;
     }
 
-    
+    public void activateFor(int duration) {
+        this.duration = duration;
+    }
+
 }
