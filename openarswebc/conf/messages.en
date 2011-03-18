@@ -16,4 +16,4 @@ stats=Stats
 activate=Activate
 poll=Poll
 total=Total
- 
+validation.required.atLeastTwo=You must enter at least two
