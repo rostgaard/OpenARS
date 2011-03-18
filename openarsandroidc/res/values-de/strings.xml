@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">openARS</string>
-    <string name="thanks">Thank you for voting!</string>
-    <string name="choose">Please choose your answer!</string>
-    <string name="hint">Enter poll ID</string>
-    <string name="go">GO</string>
-    <string name="vote">Vote</string>
-    <string name="exit">Exit</string>
-    <string name="inactive">This poll is inactive.</string>
-    <string name="refresh">Refresh</string>
-    <string name="no_poll">There is no such poll.</string>
+    <string name="thanks">Vielen Dank fuers Waehlen</string>
+    <string name="choose">Bitte waehlen Sie eine Antwort!</string>
+    <string name="hint">Bitte eine poll ID eingeben</string>
+    <string name="go">Start</string>
+    <string name="vote">Waehlen</string>
+    <string name="exit">Schliessen</string>
+    <string name="inactive">Dieser Poll ist inaktiv.</string>
+    <string name="refresh">Neu laden</string>
+    <string name="no_poll">Der gewuenschte Poll existiert nicht.</string>
 </resources>
 
