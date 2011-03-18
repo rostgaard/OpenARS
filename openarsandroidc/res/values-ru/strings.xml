@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">openARS</string>
+    <string name="thanks">Спасибо, Ваш голос принят!</string>
+    <string name="choose">Пожалуйста, выберите Ваш ответ!</string>
+    <string name="hint">Введите номер опроса</string>
+    <string name="go">Поехали!</string>
+    <string name="vote">Голосовать</string>
+    <string name="exit">Выход</string>
+    <string name="inactive">Этот опрос еще не активирован.</string>
+    <string name="refresh">Обновить</string>
+    <string name="no_poll">Опроса с данным номером не существует.</string>
+</resources>
