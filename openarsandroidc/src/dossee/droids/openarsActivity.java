@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import android.app.*;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -24,6 +25,7 @@ public class openarsActivity extends Activity {
 	private Toast vote;
     private Context ctx;
     private ListView lView;
+    private Resources r;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -97,15 +99,15 @@ public class openarsActivity extends Activity {
 					if(lView.getCheckedItemPositions().get(i))
 						counter++;
 				}
-				
+				r = getResources();
 				if (counter != 0) {
-					CharSequence thank_text = "Thank you for voting!";
+					CharSequence thank_text = r.getString(R.string.thanks);
 					
 					vote = Toast.makeText(ctx, thank_text, duration);
 					vote.show();					
 				} else {
-					CharSequence ask_text = "Please choose your answer!";
-					vote = Toast.makeText(ctx, ask_text, duration);
+					CharSequence choose_text = r.getString(R.string.choose);
+					vote = Toast.makeText(ctx, choose_text, duration);
 					vote.show();
 				}
 					

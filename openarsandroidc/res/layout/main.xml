@@ -14,7 +14,7 @@
     	>
     </ImageView>
     <EditText 
-    	android:hint="Enter poll ID"
+    	android:hint="@string/hint"
     	android:layout_width="wrap_content" 
     	android:id="@+id/et_pollID" 
     	android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
     <Button 
     	android:id="@+id/btn_go" 
     	android:layout_width="wrap_content" 
-    	android:text="GO" 
+    	android:text="@string/go" 
     	android:textStyle="bold"
     	android:textColor="#000000"
     	android:textSize="25sp"

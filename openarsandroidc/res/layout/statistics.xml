@@ -26,7 +26,7 @@
     <TextView android:text="Answer 2: 200 votes" android:id="@+id/tv_ans2" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
     <TextView android:text="Answer 3: 0 votes" android:id="@+id/tv_ans3" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
     <Button 
-    	android:text="Button" 
+    	android:text="@string/exit" 
     	android:id="@+id/btn_exit" 
     	android:layout_width="wrap_content" 
     	android:layout_height="wrap_content"
