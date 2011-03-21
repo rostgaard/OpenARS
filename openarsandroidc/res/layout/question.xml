@@ -3,8 +3,16 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:id="@+id/linear_I"
     >
-
+<ScrollView android:id="@+id/scroll_view"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+			
+<LinearLayout android:id="@+id/linear_II"
+			  android:layout_width="wrap_content"
+			  android:layout_height="wrap_content"
+			  android:orientation="vertical">	
     <TextView 
     	android:id="@+id/tv_remaining" 
     	android:layout_gravity="left" 
@@ -66,7 +74,7 @@
     	android:layout_width="fill_parent"
     	></ListView>
     	
-    
-
+</LinearLayout>    	
+</ScrollView>  	
 </LinearLayout>
 
