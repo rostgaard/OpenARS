@@ -12,6 +12,7 @@ import jsons.VoteJSON;
 import models.Answer;
 import models.Question;
 import play.mvc.*;
+import notifiers.*;
 
 //import models.*;
 public class Application extends Controller {
@@ -141,5 +142,10 @@ public class Application extends Controller {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+     public static void sendSumEmail(Question madeQuestion){
+        Mail.questionCreated(madeQuestion);
+        render();
     }
 }

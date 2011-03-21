@@ -4,9 +4,7 @@
  */
 package notifiers;
 
-import play.*;
 import play.mvc.*;
-import java.util.*;
 import models.*;
 
 /**
@@ -15,11 +13,11 @@ import models.*;
  */
 public class Mail extends Mailer {
 
-    public static void questionCreated(String email, Question createdQuestion) {
+    public static void questionCreated(Question createdQuestion) {
 
         long id = 1;
         setSubject("Poll created in openars");
-        addRecipient(email);
+        addRecipient(createdQuestion.email);
         setFrom("noreply@openars.edu");
         if (createdQuestion != null) {
             id = createdQuestion.pollID;
