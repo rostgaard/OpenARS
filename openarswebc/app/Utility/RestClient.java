@@ -175,7 +175,7 @@ public class RestClient {
 	 * Private class for identifying base URL for services
 	 */
 	private class StaticQuery {
-		public final static String get_question = "404989";
+		public final static String get_question = "404389";
 		public final static String post_question = "newPoll";
 	}
 }
