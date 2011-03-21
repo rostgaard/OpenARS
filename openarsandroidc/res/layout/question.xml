@@ -10,7 +10,7 @@
 			android:layout_height="fill_parent">
 			
 <LinearLayout android:id="@+id/linear_II"
-			  android:layout_width="wrap_content"
+			  android:layout_width="fill_parent"
 			  android:layout_height="wrap_content"
 			  android:orientation="vertical">	
     <TextView 
@@ -55,7 +55,15 @@
     	android:textColor="#ffffff"
     	android:paddingBottom="10dip"></TextView>
     
-    <Button 
+    
+    
+    <ListView 
+    	android:layout_height="wrap_content" 
+    	android:id="@+id/lv_options" 
+    	android:layout_width="fill_parent"
+    	></ListView>
+    	
+   <Button 
     	android:layout_gravity="center_horizontal"
     	android:text="@string/vote" 
     	android:id="@+id/btn_vote" 
@@ -66,13 +74,7 @@
     	android:layout_marginTop="10dip"
     	android:layout_marginBottom="10dip"
     	android:textSize="25sp"
-    	></Button>
-    
-    <ListView 
-    	android:layout_height="wrap_content" 
-    	android:id="@+id/lv_options" 
-    	android:layout_width="fill_parent"
-    	></ListView>
+    	></Button> 	
     	
 </LinearLayout>    	
 </ScrollView>  	
