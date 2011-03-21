@@ -1,0 +1,141 @@
+#{extends 'main.html' /}
+#{set title:'Voted in poll #' + pollID /}
+#{set moreStyles:'joinpoll' /}
+#{set moreScripts:'highcharts' /}
+		
+<div id="main" class="greybg">
+	<div class="wrapper">
+		<h1>&{'joinpoll.voterecieved.header'}</h1>
+		<p>&{'joinpoll.voterecieved.text'}</p>
+		<img class="loading" src="@{'/public/images/loading-big.gif'}" alt="&{'loading'}"/>
+		<div id="stats"></div>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	check();
+});
+
+function check() {
+	$.getJSON("@{JoinPoll.hasResults()}?id=${pollID}",
+		function(data) {
+			if(data) {
+				$('.loading').hide();
+				loadstats(data);
+			}
+			else {
+				setTimeout('check()', 2000);
+			}
+		}
+	);
+};
+
+function loadstats(data) {
+	Highcharts.theme = {
+			   colors: ["#A4C765"],
+			   chart: {
+					backgroundColor: {
+			        linearGradient: [0, 0, 0, 400],
+			        stops: [
+			           [0, 'rgb(67, 67, 67)'],
+			        ]
+			     },
+			      borderWidth: 0,
+			      borderRadius: 15,
+			      plotBackgroundColor: null,
+			      plotShadow: false,
+			      plotBorderWidth: 0
+			   },
+			   title: {
+			      style: { 
+			         color: '#FFF',
+			         font: '16px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
+			      }
+			   },
+			   xAxis: {
+			      gridLineWidth: 0,
+			      lineColor: '#666',
+			      tickColor: '#666',
+			      labels: {
+			         style: {
+			            color: '#fff',
+			            fontWeight: 'bold'
+			         }
+			      },
+			      title: {
+			         style: {
+			            color: '#fff',
+			            font: '12px "Lucida Grande",Tahoma,"Bitstream Vera Sans",Arial,sans-serif'
+			         }            
+			      }
+			   },
+			   yAxis: {
+			      alternateGridColor: null,
+			      minorTickInterval: null,
+			      gridLineColor: 'rgba(255, 255, 255, .1)',
+			      lineWidth: 0,
+			      tickWidth: 0,
+			      labels: {
+			         style: {
+			            color: '#fff',
+			            fontWeight: 'bold'
+			         }
+			      },
+			      title: {
+			         style: {
+			            color: '#fff',
+			            font: '12px "Lucida Grande",Tahoma,"Bitstream Vera Sans",Arial,sans-serif'
+			         }            
+			      }
+			   },
+			   tooltip: {
+			      backgroundColor: {
+			         linearGradient: [0, 0, 0, 50],
+			         stops: [
+			            [0, 'rgba(96, 96, 96, .8)'],
+			         ]
+			      },
+			      borderWidth: 0,
+			      style: {
+			         color: '#FFF'
+			      }
+			   },
+			};
+				
+	var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
+	var chart = new Highcharts.Chart({
+	      chart: {
+	         renderTo: 'stats',
+	         defaultSeriesType: 'column',
+	         marginRight: 10,
+	      },
+	      title: {
+	         text: '${question}'
+	      },
+	      xAxis: {
+				categories: data.map.answers.myArrayList,
+				labels: {
+		            rotation: -45,
+		            align: 'right',
+	      		}
+		  },
+		  yAxis: {
+				min: 0,
+				title: {
+					text: '&{'joinpoll.success.yAxis'}'
+				}
+			},
+			tooltip: {
+				formatter: function() {
+					return ''+ this.x +': '+ this.y +' &{'joinpoll.success.votes'}';
+				}
+			},
+	      legend: {
+	         enabled: false
+	      },
+	      series: [{
+				data: data.map.votes.myArrayList
+			}]
+	   });
+};
+</script>

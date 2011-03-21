@@ -1,7 +1,3 @@
-#joinpoll {
-	margin: 5% 0;
-}
-
 #pollid {
 	background-color: #fff;
 	-webkit-border-radius: 5px;
@@ -45,6 +41,7 @@
 #bottomoptions {
 	overflow: hidden;
 	position: relative;
+	margin-top: 5%;
 }
 
 #createpoll, #managepoll {

@@ -1,0 +1,11 @@
+#{extends 'main.html' /}
+#{set title:'No poll' /}
+#{set moreStyles:'joinpoll' /}
+		
+<div id="main" class="greybg">
+	<div class="wrapper">
+		<h1>&{'joinpoll.nopoll.header', pollID}</h1>
+		<p>&{'joinpoll.nopoll.text'}</p>
+		<a href="/${pollID}" title="&{'joinpoll.nopoll.retry'}" class="button">&{'joinpoll.nopoll.retry'}</a>
+	</div>
+</div>

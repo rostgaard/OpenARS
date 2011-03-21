@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import models.Vote;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -19,13 +21,13 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.google.gson.JsonObject;
+import com.google.gson.Gson;
 
 public class RestClient {
 
 	private static RestClient instance;
-	private static String server_address = "http://devel1.openars.dk";
-	private static int server_port = 80;
+	private static String server_address = "http://78.47.162.117";
+	private static int server_port = 9000;
 	private int response_code;
 	private String message;
 	private String response;
@@ -111,7 +113,7 @@ public class RestClient {
 	private JSONObject getService(String service) {
 		JSONObject jso = new JSONObject();
 		HttpRequestBase hrb = new HttpGet();
-
+		
 		try {
 			this.executeRequest(hrb, service, null);
 			jso = new JSONObject(this.response);
@@ -133,6 +135,7 @@ public class RestClient {
 		HttpRequestBase hrb = new HttpPost();
 		try {
 			this.executeRequest(hrb, service, json);
+			System.out.println(this.response);
 			result = new JSONObject(this.response);
 		} catch (JSONException ex) {
 			ex.printStackTrace();
@@ -155,8 +158,18 @@ public class RestClient {
 	 * 
 	 * @return get question encapsulated in JSONObject
 	 */
-	public JSONObject getQuestion() {
-		return this.getService(StaticQuery.get_question);
+	public JSONObject getQuestion(String id) {
+		return this.getService(StaticQuery.get_question(id));
+	}
+	
+	public boolean vote(Vote v) {
+		try {
+			Gson g = new Gson();
+			return this.postService(StaticQuery.vote(v.pollID), new JSONObject(g.toJson(v))).getBoolean("result");
+		} catch (JSONException e) {
+		}
+		
+		return false;
 	}
 
 	/**
@@ -170,12 +183,27 @@ public class RestClient {
 		JSONObject json = new JSONObject(o);
 		return this.postService(StaticQuery.post_question, json);
 	}
+	
+	public JSONObject getResults(String id) {
+		return this.getService(StaticQuery.get_results(id));
+	}
 
 	/**
 	 * Private class for identifying base URL for services
 	 */
-	private class StaticQuery {
-		public final static String get_question = "404389";
+	private static class StaticQuery {
 		public final static String post_question = "newPoll";
+		
+		public static String vote(int id) {
+			return "vote/" + id;
+		}
+		
+		public static String get_question(String id) {
+			return id;
+		}
+		
+		public static String get_results(String id) {
+			return "getResults/" + id;
+		}
 	}
 }

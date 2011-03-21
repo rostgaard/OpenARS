@@ -6,10 +6,12 @@
 			<div class="wrapper">
 				<span id="pollid">
 					<span>&{'join_poll_pollid'}</span>
-					<input type="text" name="id" value="" autocomplete="off" />
+					<input type="text" name="id" value="" autocomplete="off" autofocus="on" />
 				</span>
-				<p>&{'join_poll_teaser'}</p>
-				<input type="submit" value="&{'join_poll_submit'}" class="button" />
+				<div class="centered">
+					<p>&{'join_poll_teaser'}</p>
+					<input type="submit" value="&{'join_poll_submit'}" class="button" />
+				</div>
 			</div>
 		#{/form}
 		<div id="bottomoptions">
@@ -36,3 +38,18 @@
 			#{/form}
 		</div>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#pollid input").focus();
+	});
+	$('#pollid input').bind('keypress', function(e) {
+		return (e.which != 13 && e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) ? false : true ;
+	})
+	$('#joinpoll').bind('submit', function() {
+		if($('#joinpoll input').val() == "") {
+			$(this).effect("shake", { times:3 }, 50, function() {$('#pollid input').focus()});
+			
+			return false;
+		}
+	});
+	</script>

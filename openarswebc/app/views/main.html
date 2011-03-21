@@ -11,12 +11,15 @@
         
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         <script src="@{'/public/javascripts/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
-        #{get 'moreScripts' /}
+        <script src="@{'/public/javascripts/jquery-ui-1.8.11.min.js'}" type="text/javascript" charset="utf-8"></script>
+        #{if moreScripts}
+        	<script src="@{'/public/javascripts/'}/#{get 'moreScripts' /}.js" type="text/javascript" charset="utf-8"></script>
+        #{/if}
     </head>
     <body>
     	<div id="content">
 			<div id="header">
-				<img src="/public/images/logo_transparent_hd.png" />
+				<a href="/"><img src="/public/images/logo_transparent_hd.png" /></a>
 			</div>
         #{doLayout /}
         
@@ -34,7 +37,6 @@
         
         <script type="text/javascript">
 		$(document).ready(function(){
-			$("#pollid input").focus();
 			$("#language img").bind('click', function() {
 				lang = $(this).attr('src');
 				lang = lang.replace('@{'/public/images/flags/'}/', '').replace('.png', '');
