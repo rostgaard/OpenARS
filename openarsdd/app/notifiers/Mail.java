@@ -22,9 +22,8 @@ public class Mail extends Mailer {
         addRecipient(email);
         setFrom("noreply@openars.edu");
         if (createdQuestion != null) {
-            id = createdQuestion.studentLink;
+            id = createdQuestion.pollID;
+            send(id);
         }
-
-        send(id);
     }
 }

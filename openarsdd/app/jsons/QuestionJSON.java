@@ -20,33 +20,17 @@ public class QuestionJSON {
     private long questionID;
     private String question;
     private String[] answers;
-    private boolean[] correctAnswers;
     private boolean multipleAllowed;
     private long responderID;
     private int duration;
-
-    public boolean isMultipleAllowed() {
-        return multipleAllowed;
-    }
-
-    public void setMultipleAllowed(boolean multipleAllowed) {
-        this.multipleAllowed = multipleAllowed;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
+    private String email;
 
     /**
      * @param question
      * @param responderID
      */
     public QuestionJSON(Question question, long responderID) {
-        this.pollID = question.studentLink;
+        this.pollID = question.pollID;
         this.questionID = question.id;
         this.answers = getAnswersArray(question);
         this.responderID = responderID;
@@ -54,6 +38,10 @@ public class QuestionJSON {
         this.duration = question.duration;
         this.multipleAllowed = question.multipleAllowed;
 
+    }
+
+    public QuestionJSON(Question question) {
+        this(question, -1);
     }
 
     public void setAnswers(String[] answers) {
@@ -96,12 +84,28 @@ public class QuestionJSON {
         this.question = question;
     }
 
-    public boolean[] getCorrectAnswers() {
-        return correctAnswers;
+    public boolean isMultipleAllowed() {
+        return multipleAllowed;
     }
 
-    public void setCorrectAnswers(boolean[] correctAnswers) {
-        this.correctAnswers = correctAnswers;
+    public void setMultipleAllowed(boolean multipleAllowed) {
+        this.multipleAllowed = multipleAllowed;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
@@ -126,7 +130,7 @@ public class QuestionJSON {
     public final List<Answer> getAnswersList(Question question) {
         List<Answer> list = new ArrayList<Answer>();
         for (int i = 0; i < answers.length; i++) {
-            Answer a = new Answer(question, answers[i], correctAnswers[i]);
+            Answer a = new Answer(question, answers[i]);
             list.add(a);
         }
         return list;
@@ -137,9 +141,7 @@ public class QuestionJSON {
      * @return
      */
     public Question makeModelFromJSON() {
-        Question q = new Question(pollID, question, multipleAllowed);
+        Question q = new Question(pollID, question, multipleAllowed, email);
         return q;
     }
-
-
 }

@@ -5,8 +5,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Random;
+import jsons.CreateResponseJSON;
 import jsons.QuestionJSON;
 import jsons.RequestQuestionJSON;
+import jsons.VoteJSON;
 import models.Answer;
 import models.Question;
 import play.mvc.*;
@@ -15,17 +17,19 @@ import play.mvc.*;
 public class Application extends Controller {
 
     public static void index() {
-//        Question q = new Question("1234", "2345", "What is the capital of Spain?", false);
-//        Answer a1 = new Answer(q, "Madrid", true);
-//        Answer a2 = new Answer(q, "Oslo", false);
-
+//        Question q = new Question(23456, "What is the capital of France?", false);
+//        Answer a1 = new Answer(q, "Paris");
+//        Answer a2 = new Answer(q, "London");
+//
 //        q.save();
 //        a1.save();
 //        a2.save();
 
-        Question question = Question.find("byStudentLink", "2345").first();
+//        q.refresh();
+        Question question = Question.find("byStudentLink", 23456L).first();
         QuestionJSON testQ = new QuestionJSON(question, 9254);
-        render(question, testQ);
+        renderJSON(testQ);
+//        render(question, testQ);
     }
 
     public static void sayHello(String myName) {
@@ -34,7 +38,7 @@ public class Application extends Controller {
 
     public static void processRequest(RequestQuestionJSON request) {
         Long id = params.get("id", Long.class);
-        Question question = Question.find("byStudentLink", id).first();
+        Question question = Question.find("byPollID", id).first();
 
         // if there is no question render blank string
         if (question == null) {
@@ -45,12 +49,12 @@ public class Application extends Controller {
 //        System.out.println("Responder ID: " + request.getResponderID());
 
         // otherwise render json of Question message
-        QuestionJSON testQ = new QuestionJSON(question, 3248);
+        QuestionJSON testQ = new QuestionJSON(question, 3249);
         renderJSON(testQ);
     }
 
-    public static void test() {
-        Long urlID = params.get("id", Long.class);
+    public static void requestQuestion() {
+        long urlID = params.get("id", Long.class).longValue();
 
         // RequestNew message to test:  {"responderID":6547,"pollID":2345}
 
@@ -60,13 +64,15 @@ public class Application extends Controller {
             Gson gson = new Gson();
             RequestQuestionJSON requestNewMsg = gson.fromJson(json, RequestQuestionJSON.class);
 
-            Question question = Question.find("byStudentLink", requestNewMsg.getPollID()).first();
+            Question question = Question.find("byPollID", requestNewMsg.getPollID()).first();
 
             // if there is no question or URL is not corresponding to JSON body, render blank string
             if (question == null
-                    || question.studentLink != urlID
+                    || question.pollID != urlID
                     || question.duration <= 0) {
-                
+                System.out.println("Question is null: " + (question == null));
+                System.out.println("StudentLink != ID: " + (question.pollID != urlID));
+                System.out.println("Inactive: " + (question.duration <= 0));
                 renderJSON(new String());
             }
 
@@ -94,22 +100,27 @@ public class Application extends Controller {
 
             Question question = questionMsg.makeModelFromJSON();
 
-            // generate data
-            long pollID = new Random(System.currentTimeMillis()).nextInt(Integer.MAX_VALUE);
-            String password = Question.getRandomString(8);
-
-            // put generated data into model
-            question.studentLink = pollID;
-            question.password = password;
-
+            // generate data and save question
+            question.pollID = new Random(System.currentTimeMillis()).nextInt(999999);
+            question.adminKey = Question.getRandomString(8);
             question.save();
-            for (Answer answer : questionMsg.getAnswersList(question)) {
-                answer.save();
+
+            // retrieve answers from JSON and save them into database
+            for (String a : questionMsg.getAnswers()) {
+                System.out.println("Answer: " + a);
+                new Answer(question, a).save();
             }
 
-            question = Question.find("byStudentLink", question.studentLink).first();
+//            question.refresh();
+            // find modified data
+//            System.out.println("question null?: " + (question == null));
+//            System.out.println("answers null?: " + question.duration == null);
+//            System.out.println("Number of questions: " + question.answers.size());
 
-            renderJSON(question);
+//            QuestionJSON responseJSON = new QuestionJSON(question);
+
+
+            renderJSON(new CreateResponseJSON(question.pollID, question.adminKey));
 
 
         } catch (IOException ex) {
@@ -117,5 +128,18 @@ public class Application extends Controller {
             renderJSON(new String());
         }
 
+    }
+
+    public static void vote() {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(request.body));
+            String json = reader.readLine();
+            Gson gson = new Gson();
+            VoteJSON vote = gson.fromJson(json, VoteJSON.class);
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

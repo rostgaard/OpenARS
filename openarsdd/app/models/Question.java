@@ -16,18 +16,20 @@ public class Question extends Model {
     private static final String charset = "!0123456789abcdefghijklmnopqrstuvwxyz";
     
     @Required
-    public long studentLink; //pollID
-    public String password;
+    public long pollID; //pollID
+    public String adminKey;
+    public String email;
     public String question;
     public boolean multipleAllowed;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
     public List<Answer> answers;
     public int duration;
 
-    public Question(long studentLink, String question, boolean MultipleAllowed) {
-        this.studentLink = studentLink;
+    public Question(long pollID, String question, boolean MultipleAllowed, String email) {
+        this.pollID = pollID;
         this.question = question;
         this.multipleAllowed = MultipleAllowed;
+        this.email = email;
     }
 
     public void activateFor(int duration) {
