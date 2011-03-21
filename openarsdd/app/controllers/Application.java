@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.Random;
 import jsons.CreateResponseJSON;
 import jsons.QuestionJSON;
@@ -11,6 +12,7 @@ import jsons.RequestQuestionJSON;
 import jsons.VoteJSON;
 import models.Answer;
 import models.Question;
+import models.Vote;
 import play.mvc.*;
 import notifiers.*;
 
@@ -139,13 +141,55 @@ public class Application extends Controller {
             Gson gson = new Gson();
             VoteJSON vote = gson.fromJson(json, VoteJSON.class);
 
+            long pollID = vote.getPollID();
+            long questionID = vote.getQuestionID();
+            String[] answersArray = vote.getAnswers();
+            long responderID = vote.getResponderID();
+
+
+            for (String answer : answersArray) {
+                Question question = Question.find("id = ? AND pollID = ?", questionID, pollID).first();
+                List<Answer> answers = question.answers;
+                Answer selectedAnswer = null;
+
+                for (String answer1 : answersArray) {
+                    System.out.println("Answers Array: " + answer1);
+
+                }
+                for (Answer ans : answers) {
+                    System.out.println("Answers in DB: " + ans.answer);
+                }
+
+
+                // we need to store votes for all provided answers
+                for (Answer a : answers) {
+                    if (a.answer.equals(answer)) {
+                        selectedAnswer = a;
+                    }
+                }
+
+                System.out.println("Selected answer: " + selectedAnswer.answer);
+
+                // if there are no votes for this answer in DB, create one
+                if (selectedAnswer.votes.isEmpty()) {
+                    //@TODO: more voting rounds!
+                    new Vote(selectedAnswer, 1, null).save();
+                    renderJSON("Success! new vote created!");
+                } // otherwise just increment the count value
+                else {
+                    //@TODO: more voting rounds!
+                    selectedAnswer.votes.get(0).count++;
+                    selectedAnswer.save();
+                    renderJSON("Success! incremented");
+                }
+            }
 
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-     public static void sendSumEmail(Question madeQuestion){
+    public static void sendSumEmail(Question madeQuestion) {
         Mail.questionCreated(madeQuestion);
         render();
     }

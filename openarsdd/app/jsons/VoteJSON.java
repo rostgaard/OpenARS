@@ -43,7 +43,7 @@ public class VoteJSON {
     }
 
     public void setAnswers(String[] answers) {
-        this.answers = answers;
+        this.setAnswers(answers);
     }
 
     public long getResponderID() {
@@ -53,4 +53,5 @@ public class VoteJSON {
     public void setResponderID(long responderID) {
         this.responderID = responderID;
     }
+
 }

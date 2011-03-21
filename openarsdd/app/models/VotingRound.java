@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import play.db.jpa.*;
@@ -14,12 +15,15 @@ public class VotingRound extends Model {
 
     @OneToMany(mappedBy = "votingRound")
     public List<Vote> votes;
-    public String startDateTime;
-    public String EndDateTime;
+    public Date startDateTime;
+    public Date EndDateTime;
 
-//    public VotingRound(List<Vote> votes, String startDateTime, String EndDateTime) {
-//        this.votes = votes;
-//        this.startDateTime = startDateTime;
-//        this.EndDateTime = EndDateTime;
-//    }
+    public VotingRound(List<Vote> votes, int duration) {
+        this.votes = votes;
+        this.startDateTime = new Date(System.currentTimeMillis());
+        this.EndDateTime = new Date(startDateTime.getTime() + duration*1000);
+    }
+
+
+
 }
