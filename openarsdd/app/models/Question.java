@@ -58,4 +58,9 @@ public class Question extends Model {
         }
         return array;
     }
+
+    @Override
+    public String toString() {
+        return "AdminKey: " + this.adminKey + " PollID: " + this.pollID;
+    }
 }

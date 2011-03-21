@@ -13,15 +13,20 @@ import models.*;
  */
 public class MailNotifier extends Mailer {
 
-    public static void sendAdminLink(Question createdQuestion) {
+    public static void sendAdminLink(Question question) {
 
         long id = 1;
         setSubject("Your admin link");
-        addRecipient(createdQuestion.email);
+        addRecipient(question.email);
         setFrom("no-reply@mailer.openars.dk");
-        if (createdQuestion != null) {
-            id = createdQuestion.pollID;
-            send(id);
+        System.out.println(question);
+        if (question != null) {
+            id = question.pollID;
+            send(question);
         }
     }
+
+     public static void sendPollIDLink(Question createdQuestion) {
+    
+     }
 }

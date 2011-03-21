@@ -14,13 +14,13 @@ import notifiers.*;
 public class Test extends Controller {
 
     public static void createPoll(){
-        Question madeQuestion = new Question(2525, "Test Question?", false,"krc@retrospekt.dk");
-        madeQuestion.adminKey = "123jhd";
-        madeQuestion.pollID = 665698;   
+        Question testQuestion = new Question(2525, "Test Question?", false,"krc@retrospekt.dk");
+        testQuestion.adminKey = "123jhd";
+        testQuestion.pollID = 665698;   
 
         System.out.println();
 
-        MailNotifier.sendAdminLink(madeQuestion);
+        MailNotifier.sendAdminLink(testQuestion);
         render();
     }
 
