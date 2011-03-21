@@ -50,7 +50,6 @@ public class QuestionActivity extends Activity {
         	Log.i("guestionString",guestionString);
         	Gson gson = new Gson();
         	
-        	
         	try {
         		QuestionJSON questionJSON = gson.fromJson(guestionString, QuestionJSON.class);
 	        	Log.i("questionJSON",questionJSON.toString());
@@ -72,7 +71,7 @@ public class QuestionActivity extends Activity {
     			((TextView)findViewById(R.id.tv_pollID)).setText("Poll #" + pollID);
     			((TextView)findViewById(R.id.tv_error)).setText(R.string.no_poll);
     			
-    			//exit button
+    			//refresh button
 		        Button btn_refresh = (Button)findViewById(R.id.btn_refresh);
 		        btn_refresh.setOnClickListener(RefreshBtnListener);
     			return;
@@ -86,7 +85,9 @@ public class QuestionActivity extends Activity {
     			((TextView)findViewById(R.id.tv_pollID)).setText("Poll #" + pollID);
     			((TextView)findViewById(R.id.tv_error)).setText(R.string.inactive);
     			
-    			//set onClickListener
+    			//refresh button
+		        Button btn_refresh = (Button)findViewById(R.id.btn_refresh);
+		        btn_refresh.setOnClickListener(RefreshBtnListener);
 				return;
 			}
         	
