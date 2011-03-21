@@ -15,6 +15,10 @@ public class Test extends Controller {
 
     public static void createPoll(){
         Question madeQuestion = new Question(2525, "Test Question?", false,"krc@retrospekt.dk");
+        madeQuestion.adminKey = "123jhd";
+        madeQuestion.pollID = 665698;   
+
+        System.out.println();
 
         MailNotifier.sendAdminLink(madeQuestion);
         render();
