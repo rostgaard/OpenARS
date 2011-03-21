@@ -20,6 +20,7 @@
     	android:layout_height="wrap_content"
     	android:gravity="left"
     	android:textSize="30sp"
+    	android:textColor="#ffffff"
     	android:paddingBottom="25dip"></TextView>
     	
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

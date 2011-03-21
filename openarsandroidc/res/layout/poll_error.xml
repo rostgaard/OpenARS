@@ -17,8 +17,8 @@
     <TextView 
     	android:layout_gravity="center_horizontal"
     	android:gravity="center_horizontal"
-    	android:text="@string/inactive"
-    	android:id="@+id/tv_inactive" 
+    	android:text="POLL ERROR"
+    	android:id="@+id/tv_error" 
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content"
     	android:textSize="30sp"

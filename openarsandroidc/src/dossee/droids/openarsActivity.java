@@ -1,5 +1,7 @@
 package dossee.droids;
 
+import java.util.UUID;
+
 import dossee.droids.R;
 import android.app.*;
 import android.content.Intent;
@@ -13,12 +15,12 @@ import android.widget.*;
 public class openarsActivity extends Activity {
    
     Button btn_go;
+    UUID uuid;
    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        Log.i("openarsActivity","onCreate");
         btn_go = (Button)findViewById(R.id.btn_go);
         btn_go.setOnClickListener(VoteBtnListener);
     }

@@ -11,5 +11,6 @@
     <string name="wait">Please wait, the results will be displayed in few seconds</string>
     <string name="remaining">time remaining:</string>
     <string name="refresh">TRY AGAIN</string>
+    <string name="refreshing">Trying again</string>
     <string name="no_poll">There is no such poll.</string>
 </resources>
