@@ -5,8 +5,9 @@ import javax.persistence.*;
 import play.db.jpa.*;
 
 /**
- *
- * @author veri
+ * Voting round model. Having this enables us to have several voting rounds of a 
+ * question. The result returned to the clients should always be the latest.
+ * @author OpenARS Server API team
  */
 @Entity
 public class VotingRound extends Model {

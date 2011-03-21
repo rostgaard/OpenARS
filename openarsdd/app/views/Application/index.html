@@ -6,10 +6,10 @@
     <input type="submit" value="Say hello!" />
 </form>
 
-Question: ${question.question} <br/>
+Question: ${question?.question} <br/>
 <ul>
-    #{list items:question.answers, as:'answer' }
-        <li>Option: ${answer.answer}</li>
+    #{list items:question?.answers, as:'answer' }
+        <li>Option: ${answer?.answer}</li>
     #{/list}
 </ul>
 

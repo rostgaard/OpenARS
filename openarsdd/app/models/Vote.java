@@ -5,8 +5,8 @@ import play.data.validation.Required;
 import play.db.jpa.*;
 
 /**
- *
- * @author veri
+ * Vote model
+ * @author OpenARS Server API team
  */
 @Entity
 public class Vote extends Model {

@@ -17,6 +17,9 @@ import notifiers.*;
 //import models.*;
 public class Application extends Controller {
 
+    /**
+     * This is the default page. It should redirect to web service frontpage
+     */
     public static void index() {
 //        Question q = new Question(23456, "What is the capital of France?", false);
 //        Answer a1 = new Answer(q, "Paris");
@@ -26,11 +29,9 @@ public class Application extends Controller {
 //        a1.save();
 //        a2.save();
 
-//        q.refresh();
-        Question question = Question.find("byStudentLink", 23456L).first();
-        QuestionJSON testQ = new QuestionJSON(question, 9254);
-        renderJSON(testQ);
-//        render(question, testQ);
+        //Question question = Question.find("byStudentLink", "2345").first();
+        //QuestionJSON testQ = new QuestionJSON(question, 9254);
+        render();
     }
 
     public static void sayHello(String myName) {

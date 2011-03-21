@@ -5,8 +5,8 @@ import javax.persistence.*;
 import play.db.jpa.*;
 
 /**
- *
- * @author veri
+ * Model class for a possible answer linked to a question.
+ * @author OpenARS Server API team
  */
 @Entity
 public class Answer extends Model {

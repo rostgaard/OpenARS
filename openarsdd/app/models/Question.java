@@ -7,8 +7,8 @@ import play.data.validation.Required;
 import play.db.jpa.*;
 
 /**
- *
- * @author veri
+ * Model class for a poll question. This is related to answer one-to-many
+ * @author OpenARS Server API team
  */
 @Entity
 public class Question extends Model {
