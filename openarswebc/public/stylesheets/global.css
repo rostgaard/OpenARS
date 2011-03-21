@@ -37,7 +37,7 @@ p {
 	cursor: pointer;
 	background-color: #a4c765;
 	color: #000;
-	width: 100px;
+	min-width: 100px;
 }
 
 .button:hover {
@@ -46,13 +46,10 @@ p {
 
 .labeledinput {
 	margin-bottom: 5px;
-	display: inline-block;
 }
 	
 .labeledinput label {
-	width: 70px;
 	display: block;
-	float: left;
 }
 
 .labeledinput input {
@@ -81,6 +78,10 @@ p {
 	background-color: #434343;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+}
+
+.greybg p {
+	text-align:justify;
 }
 
 #language {

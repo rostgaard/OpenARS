@@ -10,16 +10,16 @@
 	border: 0;
 	padding: 5px 10px;
 	width: 70%;
-	overflow-y: auto;
+	overflow-y: hidden;
 	overflow-x: hidden;
 	display: block;
 	font-size: 18px;
 	position: relative;
+	white-space: nowrap;
 }
 
 #pollid span {
 	color: #666;
-	position: absolute;
 }
 
 #pollid input {
@@ -28,7 +28,6 @@
 	width: 100%;
 	outline-width:0;
 	padding: 0;
-	margin-left: 55px;
 }
 
 #joinpoll p {
@@ -68,5 +67,5 @@
 }
 
 #managepoll .labeledinput input {
-	width: 180px;
+	width: 90%;
 }
