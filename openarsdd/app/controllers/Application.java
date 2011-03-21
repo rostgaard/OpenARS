@@ -159,8 +159,5 @@ public class Application extends Controller {
 //
 //    }
 
-    public static void sendSumEmail(Question madeQuestion) {
-        Mail.questionCreated(madeQuestion);
-        render();
-    }
+ 
 }

@@ -9,16 +9,16 @@ import models.*;
 
 /**
  *
- * @author UserX
+ * @author OpenARS Server API team
  */
-public class Mail extends Mailer {
+public class MailNotifier extends Mailer {
 
-    public static void questionCreated(Question createdQuestion) {
+    public static void sendAdminLink(Question createdQuestion) {
 
         long id = 1;
-        setSubject("Poll created in openars");
+        setSubject("Your admin link");
         addRecipient(createdQuestion.email);
-        setFrom("noreply@openars.edu");
+        setFrom("no-reply@mailer.openars.dk");
         if (createdQuestion != null) {
             id = createdQuestion.pollID;
             send(id);
