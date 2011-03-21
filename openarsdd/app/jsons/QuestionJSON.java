@@ -41,7 +41,7 @@ public class QuestionJSON {
     }
 
     public QuestionJSON(Question question) {
-        this(question, "-1");
+        this(question, null);
     }
 
     public void setAnswers(String[] answers) {

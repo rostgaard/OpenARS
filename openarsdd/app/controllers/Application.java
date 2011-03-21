@@ -66,7 +66,6 @@ public class Application extends Controller {
 
             // otherwise render json of Question message
             QuestionJSON testQ = new QuestionJSON(question);
-            testQ.setDuration(5);
             renderJSON(testQ);
 
 //        } catch (IOException ex) {
