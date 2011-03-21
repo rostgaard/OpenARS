@@ -3,11 +3,11 @@
     <string name="app_name">openARS</string>
     <string name="thanks">Tak for din stemme!</string>
     <string name="choose">Vælg dit svar!</string>
-    <string name="enter_poll_id">Indtast poll ID</string>
+    <string name="enter_poll_id">Indtast afstemnings ID</string>
     <string name="go">Næste</string>
     <string name="vote">Stem</string>
     <string name="exit">Afslut</string>
-    <string name="inactive">Denne poll er inaktiv.</string>
+    <string name="inactive">Denne afstemning er inaktiv.</string>
     <string name="refresh">Genindlæs</string>
-    <string name="no_poll">Poll\'en eksisterer ikke.</string>
+    <string name="no_poll">Afstemningen eksisterer ikke.</string>
 </resources>
