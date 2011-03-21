@@ -9,6 +9,11 @@
 GET     /                                       Application.index
 GET		/admin									Tasks.list
 GET     /json                                   Json.json
+GET     /createpoll                            	CreatePoll.index
+GET     /joinpoll                            	JoinPoll.index
+GET     /managepoll                            	Application.managepoll
+
+GET     /{<[0-9]+>id}                           JoinPoll.index
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public

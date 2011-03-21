@@ -1,0 +1,72 @@
+#joinpoll {
+	margin: 5% 0;
+}
+
+#pollid {
+	background-color: #fff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	margin: 0 15%;
+	border: 0;
+	padding: 5px 10px;
+	width: 70%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	display: block;
+	font-size: 18px;
+	position: relative;
+}
+
+#pollid span {
+	color: #666;
+	position: absolute;
+}
+
+#pollid input {
+	font-size: 18px;
+	border: 0;
+	width: 100%;
+	outline-width:0;
+	padding: 0;
+	margin-left: 55px;
+}
+
+#joinpoll p {
+	color: #666;
+	width: 70%;
+	margin: 0 15%;
+	padding: 5px 10px 0;
+	text-align: center;
+}
+
+#joinpoll .button {
+	margin: 10px auto 0;
+}
+
+#bottomoptions {
+	overflow: hidden;
+	position: relative;
+}
+
+#createpoll, #managepoll {
+    margin-bottom: -1000px;
+    padding-bottom: 1030px;
+    width: 49%;
+}
+
+#bottomoptions .button {
+	position: absolute;
+	bottom: 10px;
+}
+
+#createpoll {
+	float: left;
+}
+
+#managepoll {
+	float: right;
+}
+
+#managepoll .labeledinput input {
+	width: 180px;
+}

@@ -39,3 +39,4 @@ createpoll.form.pollType.single=Single (one answer per question)
 createpoll.form.pollType.multiple=Multiple (one or more answers per question)
 createpoll.form.submit=Create question
 createpoll.errors.errorsinform=There are errors in the form, please see below to find out how the correct them.
+joinpoll_submit=Vote!

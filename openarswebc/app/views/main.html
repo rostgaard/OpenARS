@@ -4,8 +4,11 @@
     <head>
         <title>#{get 'title' /}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/alternative.css'}" />
-        #{get 'moreStyles' /}
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/global.css'}" />
+        #{if moreStyles}
+        	<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/'}/#{get 'moreStyles' /}.css" />
+        #{/if}
+        
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         <script src="@{'/public/javascripts/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
         #{get 'moreScripts' /}

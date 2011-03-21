@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'Join poll #' + pollID /}
+#{set moreStyles:'joinpoll' /}
+		
+<div id="main" class="greybg">
+	<div class="wrapper">
+		<h1>${question}</h1>
+		<hr />
+		#{form @JoinPoll.submit()}
+			<ul>
+				#{list 0..answersArray.length()-1, as:'i'}
+					<li><label><input type="radio" name="answer(i)" value="answer(i)"/>${answersArray.get(i)}</label></li>
+				#{/list}
+			</ul>
+			<input type="submit" value="&{'joinpoll_submit'}" class="button" />
+		#{/form}
+	</div>
+</div>	

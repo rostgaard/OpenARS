@@ -1,7 +1,8 @@
 #{extends 'main.html' /} #{set title:'Home' /}
+#{set moreStyles:'index' /}
 
 	<div id="main">
-		#{form @Application.joinpoll(), id:'joinpoll' }
+		#{form @JoinPoll.index(), id:'joinpoll'}
 			<div class="wrapper">
 				<span id="pollid">
 					<span>&{'join_poll_pollid'}</span>
@@ -12,7 +13,7 @@
 			</div>
 		#{/form}
 		<div id="bottomoptions">
-			<div id='createpoll'>
+			<div id='createpoll' class="greybg">
 				<div class="wrapper">
 					<h2>&{'create_poll'}</h2>
 					<p>&{'create_poll_teaser'}</p>
@@ -20,7 +21,7 @@
 				</div>
 			</div>
 			
-			#{form @Application.managepoll(), id:'managepoll', method:'post' }
+			#{form @Application.managepoll(), id:'managepoll', class:'greybg' }
 				<div class="wrapper">
 					<h2>&{'manage_poll'}</h2>
 					<p>&{'manage_poll_teaser'}</p>

@@ -1,0 +1,25 @@
+ul{
+	list-style: none;
+	padding-left: 10px;
+}
+
+li {
+	margin-bottom: 5px;
+}
+
+label {
+	cursor: pointer;
+}
+
+input[type=radio],
+input[type=checkbox] {
+	margin-right: 10px;
+}
+
+#main {
+	margin: 5% 0 0;
+}
+
+.button {
+	float: right;
+}
