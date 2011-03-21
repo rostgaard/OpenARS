@@ -1,34 +1,34 @@
-#{extends 'main.html' /}
-#{set title:'Home' /}
-		
-	<table align=center>
-	    <tr>
-	    <td width="70%">
-				<fieldset>
-				<legend>Edit</legend>
-					<button name="submit" value="Edit Poll" >Edit Poll</button>
-				</fieldset>
-			</td>
-		</tr>
-	
-		<tr>
-		 <td width="70%">
-		 <fieldset>
-		 
-		   <legend>Activation</legend>
-		   <input type="text" name="min" value="Minutes"/>
-		   <input type="text" name="seconds" value="Seconds"/>
-		   <input type="button" value="Activate!" />
-		   
-		 </fieldset>
-		 <fieldset>
-		   <legend>Statistics</legend>
-		   <button name="submit" value="Stats" >Stats</button>
-		   </td>		 
-		   </fieldset>
-		 </tr>
-	</table>
-	   
-
-
-
+#{extends 'main.html' /} #{set title:'Manage Poll - OpenARS' /}
+#{set moreStyles:'managepoll' /}
+	<div class="labeledinput">
+		<div class="greybg">
+		<div class="wrapper">
+		 	<div class="labeledinput">
+		   		<label>Edit</label>
+			</div>
+			#{a @EditPoll.index(), id:'editpoll', class:'button'}&{'edit_poll_link'}#{/a}
+		</div>
+		</div>
+	</div><br>
+	<div class="labeledinput">
+		#{form @Application.activatepoll(), id:'activatepoll', class:'greybg' }
+		<div class="wrapper">
+		 	<div class="labeledinput">
+		   		<label>Activation</label>
+			</div>
+			<input type="text" name="min" value="Minutes"/>
+			<input type="text" name="seconds" value="Seconds"/>
+			<input type="submit" value="&{'activate'}" class="button" />
+		</div>
+		#{/form}
+	</div><br>
+	<div class="labeledinput">
+		#{form @Application.stats(), id:'stats', class:'greybg' }
+		<div class="wrapper">
+		 	<div class="labeledinput">
+		   		<label>&{'stats'}</label>
+			</div>
+			<input type="submit" value="&{'stats'}" class="button" />
+		</div>
+		#{/form}
+	</div>
