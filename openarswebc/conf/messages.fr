@@ -2,16 +2,16 @@
 # For example, for French create a messages.fr file
 #
 # how to use it -> <h1>&{'password'}</h1>
-password=Password
-language=Language: 
-join_poll=Join poll
+password=Mot de passe
+language=Langue: 
+join_poll=S'inscrire à un sondage
 join_poll_pollid=Poll#
 join_poll_teaser=Entrez l'identificant du sondage que vous voulez rejoindre
-join_poll_submit=Join poll &raquo;
+join_poll_submit=S'inscrire à un sondage &raquo;
 create_poll=Créer un sondage
-create_poll_teaser=Cette page vous offre la possibilité de crér un sondage. Ceux-ci ont plusieurs utilités (cours, présentations ou même au bar pour dénouer un paris) ! Celà prend seulement quelques minutes. Quand vous l'aurez créé, vous recevrez un identifiant qui permettra aux personnes de participer à votre sondage.
-create_poll_link=Create poll &raquo;
-manage_poll=Manage poll
+create_poll_teaser=Cette page vous offre la possibilité de créer un sondage. Ceux-ci ont plusieurs utilités (cours, présentations ou même au bar pour dénouer un paris) ! Celà prend seulement quelques minutes. Quand vous l'aurez créé, vous recevrez un identifiant qui permettra aux personnes de participer à votre sondage.
+create_poll_link=Créer un sondage &raquo;
+manage_poll=Gérer un sondage
 manage_poll_teaser=Si vous avez déjà créé votre sondage et que vous voulez l'activer, le modifier ou en obtenir les resultats; entrez en l'identifiant ainsi que le mot de passe que vous avez recu lors de sa creation.
 manage_poll_pollid=Identifiant du sondage:
 manage_poll_password=Mot de passe:
@@ -25,8 +25,8 @@ submit=Envoyer
 edit=Editer
 stats=Statistiques
 activate=Activer
-poll=Poll
-poll=Poll ID
+poll=Sondage
+poll=Identifiant du sondage
 total=Total
 validation.required.atLeastTwo=Vous devez au moins en entrer deux.
 createpoll.form.email=Email:
