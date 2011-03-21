@@ -35,6 +35,7 @@ public class CreatePoll extends Controller {
     	answer = answers.toArray(new String[] {});
     	
     	// Validate that the question and answers are there.
+    	validation.required(email);
     	validation.email(email);
     	validation.required(question);
     	validation.required(type);

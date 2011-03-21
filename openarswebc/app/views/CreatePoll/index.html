@@ -8,13 +8,13 @@
 	</tr>
 	#{ifErrors}
 	<tr class="formErrorNotice">
-		<td>There are errors in the form, please see below to find out how the correct them.</td>
+		<td>&{'createpoll.errors.errorsinform'}</td>
 	</tr>
 	#{/ifErrors}
 	<tr>
 		<td>
 		<fieldset>
-			<legend>Email</legend> 
+			<legend>&{'createpoll.form.email'}</legend> 
 			<input type="text" name="email" value="${email}" />
 			<p class="formError">#{error 'email' /}</p>
 		</fieldset>
@@ -23,7 +23,7 @@
 	<tr>
 		<td>
 		<fieldset>
-			<legend>Question</legend> 
+			<legend>&{'createpoll.form.question'}</legend> 
 			<input type="text" name="question" value="${question}" />
 			<p class="formError">#{error 'question' /}</p>
 		</fieldset>
@@ -31,16 +31,16 @@
 	</tr>
 	<tr>
 		<td>
-		<fieldset><legend>Answers</legend>
+		<fieldset><legend>&{'createpoll.form.answers'}</legend>
 		<p class="formError">#{error 'answer' /}</p>
 		<ol>
 			#{list answer}
 			    <li class="answerContainer">
 				<input type="text" size="60" name="answer[]" value="${_}" />
-				<input class="removeAnswer"	type="button" value="x" />
+				<input class="removeAnswer"	type="button" value="&{'createpoll.form.removeAnswer'}" />
 			</li>
 			#{/list}
-			<input id="AddAnswerButton" type="button" value="Add Answer" />
+			<input id="AddAnswerButton" type="button" value="&{'createpoll.form.addAnswer'}" />
 		</fieldset>
 
 		</ol>
@@ -48,10 +48,10 @@
 	<tr>
 		<td>
 		<fieldset>
-			<legend>Poll type</legend> 
+			<legend>&{'createpoll.form.pollType'}</legend> 
 			<select name="type">
-				<option value="single">Single (one answer per question)</option>
-				<option value="multiple">Multiple (one or more answers per question)</option>
+				<option value="single">&{'createpoll.form.pollType.single'}</option>
+				<option value="multiple">&{'createpoll.form.pollType.multiple'}</option>
 			</select>
 			<p class="formError">#{error 'type' /}</p>
 		</fieldset>
@@ -59,7 +59,7 @@
 	</tr>
 	<tr>
 		<td>
-		<input type="submit" value="Create Question" /> 
+		<input type="submit" value="&{'createpoll.form.submit'}" /> 
 			#{a @Application.index()}Cancel#{/a}
 		</td>
 	</tr>
@@ -67,9 +67,10 @@
 #{/form}
 
 <script type="text/javascript">
+$(document).ready(function(){
 	$("#AddAnswerButton").bind('click', function() {
-		$('<li class="answerContainer"><input type="text" size="60" name="answer[]" value=""/> <input class="removeAnswer" type="button" value="x" /></li>').insertBefore("#AddAnswerButton");
-		$('.answerContainer input:last').focus();
+		$('<li class="answerContainer"><input type="text" size="60" name="answer[]" value=""/> <input class="removeAnswer" type="button" value="&{'createpoll.form.removeAnswer'}" /></li>').insertBefore("#AddAnswerButton");
+		$('.answerContainer:last input').focus();
 		bindRemove();
 	});
 	function bindRemove() {
@@ -78,4 +79,5 @@
 		});
 	};
 	bindRemove();
+});
 </script>

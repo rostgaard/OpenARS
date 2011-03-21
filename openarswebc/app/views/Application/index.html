@@ -1,39 +1,58 @@
-#{extends 'main.html' /}
-#{set title:'Home' /}
-		
-<table align=center>
-    <tr><td colspan="2"><div> <img src="/public/images/logo.png"/></div></td></tr>
-    <tr>
-    	<td colspan="2">
-			<fieldset>
-				<legend>Join poll</legend>
-				<form action="" method="post">
-				<input type="text" name="ID" value="Poll ID"/>
-				<a href="/Application/joinpoll"><input type="submit" value="Join poll" /></a>
-				</form>
-			</fieldset>
-		</td>
-	</tr>
-	<tr>
-		<td width="50%">
-		 	<fieldset>
-		 		<form action="" method="post">
-			 	<legend>&{'make_poll'}</legend>
-			    #{a @CreatePoll.index()}&{'make_poll'}#{/a}
-			    </form>
-			 </fieldset>
-	 	</td>
-	 	<td width="50%">
-		   	<fieldset>
-				<form action="" method="post">
-				<legend>Manage poll</legend>
-			   	<input type="text" name="ID" value="ID"/>
-			   	<input type="password" name="Password" value="Password"/>
-			   	<a href="/Application/managepoll"><input type="button" value="Submit" /></a>
-			   	</form>
-	   		</fieldset>
-	 	</td>
-	</tr>
-</table>
+#{extends 'main.html' /} #{set title:'Home' /}
 
-
+<div id="content">
+	<div id="header">
+		<img src="/public/images/logo_transparent_hd.png" />
+	</div>
+	<div id="main">
+		#{form @Application.joinpoll(), id:'joinpoll' }
+			<div class="wrapper">
+				<span id="pollid">
+					<span>&{'join_poll_pollid'}</span>
+					<input type="text" name="id" value="" autocomplete="off" />
+				</span>
+				<p>&{'join_poll_teaser'}</p>
+				<input type="submit" value="&{'join_poll_submit'}" class="button" />
+			</div>
+		#{/form}
+		<div id="bottomoptions">
+			<div id='createpoll'>
+				<div class="wrapper">
+					<h2>&{'create_poll'}</h2>
+					<p>&{'create_poll_teaser'}</p>
+					#{a @CreatePoll.index(), class:'button'}&{'create_poll_link'}#{/a}
+				</div>
+			</div>
+			
+			#{form @Application.managepoll(), id:'managepoll' }
+				<div class="wrapper">
+					<h2>&{'manage_poll'}</h2>
+					<p>&{'manage_poll_teaser'}</p>
+					<div class="labeledinput">
+						<label>&{'manage_poll_pollid'}</label><input type="text" name="id" value="" />
+					</div>
+					<div class="labeledinput">
+						<label>&{'manage_poll_password'}</label><input type="password" name="password" value="" />
+					</div>
+					<input type="submit" value="&{'manage_poll_submit'}" class="button" />
+				</div>
+			#{/form}
+		</div>
+	</div>
+	
+	<div id="language">
+		<img src="@{'/public/images/flags/at.png'}" title="Österreichisches Deutsch"/>
+		<img src="@{'/public/images/flags/dk.png'}" title="Dansk"/>
+		<img src="@{'/public/images/flags/gb.png'}" title="English"/>
+		<img src="@{'/public/images/flags/fi.png'}" title="Suomi"/>
+		<img src="@{'/public/images/flags/fr.png'}" title="Français"/>
+		<img src="@{'/public/images/flags/lv.png'}" title="Latviešu valoda"/>
+		<img src="@{'/public/images/flags/sk.png'}" title="Slovenský jazyk"/>
+		<img src="@{'/public/images/flags/es.png'}" title="Español"/>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#pollid input").focus();
+});
+</script>
