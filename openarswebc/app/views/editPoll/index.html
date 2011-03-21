@@ -1,0 +1,79 @@
+#{extends 'main.html' /} #{ set title:'Create poll - OpenARS' /} 
+
+<table border="1" align=center>
+
+	#{ifErrors}
+	<tr class="formErrorNotice">
+		error
+	</tr>
+	#{/ifErrors}
+	<tr>
+		<td>
+		<fieldset>
+			<legend>&{'createpoll.form.email'}</legend> 
+			<input type="text" name="email" value="${email}" />
+			<p class="formError">#{error 'email' /}</p>
+		</fieldset>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<fieldset>
+			<legend>&{'createpoll.form.question'}</legend> 
+			<input type="text" name="question" value="${question}" />
+			<p class="formError">#{error 'question' /}</p>
+		</fieldset>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<fieldset><legend>&{'createpoll.form.answers'}</legend>
+		<p class="formError">#{error 'answer' /}</p>
+		<ol>
+			#{list answer}
+				#{list 0..answersArray.length()-1, as:'i'}
+					<li><label><input type="radio" name="answer(i)" value="answer(i)"/>${answersArray.get(i)}</label></li>
+				#{/list}
+			</li>
+			#{/list}
+			<input id="AddAnswerButton" type="button" value="&{'createpoll.form.addAnswer'}" />
+		</fieldset>
+
+		</ol>
+	</tr>
+	<tr>
+		<td>
+		<fieldset>
+			<legend>&{'createpoll.form.pollType'}</legend> 
+			<select name="type">
+				<option value="single">&{'createpoll.form.pollType.single'}</option>
+				<option value="multiple">&{'createpoll.form.pollType.multiple'}</option>
+			</select>
+			<p class="formError">#{error 'type' /}</p>
+		</fieldset>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<input type="submit" value="&{'createpoll.form.submit'}" /> 
+			#{a @Application.index()}Cancel#{/a}
+		</td>
+	</tr>
+</table>
+#{/form}
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#AddAnswerButton").bind('click', function() {
+		$('<li class="answerContainer"><input type="text" size="60" name="answer[]" value=""/> <input class="removeAnswer" type="button" value="&{'createpoll.form.removeAnswer'}" /></li>').insertBefore("#AddAnswerButton");
+		$('.answerContainer:last input').focus();
+		bindRemove();
+	});
+	function bindRemove() {
+		$(".removeAnswer").bind('click', function() {
+			$(this).parent().remove();
+		});
+	};
+	bindRemove();
+});
+</script>
