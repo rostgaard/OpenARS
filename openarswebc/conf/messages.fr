@@ -5,7 +5,7 @@
 password=Mot de passe
 language=Langue: 
 join_poll=S'inscrire à un sondage
-join_poll_pollid=Poll#
+join_poll_pollid=Sondage#
 join_poll_teaser=Entrez l'identificant du sondage que vous voulez rejoindre
 join_poll_submit=S'inscrire à un sondage &raquo;
 create_poll=Créer un sondage
@@ -15,7 +15,7 @@ manage_poll=Gérer un sondage
 manage_poll_teaser=Si vous avez déjà créé votre sondage et que vous voulez l'activer, le modifier ou en obtenir les resultats; entrez en l'identifiant ainsi que le mot de passe que vous avez recu lors de sa creation.
 manage_poll_pollid=Identifiant du sondage:
 manage_poll_password=Mot de passe:
-manage_poll_submit=Login &raquo;
+manage_poll_submit=S'identifier &raquo;
 question=Question
 answer=Réponse
 name=Nom
