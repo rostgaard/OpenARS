@@ -1,1 +1,12 @@
-Congratulations! Your poll has been created. It's id is ${pollID} and your admin key is ${adminkey}. You need these informations to edit the poll in the future.
+#{extends 'main.html' /} #{ set title:'Create poll' /} 
+#{set moreStyles:'createpoll.success' /}
+
+<div id="main" class="greybg success">
+	<div class="wrapper">
+		<h1>&{'createpoll.success.header'}</h1>
+		<p>&{'createpoll.success.text'}</p>
+		<p><b>&{'manage_poll_pollid'}</b> ${pollID}<br />
+		<b>&{'manage_poll_password'}</b> ${adminkey}</p>
+		<a href="@{ManagePoll.index()}?pollID=${pollID}&adminkey=${adminkey}" class="button">&{'createpoll.manage_poll_now'}</a>
+	</div>
+</div>

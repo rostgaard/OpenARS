@@ -26,8 +26,8 @@ import com.google.gson.Gson;
 public class RestClient {
 
 	private static RestClient instance;
-	private static String server_address = "http://78.47.162.117";
-	private static int server_port = 9000;
+	private static String server_address = "http://json.openars.dk";
+	private static int server_port = 80;
 	private int response_code;
 	private String message;
 	private String response;
@@ -69,6 +69,7 @@ public class RestClient {
 		try {
 			String url = server_address + ":" + Integer.toString(server_port)
 					+ "/" + service;
+			System.out.println(url);
 			URI u = new URI(url);
 			method.setURI(u);
 
@@ -116,6 +117,7 @@ public class RestClient {
 		
 		try {
 			this.executeRequest(hrb, service, null);
+			System.out.println(this.response);
 			jso = new JSONObject(this.response);
 		} catch (JSONException ex) {
 		} finally {
@@ -135,7 +137,6 @@ public class RestClient {
 		HttpRequestBase hrb = new HttpPost();
 		try {
 			this.executeRequest(hrb, service, json);
-			System.out.println(this.response);
 			result = new JSONObject(this.response);
 		} catch (JSONException ex) {
 			ex.printStackTrace();
@@ -165,7 +166,7 @@ public class RestClient {
 	public boolean vote(Vote v) {
 		try {
 			Gson g = new Gson();
-			return this.postService(StaticQuery.vote(v.pollID), new JSONObject(g.toJson(v))).getBoolean("result");
+			return this.postService(StaticQuery.vote(v.pollID), new JSONObject(g.toJson(v))).getBoolean("voteSuccessful");
 		} catch (JSONException e) {
 		}
 		
@@ -178,9 +179,11 @@ public class RestClient {
 	 * @param o
 	 *            The object to base the JSON on.
 	 * @return A JSON object with the adminkey and pollID.
+	 * @throws JSONException 
 	 */
-	public JSONObject createQuestion(Object o) {
-		JSONObject json = new JSONObject(o);
+	public JSONObject createQuestion(Object o) throws JSONException {
+		Gson gson = new Gson();
+		JSONObject json = new JSONObject(gson.toJson(o));
 		return this.postService(StaticQuery.post_question, json);
 	}
 	

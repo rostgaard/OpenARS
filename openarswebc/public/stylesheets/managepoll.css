@@ -1,30 +1,34 @@
-ul{
-	list-style: none;
-	padding-left: 10px;
+#bottomoptions {
+	overflow: hidden;
+	position: relative;
+	margin-top: 5%;
 }
 
-li {
-	margin-bottom: 5px;
+#editpoll, #pollstatistics {
+    margin-bottom: -1000px;
+    padding-bottom: 1030px;
+    width: 49%;
 }
 
-label {
-	cursor: pointer;
+#bottomoptions .button {
+	position: absolute;
+	bottom: 10px;
 }
 
-input[type=radio],
-input[type=checkbox] {
-	margin-right: 10px;
+#editpoll {
+	float: left;
 }
 
-#main {
-	margin: 5% 0 0;
-}
-
-.button {
+#pollstatistics {
 	float: right;
 }
 
-.loading {
-	display: block;
-    margin: 0 auto;
+#activatepoll .labeledinput {
+	display: inline;
+    float: left;
+    margin-right: 10px;
+}
+
+#activatepoll .button {
+	clear: both;
 }

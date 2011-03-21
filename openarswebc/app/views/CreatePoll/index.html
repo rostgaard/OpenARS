@@ -1,58 +1,60 @@
-#{extends 'main.html' /} #{ set title:'Create poll - OpenARS' /} 
+#{extends 'main.html' /} #{ set title:'Create poll' /} 
 #{set moreStyles:'createpoll' /}
 
 <div id="main">
-	#{form @CreatePoll.submit(), id:'createpoll', class:'greybg' }
-		<div class="wrapper">
-			#{ifErrors}
-				<div class="formErrorNotice" style="text-align:center; font-weight: bold; font-size:13px; color:#FF0000;">
-				&{'createpoll.errors.errorsinform'}<hr /></div>	
-			#{/ifErrors}
-
-			<div class="labeledinput" style="margin-left: 40px">
-				<label>&{'createpoll.form.email'}</label>
-				<input size="30" type="text" name="question" value="" />
-			</div>				
+	#{form @CreatePoll.submit(), id:'createpoll', class:'greybg wrapper' }
+		<h1>&{'create_poll'}</h1>
+		<div class="labeledinput">
+			<label>&{'createpoll.form.email'}</label>
+			#{ifError 'email'}
+				<p class="formError">#{error 'email' /}</p>
+			#{/ifError}
+			<input size="30" type="text" name="email" value="${email}" />
+		</div>				
 			
-			<div class="labeledinput" style="margin-left: 40px">
-				<label>&{'createpoll.form.question'}</label>
-				<input size="30" type="text" name="question" value="" />
-			</div>
-				
-			<div class="labeledinput">
-				<p class="formError" style="margin-left:40px; font-weight: bold; font-size:13px; color:#FF0000;">#{error 'answer' /}</p>
-				<label style="margin-left: 40px;">&{'createpoll.form.answers'}</label>
-				<ol id='answers'>
-					#{list answer}
-					    <li class="answerContainer">
-						<input type="text" size="60" name="answer[]" value="${_}" />
-						<input class="removeAnswer" type="button" style="margin-bottom: 1px;" value="&{'createpoll.form.removeAnswer'}" />
-					</li>
-					#{/list}
-				</ol>
-				<input id="AddAnswerButton" style="margin-left: 40px" class='button' type="button" value="&{'createpoll.form.addAnswer'}" />
-			</div>
-
-			<div class="labeledinput" style="margin-left: 40px">
-				<label>&{'createpoll.form.pollType'}</label>				
-				<select name="type" >
-					<option value="single">&{'createpoll.form.pollType.single'}</option>
-					<option value="multiple">&{'createpoll.form.pollType.multiple'}</option>
-				</select>
-			</div>		
-			
-			<div class="wrapper" style="margin-left: 30px">
-				<input type='submit' value="&{'createpoll.form.submit'}" class='button' />
-				<input type='submit' value="&{'createpoll.form.cancel'}" class='button' /> 
-			</div>
+		<div class="labeledinput">
+			<label>&{'createpoll.form.question'}</label>
+			#{ifError 'question'}
+				<p class="formError">#{error 'question' /}</p>
+			#{/ifError}
+			<input size="30" type="text" name="question" value="${question}" />
 		</div>
+		
+		<div class="labeledinput">
+			<label>&{'createpoll.form.pollType'}</label>
+			#{ifError 'type'}
+				<p class="formError">#{error 'type' /}</p>
+			#{/ifError}				
+			<select name="type" >
+				<option value="single">&{'createpoll.form.pollType.single'}</option>
+				<option value="multiple">&{'createpoll.form.pollType.multiple'}</option>
+			</select>
+		</div>	
+				
+		<div class="labeledinput">
+			<label>&{'createpoll.form.answers'}</label>
+			#{ifError 'answer'}
+				<p class="formError">#{error 'answer' /}</p>
+			#{/ifError}
+			<ol id='answers'>
+				#{list answer}
+				    <li class="answerContainer">
+						<input type="text" size="60" name="answer[]" value="${_}" />
+						<input class="removeAnswer" type="button" value="&{'createpoll.form.removeAnswer'}" />
+					</li>
+				#{/list}
+				<li id="AddAnswerButton"><input class='button' type="button" value="&{'createpoll.form.addAnswer'}" /></li>
+			</ol>
+		</div>
+		<input type='submit' value="&{'createpoll.form.submit'}" class='button' />
+		<input type='submit' value="&{'createpoll.form.cancel'}" class='button'>
 	#{/form}
 </div>
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#AddAnswerButton").bind('click', function() {
-		$('<li class="answerContainer"><input type="text" size="60" name="answer[]" value=""/> <input class="removeAnswer" type="button" value="&{'createpoll.form.removeAnswer'}" /></li>').appendTo("#answers");
+	$("#AddAnswerButton input").bind('click', function() {
+		$('<li class="answerContainer"><input type="text" size="60" name="answer[]" value=""/> <input class="removeAnswer" type="button" value="&{'createpoll.form.removeAnswer'}" /></li>').insertBefore("#AddAnswerButton");
 		$('.answerContainer:last input').focus();
 		bindRemove();
 	});

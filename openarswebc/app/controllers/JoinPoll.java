@@ -77,14 +77,4 @@ public class JoinPoll extends Controller {
 	public static void nopoll(String pollID) {
 		render(pollID);
 	}
-
-	public static void hasResults(String id) {
-		try {
-			JSONObject res = RestClient.getInstance().getResults(id);
-			res.get("pollID");
-			renderJSON(res);
-		} catch (Exception e) {
-		}
-		renderJSON(false);
-	}
 }

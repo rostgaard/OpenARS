@@ -70,6 +70,14 @@ input[type=password] {
 	border-radius: 5px;
 }
 
+.formErrorNotice,
+.formError {
+	padding: 5px;
+	color: #b07327;
+	background-color: #fff1c6;
+	border: 1px solid #b07327;
+}
+
 #content {
 	margin: 0 auto;
     max-width: 600px;

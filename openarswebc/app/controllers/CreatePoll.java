@@ -68,7 +68,7 @@ public class CreatePoll extends Controller {
 		try {
 			JSONObject result = RestClient.getInstance().createQuestion(p);
 			String pollID = result.getString("pollID");
-	    	String adminkey = result.getString("adminkey");
+	    	String adminkey = result.getString("adminKey");
 	    	
 	    	// Redirect to success
 	    	success(pollID, adminkey);

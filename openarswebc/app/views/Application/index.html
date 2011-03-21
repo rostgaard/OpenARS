@@ -23,15 +23,15 @@
 				</div>
 			</div>
 			
-			#{form @Application.managepoll(), id:'managepoll', class:'greybg' }
+			#{form @ManagePoll.index(), id:'managepoll', class:'greybg' }
 				<div class="wrapper">
 					<h2>&{'manage_poll'}</h2>
 					<p>&{'manage_poll_teaser'}</p>
 					<div class="labeledinput">
-						<label>&{'manage_poll_pollid'}</label><input type="text" name="id" value="" />
+						<label>&{'manage_poll_pollid'}</label><input type="text" name="pollID" value="" />
 					</div>
 					<div class="labeledinput">
-						<label>&{'manage_poll_password'}</label><input type="password" name="password" value="" />
+						<label>&{'manage_poll_password'}</label><input type="password" name="adminkey" value="" />
 					</div>
 					<input type="submit" value="&{'manage_poll_submit'}" class="button" />
 				</div>
