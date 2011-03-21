@@ -16,12 +16,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
 
-public class QuestionActivity extends Activity {
+public class TestActivity extends Activity {
     /** Called when the activity is first created. */
 	
 	private long pollID;
@@ -60,6 +61,7 @@ public class QuestionActivity extends Activity {
 	        	answers = questionJSON.getAnswers();
 				multipleAllowed = questionJSON.isMultipleAllowed();
 				duration = questionJSON.getDuration();
+				duration = 100;
 				
         	} catch(JsonSyntaxException e) {
         		//display screen of not existing poll
@@ -92,23 +94,33 @@ public class QuestionActivity extends Activity {
 			}
         	
         	//QUESTION SCREEN
-        	setContentView(R.layout.question);
         	
+        	setContentView(R.layout.test_main);
+        	
+        	
+        	lView = (ListView)findViewById(R.id.lv_options);
+        	  LayoutInflater layoutInflater = (LayoutInflater)this.getSystemService( Context.LAYOUT_INFLATER_SERVICE );  
+        	  LinearLayout ll = (LinearLayout)layoutInflater.inflate( R.layout.test_header, null, false );
+        	  LinearLayout rr = (LinearLayout)layoutInflater.inflate( R.layout.test_footer, null, false );
+        	  lView.addHeaderView(ll);
+        	  lView.addFooterView(rr);
+        	  lView.setAdapter(new ArrayAdapter<String>(this,
+        	    android.R.layout.simple_list_item_single_choice,
+        	    android.R.id.text1, answers));
+ 
         	//set poll ID & question
 			((TextView)findViewById(R.id.tv_pollID)).setText("Poll #" + pollID);
 			((TextView)findViewById(R.id.tv_question)).setText(question);
 			
 			
-			lView = (ListView)findViewById(R.id.lv_options);
-			
 			//mulltipleAllowed? -> checkboxes / radio buttons
 			if(multipleAllowed) {
-				lView.setAdapter(new ArrayAdapter<String>(QuestionActivity.this,
+				lView.setAdapter(new ArrayAdapter<String>(TestActivity.this,
 		    			android.R.layout.simple_list_item_multiple_choice,answers));
 				lView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 				
 			} else {
-				lView.setAdapter(new ArrayAdapter<String>(QuestionActivity.this,
+				lView.setAdapter(new ArrayAdapter<String>(TestActivity.this,
 		    			android.R.layout.simple_list_item_single_choice,answers));
 				lView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 			}
@@ -118,6 +130,7 @@ public class QuestionActivity extends Activity {
         	
 	        //CountDownTimer
 			final TextView tv_duration = (TextView)findViewById(R.id.tv_duration);
+			//final TextView tv_duration = (TextView)ll.findViewById(R.id.tv_duration);
 			
 			CountDownTimer cdt = new CountDownTimer((duration + 1)* 1000, 1000) {
 
@@ -170,9 +183,19 @@ public class QuestionActivity extends Activity {
 				answersList.clear();
 				
 				//get selected answers
-				for(int i = 0; i < lView.getChildCount(); i++) {
-					if(lView.getCheckedItemPositions().get(i)) {
-						String selectedAnswer = (String) lView.getItemAtPosition(i);
+				
+				Log.i("answers.length", Integer.toString(answers.length));
+				
+				ListView lView2 = (ListView)lView.findViewById(R.id.lv_options);
+				Log.i("getChildCount of lView2", Integer.toString(lView2.getChildCount()));
+								
+				for(int i = 0; i < answers.length; i++) {
+				//for(int i = 0; i < lView.getChildCount(); i++) {
+					//Log.i("ITEM IN lView", lView.getItemAtPosition(i).toString());
+					
+					if(lView2.getCheckedItemPositions().get(i)) {
+						Log.i("checked item", (String) lView2.getItemAtPosition(i));
+						String selectedAnswer = (String) lView2.getItemAtPosition(i);
 						answersList.add(selectedAnswer);
 					}
 				}
@@ -209,7 +232,7 @@ public class QuestionActivity extends Activity {
 	   	new OnClickListener(){
 
 			public void onClick(View v) {
-				QuestionActivity.this.finish();
+				TestActivity.this.finish();
 			}
    };
   
@@ -218,11 +241,11 @@ public class QuestionActivity extends Activity {
 
 			public void onClick(View v) {
 				Log.i("RefreshBtnListener - openarsActivity","onClick");
-				Intent intent = new Intent(QuestionActivity.this, QuestionActivity.class);
+				Intent intent = new Intent(TestActivity.this, TestActivity.class);
 				intent.putExtra("pollID", Long.toString(pollID));
 				Toast.makeText(getApplicationContext(), R.string.refreshing, 2000).show();
 				startActivity(intent);
-				QuestionActivity.this.finish();
+				TestActivity.this.finish();
 		}
    };
 }

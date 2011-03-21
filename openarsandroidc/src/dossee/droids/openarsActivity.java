@@ -37,7 +37,8 @@ public class openarsActivity extends Activity {
 					Toast.makeText(getApplicationContext(), "Please, enter the poll ID", 2000).show();
 				} else {
 					Log.i("VoteBtnListener - openarsActivity","startActivity");
-					Intent intent = new Intent(openarsActivity.this, QuestionActivity.class);
+					//Intent intent = new Intent(openarsActivity.this, TestActivity.class);
+					Intent intent = new Intent(openarsActivity.this, QuestionActivity.class);					
 					intent.putExtra("pollID", pollID);
 					startActivity(intent);
 					et_pollID.setText("");
