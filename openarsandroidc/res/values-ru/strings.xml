@@ -3,7 +3,7 @@
     <string name="app_name">openARS</string>
     <string name="thanks">Спасибо, Ваш голос принят!</string>
     <string name="choose">Пожалуйста, выберите Ваш ответ!</string>
-    <string name="hint">Введите номер опроса</string>
+    <string name="enter_poll_id">Введите номер опроса</string>
     <string name="go">Поехали!</string>
     <string name="vote">Голосовать!</string>
     <string name="exit">Выход</string>

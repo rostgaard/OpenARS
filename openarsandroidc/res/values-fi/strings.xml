@@ -3,7 +3,7 @@
     <string name="app_name">openARS</string>
     <string name="thanks">Kiitos äänestäsi!</string>
     <string name="choose">Valitse vastauksesi!</string>
-    <string name="hint">Syötä äänestystunnus</string>
+    <string name="enter_poll_id">Syötä äänestystunnus</string>
     <string name="go">Alkaa</string>
     <string name="vote">Äänestä</string>
     <string name="exit">Poistu</string>
@@ -11,5 +11,4 @@
     <string name="refresh">Yritä uudelleen</string>
     <string name="no_poll">Äänestystä ei löytynyt.</string>
     <string name="remaining">Aikaa jäljellä</string>
-   
 </resources>

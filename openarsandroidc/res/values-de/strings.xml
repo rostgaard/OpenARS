@@ -3,7 +3,7 @@
     <string name="app_name">openARS</string>
     <string name="thanks">Vielen Dank fuers Waehlen</string>
     <string name="choose">Bitte waehlen Sie eine Antwort!</string>
-    <string name="hint">Bitte eine poll ID eingeben</string>
+    <string name="enter_poll_id">Bitte eine poll ID eingeben</string>
     <string name="go">Start</string>
     <string name="vote">Waehlen</string>
     <string name="exit">Schliessen</string>

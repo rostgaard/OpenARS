@@ -10,7 +10,7 @@
     	android:paddingBottom="10dip"
     	android:layout_height="wrap_content" 
     	android:layout_width="fill_parent" 
-    	android:text="#0000"
+    	android:text="Poll #1234"
     	android:textSize="20sp"
     	android:lines="1"></TextView>
     	

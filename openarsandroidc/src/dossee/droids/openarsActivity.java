@@ -36,8 +36,10 @@ public class openarsActivity extends Activity {
 				} else {
 					Log.i("VoteBtnListener - openarsActivity","startActivity");
 					Intent intent = new Intent(openarsActivity.this, QuestionActivity.class);
+					intent.putExtra("pollID", pollID);
 					startActivity(intent);
-					openarsActivity.this.finish();
+					et_pollID.setText("");
+					//openarsActivity.this.finish();
 				}
 			}
    };

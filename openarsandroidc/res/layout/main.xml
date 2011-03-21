@@ -14,7 +14,7 @@
     	>
     </ImageView>
     <EditText 
-    	android:hint="@string/hint"
+    	android:hint="@string/enter_poll_id"
     	android:layout_width="wrap_content" 
     	android:id="@+id/et_pollID" 
     	android:layout_height="wrap_content"

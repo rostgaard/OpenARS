@@ -3,7 +3,7 @@
     <string name="app_name">openARS</string>
     <string name="thanks">Tak for din stemme!</string>
     <string name="choose">Vælg dit svar!</string>
-    <string name="hint">Indtast poll ID</string>
+    <string name="enter_poll_id">Indtast poll ID</string>
     <string name="go">Næste</string>
     <string name="vote">Stem</string>
     <string name="exit">Afslut</string>

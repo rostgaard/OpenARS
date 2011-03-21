@@ -3,7 +3,7 @@
 <string name="app_name">openARS</string>
 <string name="thanks">Obrigado pelo seu voto!</string>
 <string name="choose">Por favor, marque sua resposta!</string>
-<string name="hint">Entre com o ID da enquete</string>
+<string name="enter_poll_id">Entre com o ID da enquete</string>
 <string name="go">Começar</string>
 <string name="vote">Votar</string>
 <string name="exit">Sair</string>

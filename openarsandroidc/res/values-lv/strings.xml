@@ -3,7 +3,7 @@
     <string name="app_name">openARS</string>
     <string name="thanks">Paldies par balsojumu!</string>
     <string name="choose">Lūdzu, izvēlēties Jūsu atbildi!</string>
-    <string name="hint">Ievadiet balsojuma numuru</string>
+    <string name="enter_poll_id">Ievadiet balsojuma numuru</string>
     <string name="go">Ienākt</string>
     <string name="vote">Balsot</string>
     <string name="exit">Iziet</string>

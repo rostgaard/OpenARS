@@ -4,15 +4,39 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+
     <TextView 
-    	android:id="@+id/tv_pollID" 
-    	android:gravity="right" 
+    	android:id="@+id/tv_remaining" 
+    	android:layout_gravity="left" 
     	android:paddingBottom="10dip"
     	android:layout_height="wrap_content" 
-    	android:layout_width="fill_parent" 
-    	android:text="#1234"
+    	android:layout_width="wrap_content" 
+    	android:text="@string/remaining"
     	android:textSize="20sp"
     	android:lines="1"></TextView>
+    	
+    <TextView 
+    	android:id="@+id/tv_duration" 
+    	android:layout_gravity="left" 
+    	android:paddingBottom="10dip"
+    	android:layout_height="wrap_content" 
+    	android:layout_width="wrap_content" 
+    	android:text="0"
+    	android:textColor="#96bf3b"
+    	android:textSize="25sp"
+    	android:textStyle="bold"
+    	android:lines="1"></TextView>
+    	
+    <TextView 
+    	android:id="@+id/tv_pollID" 
+    	android:layout_gravity="right"
+    	android:paddingBottom="10dip"
+    	android:layout_height="wrap_content" 
+    	android:layout_width="wrap_content" 
+    	android:text="#0000"
+    	android:textSize="20sp"
+    	android:lines="1"></TextView>
+    
     <TextView 
     	android:text="Question text here" 
     	android:id="@+id/tv_question" 
@@ -20,6 +44,7 @@
     	android:layout_height="wrap_content"
     	android:gravity="left"
     	android:textSize="30sp"
+    	android:textColor="#ffffff"
     	android:paddingBottom="10dip"></TextView>
     
     <Button 

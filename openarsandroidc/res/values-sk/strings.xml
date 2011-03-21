@@ -3,12 +3,13 @@
     <string name="app_name">openARS</string>
     <string name="thanks"> Ďakujeme za hlasovanie!</string>
     <string name="choose">Prosím, zvoľte si otázku!</string>
-    <string name="hint">Zadajte ID ankety!</string>
+    <string name="enter_poll_id">Zadajte ID ankety!</string>
     <string name="go">Pokračovať</string>
     <string name="vote">Hlasovať</string>
     <string name="exit">Ukončiť</string>
     <string name="inactive">Táto anketa je neaktívna.</string>
+    <string name="wait">Počkajte prosím, výsledky sa zobrazia o pár sekúnd</string>
+    <string name="remaining">Zostávajúci čas:</string>
     <string name="refresh">Obnoviť</string>
     <string name="no_poll">Anketa neexistuje.</string>
-   
 </resources>
