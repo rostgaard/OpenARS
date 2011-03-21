@@ -1,15 +1,7 @@
 package controllers;
 
-import java.util.ArrayList;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import play.i18n.Lang;
 import play.mvc.Controller;
-import Utility.RestClient;
-
-import com.google.gson.Gson;
 
 public class Application extends Controller {
 
@@ -20,4 +12,9 @@ public class Application extends Controller {
     public static void managepoll() {
         render();
     }
+    
+    public static void changelang(String lang) {
+    	Lang.change(lang);
+    }
 }
+
