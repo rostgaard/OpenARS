@@ -1,6 +1,7 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
+# how to use it -> <h1>&{'password'}</h1>
 password=Password
 language=Language: 
 join_poll=Join poll
@@ -25,6 +26,7 @@ edit=Edit
 stats=Stats
 activate=Activate
 poll=Poll
+poll=Poll ID
 total=Total
 validation.required.atLeastTwo=You must enter at least two
 createpoll.form.email=Email:
