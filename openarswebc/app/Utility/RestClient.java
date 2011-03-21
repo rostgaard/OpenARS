@@ -69,7 +69,6 @@ public class RestClient {
 		try {
 			String url = server_address + ":" + Integer.toString(server_port)
 					+ "/" + service;
-			System.out.println(url);
 			URI u = new URI(url);
 			method.setURI(u);
 
@@ -117,7 +116,6 @@ public class RestClient {
 		
 		try {
 			this.executeRequest(hrb, service, null);
-			System.out.println(this.response);
 			jso = new JSONObject(this.response);
 		} catch (JSONException ex) {
 		} finally {
