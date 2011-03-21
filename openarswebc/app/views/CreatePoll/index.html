@@ -1,11 +1,6 @@
 #{extends 'main.html' /} #{ set title:'Create poll - OpenARS' /} 
 #{form @CreatePoll.submit()}
 <table border="1" align=center>
-	<tr>
-		<td>
-		<div><img src="/public/images/logo.png" /></div>
-		</td>
-	</tr>
 	#{ifErrors}
 	<tr class="formErrorNotice">
 		<td>&{'createpoll.errors.errorsinform'}</td>
