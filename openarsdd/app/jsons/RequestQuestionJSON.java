@@ -10,10 +10,10 @@ package jsons;
  */
 public class RequestQuestionJSON {
 
-    private long responderID;
+    private String responderID;
     private long pollID;
 
-    public RequestQuestionJSON(long responderID, long pollID) {
+    public RequestQuestionJSON(String responderID, long pollID) {
         this.responderID = responderID;
         this.pollID = pollID;
     }
@@ -29,11 +29,11 @@ public class RequestQuestionJSON {
         this.pollID = pollID;
     }
 
-    public long getResponderID() {
+    public String getResponderID() {
         return responderID;
     }
 
-    public void setResponderID(long responderID) {
+    public void setResponderID(String responderID) {
         this.responderID = responderID;
     }
 

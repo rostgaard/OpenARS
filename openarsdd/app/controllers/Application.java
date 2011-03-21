@@ -46,33 +46,33 @@ public class Application extends Controller {
 
         // RequestNew message to test:  {"responderID":6547,"pollID":2345}
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(request.body));
-        try {
-            String json = reader.readLine();
-            Gson gson = new Gson();
-            RequestQuestionJSON requestNewMsg = gson.fromJson(json, RequestQuestionJSON.class);
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(request.body));
+//        try {
+//            String json = reader.readLine();
+//            Gson gson = new Gson();
+//            RequestQuestionJSON requestNewMsg = gson.fromJson(json, RequestQuestionJSON.class);
 
-            Question question = Question.find("byPollID", requestNewMsg.getPollID()).first();
+            Question question = Question.find("byPollID", urlID).first();
 
             // if there is no question or URL is not corresponding to JSON body, render blank string
             if (question == null
                     || question.pollID != urlID
                     || question.duration <= 0) {
                 System.out.println("Question is null: " + (question == null));
-                System.out.println("StudentLink != ID: " + (question.pollID != urlID));
+//                System.out.println("StudentLink != ID: " + (question.pollID != urlID));
                 System.out.println("Inactive: " + (question.duration <= 0));
                 renderJSON(new String());
             }
 
             // otherwise render json of Question message
-            QuestionJSON testQ = new QuestionJSON(question, requestNewMsg.getResponderID());
+            QuestionJSON testQ = new QuestionJSON(question);
             testQ.setDuration(5);
             renderJSON(testQ);
 
-        } catch (IOException ex) {
-            ex.printStackTrace();
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
             renderJSON(new String());
-        }
+//        }
 
     }
 
@@ -115,14 +115,13 @@ public class Application extends Controller {
             Gson gson = new Gson();
             VoteJSON vote = gson.fromJson(json, VoteJSON.class);
 
-            long pollID = vote.getPollID();
-            long questionID = vote.getQuestionID();
-            String[] answersArray = vote.getAnswers();
             long responderID = vote.getResponderID();
 
-            // we need to store votes for all provided answers
-            for (String answer : answersArray) {
-                Question question = Question.find("id = ? AND pollID = ?", questionID, pollID).first();
+            
+
+            // we need to store votes for all provided answers in array
+            for (String answer : vote.getAnswers()) {
+                Question question = Question.find("id = ? AND pollID = ?", vote.getQuestionID(), vote.getPollID()).first();
                 List<Answer> answers = question.answers;
                 Answer selectedAnswer = null;
                 

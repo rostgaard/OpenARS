@@ -5,8 +5,7 @@
 # Home page
 GET     /                                       Application.index
 GET     /hello                                  Application.sayHello
-GET     /{<[0-9]+>id}                           Application.processRequest
-POST    /{<[0-9]+>id}                           Application.requestQuestion
+GET     /{<[0-9]+>id}                           Application.requestQuestion
 POST    /newPoll                                Application.createQuestion
 POST    /vote/{<[0-9]+>id}                      Application.vote
 

@@ -21,7 +21,7 @@ public class QuestionJSON {
     private String question;
     private String[] answers;
     private boolean multipleAllowed;
-    private long responderID;
+    private String responderID;
     private int duration;
     private String email;
 
@@ -29,7 +29,7 @@ public class QuestionJSON {
      * @param question
      * @param responderID
      */
-    public QuestionJSON(Question question, long responderID) {
+    public QuestionJSON(Question question, String responderID) {
         this.pollID = question.pollID;
         this.questionID = question.id;
         this.answers = getAnswersArray(question);
@@ -41,7 +41,7 @@ public class QuestionJSON {
     }
 
     public QuestionJSON(Question question) {
-        this(question, -1);
+        this(question, "-1");
     }
 
     public void setAnswers(String[] answers) {
@@ -56,7 +56,7 @@ public class QuestionJSON {
         this.questionID = questionID;
     }
 
-    public void setResponderID(long responderID) {
+    public void setResponderID(String responderID) {
         this.responderID = responderID;
     }
 
@@ -72,7 +72,7 @@ public class QuestionJSON {
         return questionID;
     }
 
-    public long getResponderID() {
+    public String getResponderID() {
         return responderID;
     }
 
