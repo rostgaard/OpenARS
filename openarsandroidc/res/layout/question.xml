@@ -7,12 +7,14 @@
     >
 <ScrollView android:id="@+id/scroll_view"
 			android:layout_width="fill_parent"
-			android:layout_height="fill_parent">
+			android:layout_height="fill_parent"
+			android:minHeight="1000dip">
 			
 <LinearLayout android:id="@+id/linear_II"
 			  android:layout_width="fill_parent"
 			  android:layout_height="wrap_content"
-			  android:orientation="vertical">	
+			  android:orientation="vertical"
+			  android:isScrollContainer="true">	
     <TextView 
     	android:id="@+id/tv_remaining" 
     	android:layout_gravity="left" 
@@ -58,9 +60,12 @@
     
     
     <ListView 
-    	android:layout_height="wrap_content" 
+    	android:layout_gravity="fill"
+    	android:layout_height="wrap_content"
+    	android:minHeight="1000dip"
     	android:id="@+id/lv_options" 
     	android:layout_width="fill_parent"
+    	
     	></ListView>
     	
    <Button 

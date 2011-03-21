@@ -85,6 +85,7 @@ public class QuestionActivity extends Activity {
 				lView.setAdapter(new ArrayAdapter<String>(QuestionActivity.this,
 		    			android.R.layout.simple_list_item_multiple_choice,answers));
 				lView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+				
 			} else {
 				lView.setAdapter(new ArrayAdapter<String>(QuestionActivity.this,
 		    			android.R.layout.simple_list_item_single_choice,answers));
