@@ -39,3 +39,4 @@ createpoll.form.pollType.single=Simple (una respuesta por pregunta)
 createpoll.form.pollType.multiple=Multiple (una o más respuestas por pregunta)
 createpoll.form.submit=Crear pregunta
 createpoll.errors.errorsinform=Hay errores en el formulario, por favor mire debajo para averiguar como corregirlos.
+vote=¡Vota!
