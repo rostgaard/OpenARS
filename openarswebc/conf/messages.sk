@@ -38,6 +38,7 @@ createpoll.form.pollType=Typ ankety
 createpoll.form.pollType.single=Single (len jedna možná odpoveď na otázku)
 createpoll.form.pollType.multiple=Multiple (jedna alebo viac odpovedí na otázku)
 createpoll.form.submit=Vytvor otázku
+createpoll.form.cancel=Cancel
 createpoll.errors.errorsinform=Vo formulári sa nachádzajú nejaké chyby, prosím opravte ich podľa informácií uvedených nižšie. 
 vote=Hlasuj!
 joinpoll.voterecieved.header=Vote successfully recieved

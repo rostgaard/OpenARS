@@ -38,6 +38,7 @@ createpoll.form.pollType=Afstemningstype
 createpoll.form.pollType.single=Enkelt svar
 createpoll.form.pollType.multiple=Flere svar
 createpoll.form.submit=Opret spørgsmål
+createpoll.form.cancel=Cancel
 createpoll.errors.errorsinform=Der blev fundet en indtastningsfejl du skal rette før du kan fortsætte.
 vote=Stem!
 joinpoll.voterecieved.header=Din stemme blev modtaget
