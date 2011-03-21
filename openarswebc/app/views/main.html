@@ -20,16 +20,32 @@
 			</div>
         #{doLayout /}
         
-        <div id="language">
-		<img src="@{'/public/images/flags/at.png'}" title="Österreichisches Deutsch"/>
-		<img src="@{'/public/images/flags/dk.png'}" title="Dansk"/>
-		<img src="@{'/public/images/flags/gb.png'}" title="English"/>
-		<img src="@{'/public/images/flags/fi.png'}" title="Suomi"/>
-		<img src="@{'/public/images/flags/fr.png'}" title="Français"/>
-		<img src="@{'/public/images/flags/lv.png'}" title="Latviešu valoda"/>
-		<img src="@{'/public/images/flags/sk.png'}" title="Slovenský jazyk"/>
-		<img src="@{'/public/images/flags/es.png'}" title="Español"/>
-	</div>
+	        <div id="language">
+				<img src="@{'/public/images/flags/at.png'}" title="Österreichisches Deutsch"/>
+				<img src="@{'/public/images/flags/dk.png'}" title="Dansk"/>
+				<img src="@{'/public/images/flags/en.png'}" title="English"/>
+				<img src="@{'/public/images/flags/fi.png'}" title="Suomi"/>
+				<img src="@{'/public/images/flags/fr.png'}" title="Français"/>
+				<img src="@{'/public/images/flags/lv.png'}" title="Latviešu valoda"/>
+				<img src="@{'/public/images/flags/sk.png'}" title="Slovenský jazyk"/>
+				<img src="@{'/public/images/flags/es.png'}" title="Español"/>
+			</div>
         </div>
+        
+        <script type="text/javascript">
+		$(document).ready(function(){
+			$("#pollid input").focus();
+			$("#language img").bind('click', function() {
+				lang = $(this).attr('src');
+				lang = lang.replace('@{'/public/images/flags/'}/', '').replace('.png', '');
+				$.ajax({
+					  url: "@{Application.changeLang()}?lang="+lang,
+					  success: function(){
+						window.location.reload();
+					  }
+				});
+			});
+		});
+		</script>
     </body>
 </html>
