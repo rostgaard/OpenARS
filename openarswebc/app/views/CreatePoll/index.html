@@ -4,13 +4,12 @@
 <div id="main">
 	#{form @CreatePoll.submit(), id:'createpoll', class:'greybg' }
 		<div class="wrapper">
+
 			#{ifErrors}
-				<div class="formErrorNotice">
-				&{'createpoll.errors.errorsinform'}<hr />	
+				<div class="formErrorNotice" style="text-align:center; font-weight: bold; font-size:13px; color:#FF0000;">
+				&{'createpoll.errors.errorsinform'}<hr /></div>	
 			#{/ifErrors}
 
-
-		<div class="wrapper">
 			<div class="labeledinput" style="margin-left: 40px">
 				<label>&{'createpoll.form.email'}</label>
 				<input size="30" type="text" name="question" value="" />
@@ -22,29 +21,30 @@
 			</div>
 				
 			<div class="labeledinput">
-			<p class="formError">#{error 'answer' /}</p>
-			<label style="margin-left: 40px">&{'createpoll.form.answers'}</label>
-			<ol id='answers'>
-				#{list answer}
-				    <li class="answerContainer">
-					<input type="text" size="60" name="answer[]" value="${_}" />
-					<input class="removeAnswer" type="button" value="&{'createpoll.form.removeAnswer'}" />
-				</li>
-				#{/list}
-			</ol>
-			<input id="AddAnswerButton" style="margin-left: 40px" class='button' type="button" value="&{'createpoll.form.addAnswer'}" />
+				<p class="formError" style="margin-left:40px; font-weight: bold; font-size:13px; color:#FF0000;">#{error 'answer' /}</p>
+				<label style="margin-left: 40px;">&{'createpoll.form.answers'}</label>
+				<ol id='answers'>
+					#{list answer}
+					    <li class="answerContainer">
+						<input type="text" size="60" name="answer[]" value="${_}" />
+						<input class="removeAnswer" type="button" style="margin: 1px;" value="&{'createpoll.form.removeAnswer'}" />
+					</li>
+					#{/list}
+				</ol>
+				<input id="AddAnswerButton" style="margin-left: 40px" class='button' type="button" value="&{'createpoll.form.addAnswer'}" />
 			</div>
-				<div class="labeledinput" style="margin-left: 40px">
-			<label>&{'createpoll.form.pollType'}</label>				
-			<select name="type" >
-				<option value="single">&{'createpoll.form.pollType.single'}</option>
-				<option value="multiple">&{'createpoll.form.pollType.multiple'}</option>
-			</select>
+
+			<div class="labeledinput" style="margin-left: 40px">
+				<label>&{'createpoll.form.pollType'}</label>				
+				<select name="type" >
+					<option value="single">&{'createpoll.form.pollType.single'}</option>
+					<option value="multiple">&{'createpoll.form.pollType.multiple'}</option>
+				</select>
 			</div>		
 			
-			<div class="wrapper" style="margin-left: 40px">
+			<div class="wrapper" style="margin-left: 30px">
 				<input type='submit' value="&{'createpoll.form.submit'}" class='button' />
-				<input type='submit' value="&{'createpoll.form.cancel'}" class='button'> 
+				<input type='submit' value="&{'createpoll.form.cancel'}" class='button' /> 
 			</div>
 		</div>
 	#{/form}
