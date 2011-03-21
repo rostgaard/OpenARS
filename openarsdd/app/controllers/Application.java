@@ -4,17 +4,17 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 import java.util.Random;
 import jsons.CreateResponseJSON;
 import jsons.QuestionJSON;
-import jsons.RequestQuestionJSON;
 import jsons.ResultsJSON;
 import jsons.VoteJSON;
+import jsons.VoteResponseJSON;
 import models.Answer;
 import models.Question;
 import models.Vote;
 import models.VotingRound;
+import play.libs.Mail;
 import play.mvc.*;
 import notifiers.*;
 
@@ -99,6 +99,8 @@ public class Application extends Controller {
                 new Answer(question, a).save();
             }
 
+//            MailNotifier.sendAdminLink(question);
+
             renderJSON(new CreateResponseJSON(question.pollID, question.adminKey));
 
         } catch (IOException ex) {
@@ -122,10 +124,15 @@ public class Application extends Controller {
             // we need to store votes for all provided answers in array
             for (String answer : vote.getAnswers()) {
                 Question question = Question.find("id = ? AND pollID = ?", vote.getQuestionID(), vote.getPollID()).first();
-                List<Answer> answers = question.answers;
-                Answer selectedAnswer = null;
 
-                for (Answer a : answers) {
+                // if there is no such a question return false
+                if (question == null) {
+                    renderJSON(new VoteResponseJSON(false));
+                }
+
+                // find a question to vote for iteration variable answer
+                Answer selectedAnswer = null;
+                for (Answer a : question.answers) {
                     if (a.answer.equals(answer)) {
                         selectedAnswer = a;
                     }
@@ -134,15 +141,16 @@ public class Application extends Controller {
                 // if there are no votes for this answer in DB, create one
                 if (selectedAnswer.votes.isEmpty()) {
                     //@TODO: more voting rounds!
-                    VotingRound vr = new VotingRound(30, question).save();
-                    new Vote(selectedAnswer, 1, vr).save();
-                    renderJSON("Success! new vote created!");
+                    VotingRound votingRound = new VotingRound(30, question).save();
+                    new Vote(selectedAnswer, 1, votingRound).save();
+                    renderJSON(new VoteResponseJSON(true));
                 } // otherwise just increment the count value
                 else {
                     //@TODO: more voting rounds!
                     selectedAnswer.votes.get(0).count++;
                     selectedAnswer.save();
-                    renderJSON("Success! incremented");
+
+                    renderJSON(new VoteResponseJSON(true));
                 }
             }
 
@@ -151,13 +159,32 @@ public class Application extends Controller {
         }
     }
 
-//    public static void getResults() {
-//        long urlID = params.get("id", Long.class).longValue();
-//        Question question = Question.find("byPollID", urlID).first();
-//
-//        new ResultsJSON(urlID, question.id, question.question, question.getAnswersArray(), votes);
-//
-//    }
+    public static void getResults() {
+        long urlID = params.get("id", Long.class).longValue();
+        Question question = Question.find("byPollID", urlID).first();
 
- 
+        if (question == null) {
+            renderJSON("");
+        }
+
+        int[] votes = new int[question.answers.size()];
+        for (int i = 0; i < question.answers.size(); i++) {
+            //@TODO: implement more voting rounds
+            // get count for each answer
+            Answer answer = question.answers.get(i);
+            if (answer.votes.isEmpty()) {
+                votes[i] = 0;
+            } else {
+                votes[i] = answer.votes.get(0).count;
+            }
+
+        }
+        ResultsJSON result = new ResultsJSON(urlID, question.id, question.question, question.getAnswersArray(), votes);
+
+        renderJSON(result);
+    }
+//    void sendSumEmail(Question madeQuestion) {
+//        Mail.questionCreated(madeQuestion);
+//        render();
+//    }
 }
