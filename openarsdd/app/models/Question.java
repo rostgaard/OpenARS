@@ -24,6 +24,8 @@ public class Question extends Model {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
     public List<Answer> answers;
     public int duration;
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+    public List<VotingRound> votingRound;
 
     public Question(long pollID, String question, boolean MultipleAllowed, String email) {
         this.pollID = pollID;

@@ -17,13 +17,12 @@ public class VotingRound extends Model {
     public List<Vote> votes;
     public Date startDateTime;
     public Date EndDateTime;
+    @ManyToOne
+    public Question question;
 
-    public VotingRound(List<Vote> votes, int duration) {
-        this.votes = votes;
+    public VotingRound(int duration, Question question) {
+        this.question = question;
         this.startDateTime = new Date(System.currentTimeMillis());
-        this.EndDateTime = new Date(startDateTime.getTime() + duration*1000);
+        this.EndDateTime = new Date(startDateTime.getTime() + duration * 1000);
     }
-
-
-
 }

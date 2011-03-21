@@ -13,6 +13,7 @@ import jsons.VoteJSON;
 import models.Answer;
 import models.Question;
 import models.Vote;
+import models.VotingRound;
 import play.mvc.*;
 import notifiers.*;
 
@@ -38,23 +39,6 @@ public class Application extends Controller {
 
     public static void sayHello(String myName) {
         render(myName);
-    }
-
-    public static void processRequest(RequestQuestionJSON request) {
-        Long id = params.get("id", Long.class);
-        Question question = Question.find("byPollID", id).first();
-
-        // if there is no question render blank string
-        if (question == null) {
-            renderJSON(new String());
-        }
-
-//        System.out.println("Poll ID: " + request.getPollID());
-//        System.out.println("Responder ID: " + request.getResponderID());
-
-        // otherwise render json of Question message
-        QuestionJSON testQ = new QuestionJSON(question, 3249);
-        renderJSON(testQ);
     }
 
     public static void requestQuestion() {
@@ -115,17 +99,7 @@ public class Application extends Controller {
                 new Answer(question, a).save();
             }
 
-//            question.refresh();
-            // find modified data
-//            System.out.println("question null?: " + (question == null));
-//            System.out.println("answers null?: " + question.duration == null);
-//            System.out.println("Number of questions: " + question.answers.size());
-
-//            QuestionJSON responseJSON = new QuestionJSON(question);
-
-
             renderJSON(new CreateResponseJSON(question.pollID, question.adminKey));
-
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -146,34 +120,23 @@ public class Application extends Controller {
             String[] answersArray = vote.getAnswers();
             long responderID = vote.getResponderID();
 
-
+            // we need to store votes for all provided answers
             for (String answer : answersArray) {
                 Question question = Question.find("id = ? AND pollID = ?", questionID, pollID).first();
                 List<Answer> answers = question.answers;
                 Answer selectedAnswer = null;
-
-                for (String answer1 : answersArray) {
-                    System.out.println("Answers Array: " + answer1);
-
-                }
-                for (Answer ans : answers) {
-                    System.out.println("Answers in DB: " + ans.answer);
-                }
-
-
-                // we need to store votes for all provided answers
+                
                 for (Answer a : answers) {
                     if (a.answer.equals(answer)) {
                         selectedAnswer = a;
                     }
                 }
 
-                System.out.println("Selected answer: " + selectedAnswer.answer);
-
                 // if there are no votes for this answer in DB, create one
                 if (selectedAnswer.votes.isEmpty()) {
                     //@TODO: more voting rounds!
-                    new Vote(selectedAnswer, 1, null).save();
+                    VotingRound vr = new VotingRound(30, question).save();
+                    new Vote(selectedAnswer, 1, vr).save();
                     renderJSON("Success! new vote created!");
                 } // otherwise just increment the count value
                 else {
