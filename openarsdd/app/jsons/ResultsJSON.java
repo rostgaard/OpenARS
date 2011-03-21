@@ -8,18 +8,27 @@ package jsons;
  *
  * @author veri
  */
-public class VoteJSON {
+public class ResultsJSON {
 
     private long pollID;
     private long questionID;
+    private String question;
     private String[] answers;
-    private String responderID;
+    private int[] votes;
 
-    public VoteJSON(long pollID, long questionID, String[] answers, String responderID) {
+    /**
+     * @param pollID
+     * @param questionID
+     * @param question
+     * @param answers
+     * @param votes
+     */
+    public ResultsJSON(long pollID, long questionID, String question, String[] answers, int[] votes) {
         this.pollID = pollID;
         this.questionID = questionID;
+        this.question = question;
         this.answers = answers;
-        this.responderID = responderID;
+        this.votes = votes;
     }
 
     public long getPollID() {
@@ -38,20 +47,27 @@ public class VoteJSON {
         this.questionID = questionID;
     }
 
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
     public String[] getAnswers() {
         return answers;
     }
 
     public void setAnswers(String[] answers) {
-        this.setAnswers(answers);
+        this.answers = answers;
     }
 
-    public String getResponderID() {
-        return responderID;
+    public int[] getVotes() {
+        return votes;
     }
 
-    public void setResponderID(String responderID) {
-        this.responderID = responderID;
+    public void setVotes(int[] votes) {
+        this.votes = votes;
     }
-
 }

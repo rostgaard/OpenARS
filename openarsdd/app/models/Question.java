@@ -14,7 +14,6 @@ import play.db.jpa.*;
 public class Question extends Model {
 
     private static final String charset = "!0123456789abcdefghijklmnopqrstuvwxyz";
-    
     @Required
     public long pollID; //pollID
     public String adminKey;
@@ -24,7 +23,7 @@ public class Question extends Model {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
     public List<Answer> answers;
     public int duration;
-     @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
     public List<VotingRound> votingRound;
 
     public Question(long pollID, String question, boolean MultipleAllowed, String email) {
@@ -46,5 +45,17 @@ public class Question extends Model {
             sb.append(charset.charAt(pos));
         }
         return sb.toString();
+    }
+
+    /**
+     * Gets array of answers as strings.
+     * @return
+     */
+    public String[] getAnswersArray() {
+        String[] array = new String[answers.size()];
+        for (int i = 0; i < answers.size(); i++) {
+            array[i] = answers.get(i).answer;
+        }
+        return array;
     }
 }

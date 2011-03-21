@@ -9,6 +9,7 @@ import java.util.Random;
 import jsons.CreateResponseJSON;
 import jsons.QuestionJSON;
 import jsons.RequestQuestionJSON;
+import jsons.ResultsJSON;
 import jsons.VoteJSON;
 import models.Answer;
 import models.Question;
@@ -52,25 +53,25 @@ public class Application extends Controller {
 //            Gson gson = new Gson();
 //            RequestQuestionJSON requestNewMsg = gson.fromJson(json, RequestQuestionJSON.class);
 
-            Question question = Question.find("byPollID", urlID).first();
+        Question question = Question.find("byPollID", urlID).first();
 
-            // if there is no question or URL is not corresponding to JSON body, render blank string
-            if (question == null
-                    || question.pollID != urlID
-                    || question.duration <= 0) {
-                System.out.println("Question is null: " + (question == null));
+        // if there is no question or URL is not corresponding to JSON body, render blank string
+        if (question == null
+                || question.pollID != urlID
+                || question.duration <= 0) {
+            System.out.println("Question is null: " + (question == null));
 //                System.out.println("StudentLink != ID: " + (question.pollID != urlID));
-                System.out.println("Inactive: " + (question.duration <= 0));
-                renderJSON(new String());
-            }
+            System.out.println("Inactive: " + (question.duration <= 0));
+            renderJSON(new String());
+        }
 
-            // otherwise render json of Question message
-            QuestionJSON testQ = new QuestionJSON(question);
-            renderJSON(testQ);
+        // otherwise render json of Question message
+        QuestionJSON testQ = new QuestionJSON(question);
+        renderJSON(testQ);
 
 //        } catch (IOException ex) {
 //            ex.printStackTrace();
-            renderJSON(new String());
+        renderJSON(new String());
 //        }
 
     }
@@ -114,16 +115,16 @@ public class Application extends Controller {
             Gson gson = new Gson();
             VoteJSON vote = gson.fromJson(json, VoteJSON.class);
 
-            long responderID = vote.getResponderID();
+            String responderID = vote.getResponderID();
 
-            
+
 
             // we need to store votes for all provided answers in array
             for (String answer : vote.getAnswers()) {
                 Question question = Question.find("id = ? AND pollID = ?", vote.getQuestionID(), vote.getPollID()).first();
                 List<Answer> answers = question.answers;
                 Answer selectedAnswer = null;
-                
+
                 for (Answer a : answers) {
                     if (a.answer.equals(answer)) {
                         selectedAnswer = a;
@@ -149,6 +150,14 @@ public class Application extends Controller {
             ex.printStackTrace();
         }
     }
+
+//    public static void getResults() {
+//        long urlID = params.get("id", Long.class).longValue();
+//        Question question = Question.find("byPollID", urlID).first();
+//
+//        new ResultsJSON(urlID, question.id, question.question, question.getAnswersArray(), votes);
+//
+//    }
 
     public static void sendSumEmail(Question madeQuestion) {
         Mail.questionCreated(madeQuestion);
