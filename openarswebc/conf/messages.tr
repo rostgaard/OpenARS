@@ -33,7 +33,7 @@ validation.required=Bos olmamali
 createpoll.success.header=Anket yaratildi
 createpoll.success.text=Tebrikler! Anketiniz yaratildi. Asagidaki bilgilerle tarafiniza bir e-mail gonderildi. Lutfen not alin.<br /><br />You can log in and manage your poll by going to <a href="/">openARS.dk</a> and entering the following information under "manage poll":
 createpoll.manage_poll_now=Anketi simdi duzenle &raquo;
-createpoll.form.email=e-mail:
+createpoll.form.email=Email:
 createpoll.form.question=Sorular:
 createpoll.form.answers=Cevaplar:
 createpoll.form.removeAnswer=x
