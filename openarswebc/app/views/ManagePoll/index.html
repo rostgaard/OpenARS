@@ -10,13 +10,13 @@
 			<input type="hidden" name="adminkey" value="${adminkey}" />
 			<div class="labeledinput">
 		   		<label>&{'managepoll.activatepoll.form.minutes'}</label>
-		   		<input type="text" name="min" value="5"/>
+		   		<input type="text" name="min" value="5" onclick="this.value=''"/>
 			</div>
 			<div class="labeledinput">
 		   		<label>&{'managepoll.activatepoll.form.seconds'}</label>
-				<input type="text" name="seconds" value="00"/>
+				<input type="text" name="seconds" value="00" onclick="this.value=''"/>
 			</div>
-			<input type="submit" value="&{'activate'}" class="button" />
+			<input type="submit" value="&{'activate'}" class="button"/>
 		#{/form}
 	</div>
 	
