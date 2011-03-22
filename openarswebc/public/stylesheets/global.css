@@ -122,3 +122,12 @@ input[type=password] {
 	opacity:1;
 	filter:alpha(opacity=100);
 }
+
+.loading {
+	display: block;
+    margin: 0 auto;
+}
+
+#countdowndiv {
+	text-align: center;
+}

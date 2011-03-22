@@ -68,8 +68,9 @@ public class JoinPoll extends Controller {
 
 			String question = questionJSON.getString("question");
 			JSONArray answersArray = questionJSON.getJSONArray("answers");
+			String duration = questionJSON.getString("duration");
 
-			render(pollID, question, answersArray);
+			render(pollID, question, answersArray, duration);
 		} catch (Exception e) {
 		}
 	}

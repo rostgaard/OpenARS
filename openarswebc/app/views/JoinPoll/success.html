@@ -7,13 +7,30 @@
 	<div class="wrapper">
 		<h1>&{'joinpoll.voterecieved.header'}</h1>
 		<p>&{'joinpoll.voterecieved.text'}</p>
-		<img class="loading" src="@{'/public/images/loading-big.gif'}" alt="&{'loading'}"/>
+		<div id="countdowndiv"></div>
+		<img class="loading" src="@{'/public/images/loading-big.gif'}" alt="&{'loading'}" style="display: none;"/>
 		<div id="stats"></div>
 	</div>
 </div>
+
 <script type="text/javascript">
 $(document).ready(function(){
-	check();
+	$('#countdowndiv').countDown({
+		startNumber: ${duration},
+		dispYear: false,
+		dispMonth: false,
+		dispDays: false,
+		dispHours: false,
+		dispMinutes: true,
+		dispSeconds: true,
+		dispLeadingZero: true,
+		startFontSize: '30px',
+		callBack: function(me) {
+			$("#countdowndiv").hide();
+			$(".loading").show();
+			check();
+		}
+	});
 });
 
 function check() {

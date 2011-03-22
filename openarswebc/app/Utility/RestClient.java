@@ -98,7 +98,9 @@ public class RestClient {
 				is.close();
 			}
 		} catch (URISyntaxException ex) {
+			ex.printStackTrace();
 		} catch (IOException ex) {
+			ex.printStackTrace();
 		} finally {
 			client.getConnectionManager().shutdown();
 		}
@@ -113,7 +115,7 @@ public class RestClient {
 	private JSONObject getService(String service) {
 		JSONObject jso = new JSONObject();
 		HttpRequestBase hrb = new HttpGet();
-		
+
 		try {
 			this.executeRequest(hrb, service, null);
 			jso = new JSONObject(this.response);
@@ -160,15 +162,25 @@ public class RestClient {
 	public JSONObject getQuestion(String id) {
 		return this.getService(StaticQuery.get_question(id));
 	}
-	
+
 	public boolean vote(Vote v) {
 		try {
 			Gson g = new Gson();
-			return this.postService(StaticQuery.vote(v.pollID), new JSONObject(g.toJson(v))).getBoolean("voteSuccessful");
+			return this.postService(StaticQuery.vote(v.pollID),
+					new JSONObject(g.toJson(v))).getBoolean("voteSuccessful");
 		} catch (JSONException e) {
 		}
-		
+
 		return false;
+	}
+
+	public void activate(String id, String adminkey, int duration) {
+		try {
+			JSONObject o = new JSONObject();
+			o.put("duration", duration);
+			this.postService(StaticQuery.activate(id, adminkey), o);
+		} catch (JSONException e) {
+		}
 	}
 
 	/**
@@ -177,14 +189,14 @@ public class RestClient {
 	 * @param o
 	 *            The object to base the JSON on.
 	 * @return A JSON object with the adminkey and pollID.
-	 * @throws JSONException 
+	 * @throws JSONException
 	 */
 	public JSONObject createQuestion(Object o) throws JSONException {
 		Gson gson = new Gson();
 		JSONObject json = new JSONObject(gson.toJson(o));
 		return this.postService(StaticQuery.post_question, json);
 	}
-	
+
 	public JSONObject getResults(String id) {
 		return this.getService(StaticQuery.get_results(id));
 	}
@@ -194,17 +206,21 @@ public class RestClient {
 	 */
 	private static class StaticQuery {
 		public final static String post_question = "newPoll";
-		
+
 		public static String vote(int id) {
 			return "vote/" + id;
 		}
-		
+
 		public static String get_question(String id) {
 			return id;
 		}
-		
+
 		public static String get_results(String id) {
 			return "getResults/" + id;
+		}
+
+		public static String activate(String id, String adminkey) {
+			return "activation/" + id + "/" + adminkey;
 		}
 	}
 }

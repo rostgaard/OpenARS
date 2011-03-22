@@ -9,18 +9,6 @@ public class Application extends Controller {
         render();
     }
     
-    public static void managepoll() {
-        render();
-    }
-    
-    public static void activatepoll() {
-        //TODO activate poll
-    }
-    
-    public static void stats() {
-        render();
-    }
-    
     public static void changelang(String lang) {
     	Lang.change(lang);
     }

@@ -9,6 +9,7 @@
 		#{form @JoinPoll.submit()}
 			<input type="hidden" name="pollID" value="${pollID}" />
 			<input type="hidden" name="questionID" value="${questionID}" />
+			<input type="hidden" name="end" value="${end}" />
 			<ul>
 				#{list 0..answersArray.length()-1, as:'i'}
 					<li><label><input type="radio" name="answer" value="${answersArray.get(i)}"/>${answersArray.get(i)}</label></li>

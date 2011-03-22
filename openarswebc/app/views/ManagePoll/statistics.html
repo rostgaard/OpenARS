@@ -6,6 +6,7 @@
 	<div class="greybg">
 		<div class="wrapper">
 			<div id="stats"></div>
+			<img class="loading" src="@{'/public/images/loading-big.gif'}" alt="&{'loading'}"/>
 		</div>
 	</div>
 </div>
@@ -82,6 +83,7 @@ $(document).ready(function() {
 	var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 
 	$.getJSON('@{Poll.getResults()}?id=${pollID}', function(data) {
+		$('.loading').hide();
 		var chart = new Highcharts.Chart({
 		      chart: {
 		         renderTo: 'stats',

@@ -23,8 +23,3 @@ input[type=checkbox] {
 .button {
 	float: right;
 }
-
-.loading {
-	display: block;
-    margin: 0 auto;
-}
