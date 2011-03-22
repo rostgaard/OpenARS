@@ -14,4 +14,5 @@
     <string name="refresh">Obnoviť</string>
     <string name="refreshing">Skúšam odznova</string>
     <string name="no_poll">Anketa neexistuje.</string>
+    <string name="already_voted">V tomto kole ste už na danú anketu odpovedali!</string>
 </resources>

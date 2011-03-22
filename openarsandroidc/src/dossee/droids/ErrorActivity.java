@@ -28,12 +28,19 @@ public class ErrorActivity extends Activity {
 		((TextView)findViewById(R.id.tv_pollID)).setText("Poll #" + pollID);
 			
 		// set message
+		
+		//INACTIVE POLL SCREEN
 		if(error.equals("inactive")) {
-			//INACTIVE POLL SCREEN
 			Log.i("poll status","Poll is inactive!");
 			((TextView)findViewById(R.id.tv_error)).setText(R.string.inactive);
+		
+		//ALREADY VOTED
+		} else if(error.equals("already voted")) {
+			Log.i("poll status","You have already voted in this round!");
+			((TextView)findViewById(R.id.tv_error)).setText(R.string.already_voted);
+		
+		//NOT EXISTING POLL
 		} else {
-			//NOT EXISTING POLL
 			Log.i("poll status","Poll does NOT exist!");
 			((TextView)findViewById(R.id.tv_error)).setText(R.string.no_poll);
 		}

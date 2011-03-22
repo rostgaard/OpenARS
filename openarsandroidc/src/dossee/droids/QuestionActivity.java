@@ -172,6 +172,8 @@ public class QuestionActivity extends ListActivity {
 
 			public void onClick(View v) {
 				
+				String voteResponseJSON = null;
+				
 				try {
 					ctx = getApplicationContext();
 					int duration = 2000;
@@ -205,7 +207,7 @@ public class QuestionActivity extends ListActivity {
 						Log.i("voteJSON",voteJSON);
 						
 						//send vote to server
-						String voteResponseJSON = RestClient.getInstance().sendVote(pollID, voteJSON);
+						voteResponseJSON = RestClient.getInstance().sendVote(pollID, voteJSON);
 						Log.i("sendVote result",voteResponseJSON);
 						gson = new Gson();
 						VoteResponseJSON voteResponse = gson.fromJson(voteResponseJSON, VoteResponseJSON.class); 
@@ -233,7 +235,17 @@ public class QuestionActivity extends ListActivity {
 						Toast.makeText(ctx, R.string.choose, duration).show();
 					}
 				} catch(JsonSyntaxException e) {
-					//e.printStackTrace();
+					e.printStackTrace();
+					
+					//ALREADY VOTED IN THIS ROUND
+					if(voteResponseJSON.equals("already voted")) {
+						Intent intent = new Intent(QuestionActivity.this, ErrorActivity.class);
+						intent.putExtra("pollID", pollID);
+						intent.putExtra("error", voteResponseJSON);
+						startActivity(intent);
+						QuestionActivity.this.finish();
+						return;
+					}
 				}
 			}
    };

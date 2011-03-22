@@ -14,4 +14,5 @@
     <string name="refresh">TRY AGAIN</string>
     <string name="refreshing">Trying again</string>
     <string name="no_poll">There is no such poll.</string>
+    <string name="already_voted">You have already voted in this round!</string>
 </resources>
