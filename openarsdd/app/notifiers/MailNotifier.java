@@ -19,7 +19,7 @@ public class MailNotifier extends Mailer {
         setSubject("Your admin link");
         addRecipient(question.email);
         setFrom("no-reply@mailer.openars.dk");
-        System.out.println(question);
+        System.out.println("question: " + question);
         if (question != null) {
             id = question.pollID;
             send(question);

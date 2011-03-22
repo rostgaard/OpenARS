@@ -26,7 +26,7 @@ public class Management extends Controller {
 
     private static Gson gson = new Gson();
 
-    public static void getQuestion() {
+    public static void createQuestion() {
 
 
         // RequestNew message to test:  {"responderID":6547,"pollID":2345}
@@ -43,18 +43,18 @@ public class Management extends Controller {
                 question.pollID = new Random(System.currentTimeMillis()).nextInt(999999);
             } while (!Question.find("byPollID", question.pollID).fetch().isEmpty());
 
-            question.adminKey = Question.generateAdminKey(8);
+            question.generateAdminKey(8);
             question.save();
-            MailNotifier.sendPollIDLink(question);
-            MailNotifier.sendAdminLink(question);
+            
+            // send mail to the creator of question
+//            MailNotifier.sendPollIDLink(question);
+//            MailNotifier.sendAdminLink(question);
 
             // retrieve answers from JSON and save them into database
             for (String a : questionMsg.getAnswers()) {
                 System.out.println("Answer: " + a);
                 new Answer(question, a).save();
             }
-
-//            MailNotifier.sendAdminLink(question);
 
             renderJSON(new CreateResponseJSON(question.pollID, question.adminKey));
 

@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 import jsons.QuestionJSON;
 import jsons.ResultsJSON;
 import jsons.VoteJSON;
@@ -50,16 +49,21 @@ public class Voting extends Controller {
             System.out.println("JSON:" + json);
             VoteJSON vote = gson.fromJson(json, VoteJSON.class);
 
-//            String responderID = vote.getResponderID();
-
 
             Question question = Question.find("id = ? AND pollID = ?", vote.getQuestionID(), vote.getPollID()).first();
+
+
 
             if (question == null) {
                 renderJSON("No such question!");
             } else if (!question.isActive()) {
                 renderJSON("inactive"); // question not activated yet
             }
+
+//            String responderID = vote.getResponderID();
+//            Cache.add(responderID, vote, json);
+//            Cache.
+
 //            for (String string : vote.getAnswers()) {
 //                System.out.println("Answer: " + string);
 //            }
@@ -102,6 +106,10 @@ public class Voting extends Controller {
         if (question == null) {
             renderJSON("");
         }
+
+//        if (!question.isActive()) {
+//            renderJSON("inactive");
+//        }
 
         // vote counts
         int[] votes = new int[question.answers.size()];

@@ -14,6 +14,7 @@ GET     /{<[0-9]+>id}                           Voting.getQuestion
 GET     /{<[0-9]+>id}/{adminKey}                Voting.getQuestion
 POST    /vote/{<[0-9]+>id}                      Voting.vote
 GET     /getResults/{<[0-9]+>id}                Voting.getResults
+#GET     /getResults/{<[0-9]+>id}/{adminKey}     Voting.getResults
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public

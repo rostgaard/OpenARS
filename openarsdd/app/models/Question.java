@@ -68,14 +68,14 @@ public class Question extends Model {
      * @param length int length of generated string
      * @return String generated string
      */
-    public static String generateAdminKey(int length) {
+    public void generateAdminKey(int length) {
         Random rand = new Random(System.currentTimeMillis());
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < length; i++) {
             int pos = rand.nextInt(charset.length());
             sb.append(charset.charAt(pos));
         }
-        return sb.toString();
+        adminKey = sb.toString();
     }
 
     /**
