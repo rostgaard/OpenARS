@@ -42,6 +42,7 @@ createpoll.form.pollType=Type de sondage
 createpoll.form.pollType.single= Une seule réponse(une réponse par question)
 createpoll.form.pollType.multiple=Plusieurs réponses (une ou plusieurs réponses par question)
 createpoll.form.submit=Créer une question
+createpoll.form.cancel=Annuler
 createpoll.errors.errorsinform=Certaines des informations entrées sont invalides, veuillez les corriger et renvoyer le formulaire.
 managepoll.activatepoll.header=Activate poll
 managepoll.activatepoll.text=Here you're able to activate the poll for a certain amount of time. During the activated period, it will be possible to vote in the poll.
