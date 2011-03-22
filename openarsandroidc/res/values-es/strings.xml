@@ -10,4 +10,6 @@
     <string name="inactive">La encuesta esta inactiva.</string>
     <string name="refresh">Recargar</string>
     <string name="no_poll">El identificador de la encuesta no es correcto.</string>
+    <string name="refreshing">Intentalo de nuevo</string>
+    <string name="error">Ocurrio un error!</string>
 </resources>

@@ -10,4 +10,6 @@
     <string name="inactive">Denne afstemning er inaktiv.</string>
     <string name="refresh">Genindlæs</string>
     <string name="no_poll">Afstemningen eksisterer ikke.</string>
+    <string name="refreshing">Prøv igen</string>
+    <string name="error">Der opstod en fejl!</string>
 </resources>

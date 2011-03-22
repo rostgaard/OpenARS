@@ -10,5 +10,7 @@
     <string name="inactive">Dieser Poll ist inaktiv.</string>
     <string name="refresh">Neu laden</string>
     <string name="no_poll">Der gewünschte Poll existiert nicht.</string>
+    <string name="refreshing">Die Daten sind neu geladet</string>
+    <string name="error">Fehler!</string>
 </resources>
 

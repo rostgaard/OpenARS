@@ -10,5 +10,6 @@
     <string name="inactive">Intervija vēl nav aktivēta.</string>
     <string name="refresh">Atjaunot</string>
     <string name="no_poll">Intervija ar šo numuru neeksistē.</string>
-  
+  	<string name="refreshing">Atjaunojas...</string>
+    <string name="error">Kļūda</string>
 </resources>

@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<string name="app_name">openARS</string>
-<string name="thanks">Obrigado pelo seu voto!</string>
-<string name="choose">Por favor, marque sua resposta!</string>
-<string name="enter_poll_id">Entre com o ID da enquete</string>
-<string name="go">Começar</string>
-<string name="vote">Votar</string>
-<string name="exit">Sair</string>
-<string name="inactive">Esta enquete está desativada.</string>
-<string name="wait">Aguarde, os resultados serão mostrados em alguns segundos</string>
-<string name="remaining">Tempo restante:</string>
-<string name="refresh">Tentar novamente</string>
-<string name="no_poll">A enquete selecionada não existe.</string>
+	<string name="app_name">openARS</string>
+	<string name="thanks">Obrigado pelo seu voto!</string>
+	<string name="choose">Por favor, marque sua resposta!</string>
+	<string name="enter_poll_id">Entre com o ID da enquete</string>
+	<string name="go">Começar</string>
+	<string name="vote">Votar</string>
+	<string name="exit">Sair</string>
+	<string name="inactive">Esta enquete está desativada.</string>
+	<string name="wait">Aguarde, os resultados serão mostrados em alguns segundos</string>
+	<string name="remaining">Tempo restante:</string>
+	<string name="refresh">Tentar novamente</string>
+	<string name="no_poll">A enquete selecionada não existe.</string>
+	<string name="refreshing">Tentando novamente</string>
+	<string name="error">Erro!</string>
 </resources>
 

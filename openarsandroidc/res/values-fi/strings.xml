@@ -11,4 +11,6 @@
     <string name="refresh">Yritä uudelleen</string>
     <string name="no_poll">Äänestystä ei löytynyt.</string>
     <string name="remaining">Aikaa jäljellä</string>
+    <string name="refreshing">Yrita uudestaan</string>
+	<string name="error">Virhe!</string>
 </resources>
