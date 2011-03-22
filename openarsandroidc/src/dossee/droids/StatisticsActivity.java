@@ -1,22 +1,13 @@
 package dossee.droids;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
-import dossee.droids.entities.QuestionJSON;
 import dossee.droids.entities.ResultsJSON;
-import dossee.droids.entities.VoteJSON;
-import dossee.droids.entities.VoteResponseJSON;
 import dossee.droids.rest.RestClient;
 
 import android.app.*;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,12 +28,12 @@ public class StatisticsActivity extends Activity {
 
         //get Extras from previous Activity
         Log.i("WaitActivity","start");
-        pollID = Long.parseLong(this.getIntent().getExtras().getString("pollID"));
+        pollID = this.getIntent().getExtras().getLong("pollID");
         Log.i("pollID",Long.toString(pollID));
         
         //get question JSON from server
         try {
-        	String resultsString = RestClient.getInstance().getResults(Long.toString(pollID));
+        	String resultsString = RestClient.getInstance().getResults(pollID);
         	Log.i("resultsJSON",resultsString);
         	gson = new Gson();
         	ResultsJSON resultsJSON = gson.fromJson(resultsString, ResultsJSON.class);

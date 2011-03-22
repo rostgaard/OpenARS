@@ -15,6 +15,8 @@ import dossee.droids.rest.RestClient;
 import android.app.*;
 import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -32,7 +34,6 @@ public class QuestionActivity extends ListActivity {
 	private boolean multipleAllowed;
 	private String[] answers;
     private Context ctx;
-    private String responderID;
     private Gson gson = new Gson();
     private long remainingTime;
     private boolean statisticsDisplayed = false;
@@ -46,8 +47,18 @@ public class QuestionActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         
+        
+        WifiManager wifiMan = (WifiManager) getApplication().getSystemService(
+        		Context.WIFI_SERVICE);
+        
+        //WifiManager wifiMan = (WifiManager) this.getSystemService(
+        //		Context.WIFI_SERVICE);
+        WifiInfo wifiInf = wifiMan.getConnectionInfo();
+        String macAddr = wifiInf.getMacAddress();
+
+        
         //get Extras from previous Activity
-        pollID = Long.parseLong(this.getIntent().getExtras().getString("pollID"));
+        pollID = this.getIntent().getExtras().getLong("pollID");
         
         //get question JSON from server
         String questionString = null;
@@ -91,7 +102,7 @@ public class QuestionActivity extends ListActivity {
 			    	 if(!statisticsDisplayed) {
 			    		 statisticsDisplayed =  true;
 				    	 Intent intent = new Intent(QuestionActivity.this, StatisticsActivity.class);					
-				    	 intent.putExtra("pollID", Long.toString(pollID));
+				    	 intent.putExtra("pollID", pollID);
 				    	 startActivity(intent);
 				    	 QuestionActivity.this.finish();
 			    	 }
@@ -182,6 +193,10 @@ public class QuestionActivity extends ListActivity {
 						
 						//convert arrayList to array of strings
 						String[] answers = (String[]) answersList.toArray(new String[0]);
+						
+						//get unique responderID (macAddr / uuid)
+						String responderID = UniqueID_Generator.getInstance(getApplication()).getUniqueID();
+						Log.i("OA responderID", responderID);
 						
 						//create new VoteJSON object and convert it to string using gson
 						VoteJSON vote = new VoteJSON(pollID, questionID, (String[]) answers, responderID);

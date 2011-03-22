@@ -3,8 +3,12 @@ package dossee.droids;
 import java.util.UUID;
 
 import dossee.droids.R;
+import dossee.droids.rest.RestClient;
 import android.app.*;
+import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +17,7 @@ import android.widget.*;
 
 
 public class openarsActivity extends Activity {
-   
+	String macAddr;
     Button btn_go;
     UUID uuid;
    
@@ -21,6 +25,7 @@ public class openarsActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
         btn_go = (Button)findViewById(R.id.btn_go);
         btn_go.setOnClickListener(GoBtnListener);
     }
@@ -37,10 +42,18 @@ public class openarsActivity extends Activity {
 					Toast.makeText(getApplicationContext(), "Please, enter the poll ID", 2000).show();
 				} else {
 					Log.i("VoteBtnListener - openarsActivity","startActivity");
+					
+					
+					//put Extra variables into intent
 					Intent intent = new Intent(openarsActivity.this, QuestionActivity.class);
-					intent.putExtra("pollID", pollID);
+					intent.putExtra("pollID", Long.parseLong(pollID));
+					
+					//start QuestionActivity
 					startActivity(intent);
+					
+					//set TextView to default value
 					et_pollID.setText("");
+					
 					//openarsActivity.this.finish();
 				}
 			}

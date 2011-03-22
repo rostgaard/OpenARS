@@ -13,6 +13,10 @@
 	limitations under the License.
 */		
 
+/**
+ * https://github.com/commonsguy/cwac-merge
+ */
+
 package dossee.droids;
 
 import android.database.DataSetObserver;

@@ -1,26 +1,10 @@
 package dossee.droids;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-
-import dossee.droids.entities.QuestionJSON;
-import dossee.droids.entities.VoteJSON;
-import dossee.droids.entities.VoteResponseJSON;
-import dossee.droids.rest.RestClient;
-
 import android.app.*;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.*;
-
 
 public class WaitActivity extends Activity {
 	private long pollID;
@@ -54,7 +38,7 @@ public class WaitActivity extends Activity {
         	public void onFinish() {
         		//on countdown finish start StatisticsActivity
         		Intent intent = new Intent(WaitActivity.this, StatisticsActivity.class);					
-        		intent.putExtra("pollID", Long.toString(pollID));
+        		intent.putExtra("pollID", pollID);
         		startActivity(intent);
         		WaitActivity.this.finish();
         	}

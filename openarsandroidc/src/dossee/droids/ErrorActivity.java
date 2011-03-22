@@ -50,7 +50,7 @@ public class ErrorActivity extends Activity {
 			public void onClick(View v) {
 				Log.i("Refresh (ErrorActivity)","onClick");
 				Intent intent = new Intent(ErrorActivity.this, QuestionActivity.class);
-				intent.putExtra("pollID", Long.toString(pollID));
+				intent.putExtra("pollID", pollID);
 				Toast.makeText(getApplicationContext(), R.string.refreshing, 2000).show();
 				startActivity(intent);
 				ErrorActivity.this.finish();

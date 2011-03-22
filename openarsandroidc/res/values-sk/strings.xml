@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">openARS</string>
     <string name="thanks"> Ďakujeme za hlasovanie!</string>
+    <string name="error">Nastala chyba!</string>
     <string name="choose">Prosím, zvoľte si otázku!</string>
     <string name="enter_poll_id">Zadajte ID ankety!</string>
     <string name="go">Pokračovať</string>
@@ -11,5 +12,6 @@
     <string name="wait">Počkajte prosím, výsledky sa zobrazia o pár sekúnd</string>
     <string name="remaining">Zostávajúci čas:</string>
     <string name="refresh">Obnoviť</string>
+    <string name="refreshing">Skúšam odznova</string>
     <string name="no_poll">Anketa neexistuje.</string>
 </resources>

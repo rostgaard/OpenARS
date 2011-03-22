@@ -7,13 +7,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
-
-import javax.security.auth.login.LoginException;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.auth.AuthScope;
-//import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -21,17 +16,17 @@ import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class RestClient{
 
     private static RestClient instance;
 	//private static String server_address = "http://devel2.openars.dk";
-    private static String server_address = "http://78.47.162.117";
+    //private static String server_address = "http://78.47.162.117";
     //private static String server_address = "http://192.168.0.2";
-    private static int server_port = 80;
-    //private static int server_port = 9000;
+    private static String server_address = "http://172.29.40.161";
+    //private static String server_address = "http://json.openars.dk";
+    //private static int server_port = 80;
+    private static int server_port = 9000;
     private String response;
     private final String tag = "RestClient";
 
@@ -161,7 +156,7 @@ public class RestClient{
      * Handle method
      * @return get poll results from server
      */
-    public String getResults(String pollID) {
+    public String getResults(long pollID) {
         return this.getService(StaticQuery.get_results + pollID);
     }
     
