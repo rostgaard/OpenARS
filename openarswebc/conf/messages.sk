@@ -64,4 +64,4 @@ managepoll.pollstatistics=Pozri výsledky ankety &raquo;
 managepoll.pollstatistics.header=Výsledky ankety
 managepoll.pollstatistics.text=Ak si prajete vidieť výsledky vašej ankety, použite tlačítko nižšie. Štatistiky sú obnovované každých 5 sekúnd, je teda možné sledovať ich životný cyklus priebežne.
 managepoll.activate.pollStarted.header=Poll %s started!
-managepoll.activate.pollStarted.text=Go to <b>openars.dk/%s</b> to vote, or enter <b>%s</b> into the android client.    
+managepoll.activate.pollStarted.text=Pre hlasovanie choďte na <b>openars.dk/%s</b>, alebo zadajte <b>%s</b> do klienta pre android.
