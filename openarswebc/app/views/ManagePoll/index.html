@@ -1,13 +1,11 @@
-#{extends 'main.html' /} #{ set title:'Manage poll' /} 
+#{extends 'main.html' /} #{ set title:'Manage poll #' + pollID /} 
 #{set moreStyles:'managepoll' /}
 
 <div id="main">
 	<div id="activatepoll" class="greybg">
-		#{form @ManagePoll.activate(), id:'activatepoll', class:'wrapper' }
+		#{form @ManagePoll.activateSubmit(), id:'activatepoll', class:'wrapper' }
 			<h2>&{'managepoll.activatepoll.header'}</h2>
 			<p>&{'managepoll.activatepoll.text'}</p>
-			<input type="hidden" name="pollID" value="${pollID}" />
-			<input type="hidden" name="adminkey" value="${adminkey}" />
 			<div class="labeledinput">
 		   		<label>&{'managepoll.activatepoll.form.minutes'}</label>
 		   		<input type="text" name="minutes" value="5" onclick="this.value=''"/>
@@ -25,7 +23,7 @@
 			<div class="wrapper">
 				<h2>&{'managepoll.editpoll.header'}</h2>
 				<p>&{'managepoll.editpoll.text'}</p>
-				#{a @ManagePoll.edit(pollID, adminkey), class:'button'}&{'managepoll.editpoll'}#{/a}
+				#{a @ManagePoll.edit(), class:'button'}&{'managepoll.editpoll'}#{/a}
 			</div>
 		</div>
 		
@@ -33,7 +31,7 @@
 			<div class="wrapper">
 				<h2>&{'managepoll.pollstatistics.header'}</h2>
 				<p>&{'managepoll.pollstatistics.text'}</p>
-				#{a @ManagePoll.statistics(pollID, adminkey), class:'button'}&{'managepoll.pollstatistics'}#{/a}
+				#{a @ManagePoll.statistics(), class:'button'}&{'managepoll.pollstatistics'}#{/a}
 			</div>
 		</div>
 	</div>

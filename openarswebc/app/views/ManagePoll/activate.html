@@ -1,12 +1,12 @@
-#{extends 'main.html' /} #{ set title:'Manage poll' /} 
+#{extends 'main.html' /} #{ set title:'Activated poll #' + pollID /} 
 #{set moreStyles:'activatepoll' /}
 <div id="main">
 	<div class="greybg">
 		<div class="wrapper">
 			<h1>&{'managepoll.activate.pollStarted.header', pollID}</h1>
 			<p>&{'managepoll.activate.pollStarted.text', pollID,pollID}</p>
-			<div id="countdowndiv"></div>
-			#{a @ManagePoll.statistics(pollID, adminkey), class:'button', style:'display: none'}&{'managepoll.pollstatistics'}#{/a}
+			<div id="countdowndiv" style="font-size: 30px">${durationString}</div>
+			#{a @ManagePoll.statistics(), class:'button'}&{'managepoll.pollstatistics'}#{/a}
 		</div>
 	</div>
 </div>
@@ -23,8 +23,8 @@
 				dispLeadingZero: true,
 				startFontSize: '30px',
 				callBack: function(me) {
-					$("#countdowndiv").hide();
-					$(".button").show();
+					$("#countdowndiv").html('00:00');
+					$("#countdowndiv").css("text-decoration", "blink");
 				}
 			});	
 		});			

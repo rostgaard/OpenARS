@@ -1,5 +1,6 @@
 package controllers;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 import models.Vote;
@@ -17,7 +18,8 @@ public class JoinPoll extends Controller {
 			redirect("/" + id);
 		}
 		try {
-			JSONObject questionJSON = RestClient.getInstance().getQuestion(id);
+			JSONObject questionJSON = new JSONObject(RestClient.getInstance()
+					.getQuestion(id));
 
 			String pollID = questionJSON.getString("pollID");
 
@@ -62,17 +64,45 @@ public class JoinPoll extends Controller {
 	}
 
 	public static void success(String pollID) {
+		String question = null;
+		JSONArray answersArray = null;
+		String duration = null;
+
 		try {
-			JSONObject questionJSON = RestClient.getInstance().getQuestion(
-					pollID);
+			JSONObject questionJSON = new JSONObject(RestClient.getInstance()
+					.getQuestion(pollID));
 
-			String question = questionJSON.getString("question");
-			JSONArray answersArray = questionJSON.getJSONArray("answers");
-			String duration = questionJSON.getString("duration");
-
-			render(pollID, question, answersArray, duration);
+			question = questionJSON.getString("question");
+			answersArray = questionJSON.getJSONArray("answers");
+			duration = questionJSON.getString("duration");
 		} catch (Exception e) {
+			try {
+				// Most like the poll has been inactivated, so we need the
+				// results instead
+				JSONObject resultJSON = new JSONObject(RestClient.getInstance()
+						.getResults(pollID, null));
+
+				question = resultJSON.getString("question");
+				answersArray = resultJSON.getJSONArray("answers");
+				duration = "0";
+			} catch (Exception e2) {
+			}
 		}
+		
+		String durationString = "00:00";
+		// Parse the duration and turn it into minutes and seconds
+		int dur = Integer.parseInt(duration);
+		int m = (int) Math.floor(dur / 60);
+		int s = dur - m * 60;
+
+		// Add leading zeros and make the string.
+		char[] zeros = new char[2];
+		Arrays.fill(zeros, '0');
+		DecimalFormat df = new DecimalFormat(String.valueOf(zeros));
+
+		durationString = df.format(m) + ":" + df.format(s);
+
+		render(pollID, question, answersArray, duration, durationString);
 	}
 
 	public static void nopoll(String pollID) {

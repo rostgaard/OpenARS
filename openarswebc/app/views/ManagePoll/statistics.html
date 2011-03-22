@@ -1,4 +1,4 @@
-#{extends 'main.html' /} #{ set title:'Manage poll' /} 
+#{extends 'main.html' /} #{ set title:'Statistics for poll #' + pollID /} 
 #{set moreStyles:'managepoll' /}
 #{set moreScripts:'highcharts' /}
 
@@ -82,7 +82,7 @@ $(document).ready(function() {
 				
 	var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 
-	$.getJSON('@{Poll.getResults()}?id=${pollID}', function(data) {
+	$.getJSON('@{Poll.getResults()}?id=${pollID}&adminkey=&{adminkey}', function(data) {
 		$('.loading').hide();
 		var chart = new Highcharts.Chart({
 		      chart: {
@@ -94,18 +94,18 @@ $(document).ready(function() {
 		                // set up the updating of the chart each second
 		                var series = this.series[0];
 		                setInterval(function() {
-		                    $.getJSON('@{Poll.getResults()}?id=${pollID}', function(data) {
-		                        series.setData(data.map.votes.myArrayList);
+		                    $.getJSON('@{Poll.getResults()}?id=${pollID}&adminkey=&{adminkey}', function(data) {
+		                        series.setData(data.votes);
 		                    });
 		            	}, 5000);
 		        	}
 				}
 		    },
 		    title: {
-		    	text: data.map.question
+		    	text: data.question
 		    },
 		  	xAxis: {
-				categories: data.map.answers.myArrayList,
+				categories: data.answers,
 				labels: {
 			        rotation: -45,
 			    	align: 'right',
@@ -126,7 +126,7 @@ $(document).ready(function() {
 		    	enabled: false
 		    },
 		    series: [{
-				data: data.map.votes.myArrayList
+				data: data.votes
 			}]
 		});
 	});

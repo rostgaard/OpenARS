@@ -7,7 +7,7 @@
 	<div class="wrapper">
 		<h1>&{'joinpoll.voterecieved.header'}</h1>
 		<p>&{'joinpoll.voterecieved.text'}</p>
-		<div id="countdowndiv"></div>
+		<div id="countdowndiv" style="font-size: 30px">${durationString}</div>
 		<img class="loading" src="@{'/public/images/loading-big.gif'}" alt="&{'loading'}" style="display: none;"/>
 		<div id="stats"></div>
 	</div>
@@ -130,7 +130,7 @@ function loadstats(data) {
 	         text: '${question}'
 	      },
 	      xAxis: {
-				categories: data.map.answers.myArrayList,
+				categories: data.answers,
 				labels: {
 		            rotation: -45,
 		            align: 'right',
@@ -151,7 +151,7 @@ function loadstats(data) {
 	         enabled: false
 	      },
 	      series: [{
-				data: data.map.votes.myArrayList
+				data: data.votes
 			}]
 	   });
 };

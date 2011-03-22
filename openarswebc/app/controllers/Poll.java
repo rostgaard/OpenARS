@@ -6,13 +6,11 @@ import Utility.RestClient;
 import play.mvc.Controller;
 
 public class Poll extends Controller {
-	public static void getResults(String id) {
-		try {
-			JSONObject res = RestClient.getInstance().getResults(id);
-			res.get("pollID");
+	public static void getResults(String id, String adminkey) {
+		String res = RestClient.getInstance().getResults(id, adminkey);
+		System.out.println(res);
+		if (res != null && !res.isEmpty())
 			renderJSON(res);
-		} catch (Exception e) {
-		}
 		renderJSON(false);
 	}
 }
