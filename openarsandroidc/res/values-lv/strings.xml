@@ -12,4 +12,10 @@
     <string name="no_poll">Intervija ar šo numuru neeksistē.</string>
   	<string name="refreshing">Atjaunojas...</string>
     <string name="error">Kļūda</string>
+    <string name="settings">Uzstādījumi</string>
+    <string name="save">Saglābāt</string>
+    <string name="settings_saved">Uzstādījumi ir saglabāti.</string>
+    <string name="wait">Lūdzu, uzgaidiet. Rezultāti tiks rādīti pēc dažām sekundēm</string>
+    <string name="already_voted">Jūs jau piedalījaties šajā balsojumā!</string>
+    <string name="remaining">palika:</string>
 </resources>

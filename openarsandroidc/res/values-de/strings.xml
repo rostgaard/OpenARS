@@ -12,5 +12,11 @@
     <string name="no_poll">Der gewünschte Poll existiert nicht.</string>
     <string name="refreshing">Die Daten sind neu geladet</string>
     <string name="error">Fehler!</string>
+    <string name="settings">Einstellungen</string>
+    <string name="save">Speichern</string>
+    <string name="settings_saved">Die Einstellungen sind gespeichert.</string>
+    <string name="wait">Warten Sie bitte. Die Statistik wird in wenigen Sekunden angezeigt.</string>
+    <string name="already_voted">Sie haben schon abgestimmt!</string>
+    <string name="remaining">geblieben:</string>
 </resources>
 

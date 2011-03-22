@@ -12,5 +12,10 @@
     <string name="no_poll">Опроса с данным номером не существует.</string>
     <string name="refreshing">Обновляется...</string>
     <string name="error">Произошла ошибка!</string>
-     
+    <string name="settings">Настройки</string>
+    <string name="save">Сохранить</string>
+    <string name="settings_saved">Настройки сохранены</string>
+    <string name="wait">Пожалуйста, подождите, результаты появятся через несколько секунд</string>
+    <string name="already_voted">Вы уже проголосовали!</string>
+    <string name="remaining">осталось:</string> 
 </resources>

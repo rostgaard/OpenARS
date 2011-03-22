@@ -14,5 +14,11 @@
 	<string name="no_poll">A enquete selecionada não existe.</string>
 	<string name="refreshing">Tentando novamente</string>
 	<string name="error">Erro!</string>
+	<string name="settings"></string>
+    <string name="save"></string>
+    <string name="settings_saved"></string>
+    <string name="wait"></string>
+    <string name="already_voted"></string>
+    <string name="remaining"></string>
 </resources>
 
