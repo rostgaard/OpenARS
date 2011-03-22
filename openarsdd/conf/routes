@@ -11,6 +11,7 @@ GET     /mailtest                               Mailtest.welcome
 POST    /newPoll                                Management.createQuestion
 POST    /activation/{<[0-9]+>id}/{adminKey}     Management.activation
 GET     /{<[0-9]+>id}                           Voting.getQuestion
+GET     /{<[0-9]+>id}/{adminKey}                Voting.getQuestion
 POST    /vote/{<[0-9]+>id}                      Voting.vote
 GET     /getResults/{<[0-9]+>id}                Voting.getResults
 

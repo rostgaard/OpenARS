@@ -26,7 +26,17 @@ public class MailNotifier extends Mailer {
         }
     }
 
-     public static void sendPollIDLink(Question createdQuestion) {
-    
-     }
+    public static void sendPollIDLink(Question question) {
+
+        long id = 1;
+        setSubject("Your poll link");
+        addRecipient(question.email);
+        setFrom("no-reply@mailer.openars.dk");
+        System.out.println(question);
+        if (question != null) {
+            id = question.pollID;
+            send(question);
+        }
+    }
+
 }
