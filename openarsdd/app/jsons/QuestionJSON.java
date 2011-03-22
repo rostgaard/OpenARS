@@ -35,7 +35,7 @@ public class QuestionJSON {
         this.answers = getAnswersArray(question);
         this.responderID = responderID;
         this.question = question.question;
-        this.duration = question.timeRemaining();
+        this.duration = question.timeRemainingForClient();
         this.multipleAllowed = question.multipleAllowed;
 
     }
@@ -144,4 +144,6 @@ public class QuestionJSON {
         Question q = new Question(pollID, question, multipleAllowed, email);
         return q;
     }
+
+   
 }
