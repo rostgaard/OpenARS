@@ -27,6 +27,9 @@ public class CreatePoll extends Controller {
     public static void submit(String email, String question, String[] answer, String type) {
     	// Remove empty lines from the answers
     	ArrayList<String> answers = new ArrayList<String>();
+    	if(answer == null) {
+    		answer = new String[] {"", ""};
+    	}
     	for (String o : answer) {
     		if(o != null && !o.isEmpty()) {
     			answers.add(o);
