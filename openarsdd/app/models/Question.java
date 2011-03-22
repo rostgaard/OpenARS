@@ -45,9 +45,17 @@ public class Question extends Model {
      * @param duration int seconds
      */
     public Question activateFor(int duration) {
-        new VotingRound(duration, this).save();
-        return this;
-
+        System.out.println("isActive(): " + isActive());
+        System.out.println("TimeRemaining(): " + timeRemaining());
+        if (isActive()) {
+            VotingRound lastRound = getLastVotingRound();
+            lastRound.startDateTime = new Date(System.currentTimeMillis());
+            lastRound.EndDateTime = new Date(lastRound.startDateTime.getTime() + duration * 1000);
+            lastRound.save();
+        } else {
+            new VotingRound(duration, this).save();
+        }
+        return null;
     }
 
     /**
@@ -98,6 +106,13 @@ public class Question extends Model {
         return timeRemaining() > 0;
     }
 
+//    /**
+//     * Can be used to determine if the question is activated or not
+//     * @return boolean activation status
+//     */
+//    public boolean isActive(int secondsAllowed) {
+//        return timeRemaining() + secondsAllowed > 0;
+//    }
     /**
      * Returns remaining time for which the question is activated. It can
      * @return
@@ -113,6 +128,15 @@ public class Question extends Model {
 
         int difference = (int) (endTime.getTime() - currentTime.getTime()) / 1000;
         return (difference > 0) ? difference : 0;
+    }
+
+    /**
+     * Time remaining for client is decremented by 3 seconds
+     * @return
+     */
+    public int timeRemainingForClient() {
+        int timeRemaining = timeRemaining() - 3;
+        return (timeRemaining > 0) ? timeRemaining : 0;
     }
 
     /**
