@@ -29,7 +29,9 @@ public class RestClient{
     private static RestClient instance;
 	//private static String server_address = "http://devel2.openars.dk";
     private static String server_address = "http://78.47.162.117";
+    //private static String server_address = "http://192.168.0.2";
     private static int server_port = 80;
+    //private static int server_port = 9000;
     private String response;
     private final String tag = "RestClient";
 
@@ -144,7 +146,7 @@ public class RestClient{
      * @return get poll question from server
      */
     public String getPoll(String pollID) {
-        return this.getService(StaticQuery.get_poll + "/" + pollID);
+        return this.getService(StaticQuery.get_poll + pollID);
     }
     
     /**
@@ -152,7 +154,15 @@ public class RestClient{
      * @return send vote to server
      */
     public String sendVote(long pollID, String voteJSON) {
-    	return this.postService(StaticQuery.vote + "/" + pollID, voteJSON);
+    	return this.postService(StaticQuery.vote + pollID, voteJSON);
+    }
+    
+    /**
+     * Handle method
+     * @return get poll results from server
+     */
+    public String getResults(String pollID) {
+        return this.getService(StaticQuery.get_results + pollID);
     }
     
     /**
@@ -160,7 +170,8 @@ public class RestClient{
      */
     private class StaticQuery {
     	public final static String get_poll = "";
-    	public final static String vote = "vote";
+    	public final static String vote = "vote/";
+    	public final static String get_results = "getResults/";
     }
 	
 }

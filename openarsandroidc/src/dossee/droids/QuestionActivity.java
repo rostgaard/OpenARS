@@ -1,6 +1,7 @@
 package dossee.droids;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -8,6 +9,7 @@ import com.google.gson.JsonSyntaxException;
 
 import dossee.droids.entities.QuestionJSON;
 import dossee.droids.entities.VoteJSON;
+import dossee.droids.entities.VoteResponseJSON;
 import dossee.droids.rest.RestClient;
 
 import android.app.*;
@@ -16,14 +18,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
 
-public class QuestionActivity extends Activity {
-    /** Called when the activity is first created. */
-	
+public class QuestionActivity extends ListActivity {
 	private long pollID;
 	private long questionID;
 	private String question;
@@ -31,198 +32,194 @@ public class QuestionActivity extends Activity {
 	private boolean multipleAllowed;
 	private String[] answers;
     private Context ctx;
-    private ListView lView;
     private String responderID;
+    private Gson gson = new Gson();
+    private long remainingTime;
+    private boolean statisticsDisplayed = false;
+    private MergeAdapter adapter=null;
+    private ListView merged_lv;
+    private LayoutInflater vi;
     
     @Override
+    /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         
         //get Extras from previous Activity
         pollID = Long.parseLong(this.getIntent().getExtras().getString("pollID"));
         
-        //generate unique ResponderID
-        responderID = UniqueID_Generator.getInstance().getUniqueID();
-        
         //get question JSON from server
+        String questionString = null;
+        
         try {
-        	String guestionString = RestClient.getInstance().getPoll(Long.toString(pollID));
-        	Log.i("guestionString",guestionString);
-        	Gson gson = new Gson();
-        	
-        	try {
-        		QuestionJSON questionJSON = gson.fromJson(guestionString, QuestionJSON.class);
-	        	Log.i("questionJSON",questionJSON.toString());
+        	questionString = RestClient.getInstance().getPoll(Long.toString(pollID));
+            Log.i("guestionString",questionString);
+            
+        	QuestionJSON questionJSON = gson.fromJson(questionString, QuestionJSON.class);
+	        Log.i("questionJSON",questionJSON.toString());
 	        	
-	        	//get data from JSON
-	        	question = questionJSON.getQuestion();
-	        	questionID = questionJSON.getQuestionID();
-	        	answers = questionJSON.getAnswers();
-				multipleAllowed = questionJSON.isMultipleAllowed();
-				duration = questionJSON.getDuration();
-				
-        	} catch(JsonSyntaxException e) {
-        		//display screen of not existing poll
-        		//e.printStackTrace();
-        		Log.i("GSON","Poll does NOT exist!");
-        		setContentView(R.layout.poll_error);
-        		
-        		// set poll ID & message
-    			((TextView)findViewById(R.id.tv_pollID)).setText("Poll #" + pollID);
-    			((TextView)findViewById(R.id.tv_error)).setText(R.string.no_poll);
-    			
-    			//refresh button
-		        Button btn_refresh = (Button)findViewById(R.id.btn_refresh);
-		        btn_refresh.setOnClickListener(RefreshBtnListener);
-    			return;
-        	}
-        	
-        	if(duration == 0) {
-        		//INACTIVE POLL SCREEN
-        		setContentView(R.layout.poll_error);
-        		
-        		// set poll ID & message
-    			((TextView)findViewById(R.id.tv_pollID)).setText("Poll #" + pollID);
-    			((TextView)findViewById(R.id.tv_error)).setText(R.string.inactive);
-    			
-    			//refresh button
-		        Button btn_refresh = (Button)findViewById(R.id.btn_refresh);
-		        btn_refresh.setOnClickListener(RefreshBtnListener);
-				return;
-			}
-        	
-        	//QUESTION SCREEN
-        	setContentView(R.layout.question);
-        	
-        	//set poll ID & question
-			((TextView)findViewById(R.id.tv_pollID)).setText("Poll #" + pollID);
-			((TextView)findViewById(R.id.tv_question)).setText(question);
-			
-			
-			lView = (ListView)findViewById(R.id.lv_options);
-			
-			//mulltipleAllowed? -> checkboxes / radio buttons
-			if(multipleAllowed) {
-				lView.setAdapter(new ArrayAdapter<String>(QuestionActivity.this,
-		    			android.R.layout.simple_list_item_multiple_choice,answers));
-				lView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-				
-			} else {
-				lView.setAdapter(new ArrayAdapter<String>(QuestionActivity.this,
-		    			android.R.layout.simple_list_item_single_choice,answers));
-				lView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-			}
-			
-			Button btn = (Button)findViewById(R.id.btn_vote);
-	        btn.setOnClickListener(VoteBtnListener);
+	        //get data from JSON
+	        question = questionJSON.getQuestion();
+	        questionID = questionJSON.getQuestionID();
+	        answers = questionJSON.getAnswers();
+			multipleAllowed = questionJSON.isMultipleAllowed();
+			duration = questionJSON.getDuration();
+
+			//QUESTION SCREEN
+        	setContentView(R.layout.question_main);
+        	merged_lv = (ListView)findViewById(android.R.id.list);
+        	adapter = new MergeAdapter();
+        	adapter.addView(buildHeader());
+    		adapter.addAdapter(buildList());
+    		adapter.addView(buildButton(), true);
+    		setListAdapter(adapter);
         	
 	        //CountDownTimer
-			final TextView tv_duration = (TextView)findViewById(R.id.tv_duration);
+    		final TextView tv_duration = (TextView) (adapter.getView(0, null, null).findViewById(R.id.tv_duration));
 			
-			CountDownTimer cdt = new CountDownTimer((duration + 1)* 1000, 1000) {
+    		new CountDownTimer((duration + 1)* 1000, 1000) {
 
 			     public void onTick(long millisUntilFinished) {
-			    	 tv_duration.setText(Long.toString(millisUntilFinished / 1000));
+			    	 remainingTime = millisUntilFinished / 1000;
+			    	 tv_duration.setText(Long.toString(remainingTime));
 			     }
 
 			     public void onFinish() {
-			    	 setContentView(R.layout.statistics);
-			    	 ((TextView)findViewById(R.id.tv_pollID)).setText("Poll #" + pollID);
-			    	 ((TextView)findViewById(R.id.tv_question)).setText(question);
+			    	 //on countdown finish start StatisticsActivity
 			    	 
-			    	 LinearLayout ll = (LinearLayout)findViewById(R.id.ll_statistics_answers);
-			    	 TextView tv;
-			    	 
-					 //generate answers
-			    	 for(String answer : answers) {
-			    		 tv = new TextView(getApplicationContext(), null);
-					     tv.setText(answer + ": 10 votes");
-					     ll.addView(tv);
-					 }
-			    	 
-			    	 //exit button
-			         Button btn_exit = (Button)findViewById(R.id.btn_exit);
-			         btn_exit.setOnClickListener(ExitBtnListener);
+			    	 if(!statisticsDisplayed) {
+			    		 statisticsDisplayed =  true;
+				    	 Intent intent = new Intent(QuestionActivity.this, StatisticsActivity.class);					
+				    	 intent.putExtra("pollID", Long.toString(pollID));
+				    	 startActivity(intent);
+				    	 QuestionActivity.this.finish();
+			    	 }
 			     }
-			  }.start();
-
-		} catch (Exception e) {//JSON
-			e.printStackTrace();
-		}
+			}.start();
 		
-        
+        } catch(Exception e) { //JsonSyntaxException
+    		e.printStackTrace();
+    		
+    		Intent intent = new Intent(QuestionActivity.this, ErrorActivity.class);
+			intent.putExtra("pollID", pollID);
+			intent.putExtra("error", questionString);
+			startActivity(intent);
+			QuestionActivity.this.finish();
+			return;
+			
+		}/* catch (Exception e) {
+			e.printStackTrace();
+		}*/
     }
+    
+    
+    private ArrayAdapter<String> buildList() {
+		
+    	int resource = 0;
+    	
+    	if(multipleAllowed) {
+    		resource = android.R.layout.simple_list_item_multiple_choice;
+    		merged_lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+    	} else {
+    		resource = android.R.layout.simple_list_item_single_choice;
+    		merged_lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+    	}
+    	
+		ArrayAdapter<String> aa = new ArrayAdapter<String>(
+				this, 
+				resource,
+				new ArrayList<String>(Arrays.asList(answers)));
+		
+		merged_lv.setAdapter(aa);
+		
+		return(aa);
+	}
+
+	
+	private View buildButton() {
+		Button result=new Button(this);
+		result.setText(R.string.vote);
+		result.setOnClickListener(VoteBtnListener);
+		
+		return(result);
+	}
+	
+	private View buildHeader() {
+		//get header layout
+		View v = vi.inflate(R.layout.question_header, null);		
+		
+		//set poll ID & question
+		((TextView)v.findViewById(R.id.tv_pollID)).setText("Poll #" + pollID);
+		((TextView)v.findViewById(R.id.tv_question)).setText(question);
+		
+		return(v);
+	}
     
    private OnClickListener VoteBtnListener = 
 	   	new OnClickListener(){
 
 			public void onClick(View v) {
-				/**
-				 * If some option is chosen, make a thank-you toast and
-				 * TODO change the layout to statistics
-				 * 
-				 * Else make an ask-for-response toast
-				 */
-
-				ctx = getApplicationContext();
-				int duration = 2000;
-				List<String> answersList = new ArrayList<String>();
-				answersList.clear();
 				
-				//get selected answers
-				for(int i = 0; i < lView.getChildCount(); i++) {
-					if(lView.getCheckedItemPositions().get(i)) {
-						String selectedAnswer = (String) lView.getItemAtPosition(i);
-						answersList.add(selectedAnswer);
+				try {
+					ctx = getApplicationContext();
+					int duration = 2000;
+					List<String> answersList = new ArrayList<String>();
+					answersList.clear();
+					
+					//get selected answers					
+					for(int i = 1; i < answers.length + 1; i++) {
+						if(merged_lv.getCheckedItemPositions().get(i)) {
+							String selectedAnswer = (String) merged_lv.getItemAtPosition(i);
+							answersList.add(selectedAnswer);
+						}
 					}
+					
+					Log.i("answersList size", Integer.toString(answersList.size()));
+		
+					//if there is at least one selected answer, VOTE!
+					if (answersList.size() != 0) {
+						
+						//convert arrayList to array of strings
+						String[] answers = (String[]) answersList.toArray(new String[0]);
+						
+						//create new VoteJSON object and convert it to string using gson
+						VoteJSON vote = new VoteJSON(pollID, questionID, (String[]) answers, responderID);
+						Gson gson = new Gson();
+						String voteJSON = gson.toJson(vote);
+						Log.i("voteJSON",voteJSON);
+						
+						//send vote to server
+						String voteResponseJSON = RestClient.getInstance().sendVote(pollID, voteJSON);
+						Log.i("sendVote result",voteResponseJSON);
+						gson = new Gson();
+						VoteResponseJSON voteResponse = gson.fromJson(voteResponseJSON, VoteResponseJSON.class); 
+				
+						//show Toast
+						if(voteResponse.isVoteSuccessful()) {
+							Toast.makeText(ctx, R.string.thanks, duration).show();
+							
+							//on countdown finish start StatisticsActivity
+							if(!statisticsDisplayed) {
+					    		statisticsDisplayed =  true;
+						    	Intent intent = new Intent(QuestionActivity.this, WaitActivity.class);					
+						    	intent.putExtra("pollID", pollID);
+						    	intent.putExtra("remainingTime", remainingTime);
+						    	startActivity(intent);
+						    	QuestionActivity.this.finish();
+							}
+						} else {
+							Toast.makeText(ctx, R.string.error, duration).show();
+						}
+						
+					//there is no selected answer !
+					} else {
+						//show Toast
+						Toast.makeText(ctx, R.string.choose, duration).show();
+					}
+				} catch(JsonSyntaxException e) {
+					//e.printStackTrace();
 				}
-	
-				//if there is at least one selected answer, VOTE!
-				if (answersList.size() != 0) {
-					
-					//convert arrayList to array of strings
-					String[] answers = (String[]) answersList.toArray(new String[0]);
-					
-					//create new VoteJSON object and convert it to string using gson
-					VoteJSON vote = new VoteJSON(pollID, questionID, (String[]) answers, responderID);
-					Gson gson = new Gson();
-					String voteJSON = gson.toJson(vote);
-					Log.i("voteJSON",voteJSON);
-					
-					//send vote to server
-					String result = RestClient.getInstance().sendVote(pollID, voteJSON);
-					Log.i("sendVote result",result);
-					
-					//show Toast
-					Toast.makeText(ctx, R.string.thanks, duration).show();
-					
-				//there is no selected answer !
-				} else {
-					//show Toast
-					Toast.makeText(ctx, R.string.choose, duration).show();
-				}
-					
 			}
-   };
-   
-   private OnClickListener ExitBtnListener = 
-	   	new OnClickListener(){
-
-			public void onClick(View v) {
-				QuestionActivity.this.finish();
-			}
-   };
-  
-   private OnClickListener RefreshBtnListener = 
-	   	new OnClickListener(){
-
-			public void onClick(View v) {
-				Log.i("RefreshBtnListener - openarsActivity","onClick");
-				Intent intent = new Intent(QuestionActivity.this, QuestionActivity.class);
-				intent.putExtra("pollID", Long.toString(pollID));
-				Toast.makeText(getApplicationContext(), R.string.refreshing, 2000).show();
-				startActivity(intent);
-				QuestionActivity.this.finish();
-		}
    };
 }

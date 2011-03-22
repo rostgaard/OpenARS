@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
     
-    <TextView 
-    	android:id="@+id/tv_remaining" 
+   <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1">
+
+    <TableRow>
+    	<TextView 
+    	android:layout_column="1"
+    	android:id="@+id/tv_remaining"
     	android:layout_gravity="left" 
     	android:paddingBottom="10dip"
     	android:layout_height="wrap_content" 
@@ -14,6 +22,18 @@
     	android:text="@string/remaining"
     	android:textSize="20sp"
     	android:lines="1"></TextView>
+    
+    <TextView 
+    	android:id="@+id/tv_pollID" 
+    	android:layout_gravity="right"
+    	android:paddingBottom="10dip"
+    	android:layout_height="wrap_content" 
+    	android:layout_width="wrap_content" 
+    	android:text="#0000"
+    	android:textSize="20sp"
+    	android:lines="1"></TextView>
+    </TableRow>
+	</TableLayout>
     	
     <TextView 
     	android:id="@+id/tv_duration" 
@@ -27,17 +47,8 @@
     	android:textStyle="bold"
     	android:lines="1"></TextView>
     	
+    
     <TextView 
-    	android:id="@+id/tv_pollID" 
-    	android:layout_gravity="right"
-    	android:paddingBottom="10dip"
-    	android:layout_height="wrap_content" 
-    	android:layout_width="wrap_content" 
-    	android:text="#0000"
-    	android:textSize="20sp"
-    	android:lines="1"></TextView>
-   
-   <TextView 
     	android:text="Question text here" 
     	android:id="@+id/tv_question" 
     	android:layout_width="fill_parent" 
@@ -46,13 +57,5 @@
     	android:textSize="30sp"
     	android:textColor="#ffffff"
     	android:paddingBottom="10dip"></TextView>
-   
-    <ListView 
-    	android:layout_gravity="fill"
-    	android:layout_height="wrap_content"
-    	android:id="@+id/lv_options" 
-    	android:layout_width="fill_parent"
-    	
-    ></ListView>
-
+    
 </LinearLayout>

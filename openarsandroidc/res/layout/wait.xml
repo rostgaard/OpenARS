@@ -41,7 +41,7 @@
     	android:layout_gravity="center_horizontal"
     	android:gravity="center_horizontal"
     	android:text="10"
-    	android:id="@+id/tv_seconds" 
+    	android:id="@+id/tv_duration" 
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content"
     	android:textSize="70sp"

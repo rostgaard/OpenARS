@@ -22,10 +22,10 @@ public class openarsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         btn_go = (Button)findViewById(R.id.btn_go);
-        btn_go.setOnClickListener(VoteBtnListener);
+        btn_go.setOnClickListener(GoBtnListener);
     }
     
-    private OnClickListener VoteBtnListener = 
+    private OnClickListener GoBtnListener = 
 	   	new OnClickListener(){
 
 			public void onClick(View v) {
@@ -37,8 +37,7 @@ public class openarsActivity extends Activity {
 					Toast.makeText(getApplicationContext(), "Please, enter the poll ID", 2000).show();
 				} else {
 					Log.i("VoteBtnListener - openarsActivity","startActivity");
-					//Intent intent = new Intent(openarsActivity.this, TestActivity.class);
-					Intent intent = new Intent(openarsActivity.this, QuestionActivity.class);					
+					Intent intent = new Intent(openarsActivity.this, QuestionActivity.class);
 					intent.putExtra("pollID", pollID);
 					startActivity(intent);
 					et_pollID.setText("");

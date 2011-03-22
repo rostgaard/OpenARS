@@ -17,6 +17,8 @@
         </activity>
         
         <activity android:name="QuestionActivity"></activity>
-        <activity android:name="TestActivity"></activity>
+        <activity android:name="WaitActivity"></activity>
+        <activity android:name="ErrorActivity"></activity>
+        <activity android:name="StatisticsActivity"></activity>
     </application>
 </manifest>
