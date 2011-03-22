@@ -37,7 +37,6 @@ input[type=password] {
 }
 
 .button {
-	display: block;
 	text-decoration: none;
 	padding: 5px 10px;
 	-webkit-border-radius: 5px;

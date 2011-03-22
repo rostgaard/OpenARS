@@ -30,5 +30,6 @@
 }
 
 #activatepoll .button {
+	display: block;
 	clear: both;
 }
