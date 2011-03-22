@@ -126,18 +126,18 @@ public class Question extends Model {
         Date endTime = lastRound.EndDateTime;
         Date currentTime = new Date(System.currentTimeMillis());
 
-        int difference = (int) (endTime.getTime() - currentTime.getTime()) / 1000;
+        int difference = (int) Math.ceil((endTime.getTime() - currentTime.getTime()) / 1000);
         return (difference > 0) ? difference : 0;
     }
 
-    /**
-     * Time remaining for client is decremented by 3 seconds
-     * @return
-     */
-    public int timeRemainingForClient() {
-        int timeRemaining = timeRemaining() - 3;
-        return (timeRemaining > 0) ? timeRemaining : 0;
-    }
+//    /**
+//     * Time remaining for client is decremented by 3 seconds
+//     * @return
+//     */
+//    public int timeRemainingForClient() {
+//        int timeRemaining = timeRemaining() - 3;
+//        return (timeRemaining > 0) ? timeRemaining : 0;
+//    }
 
     /**
      * Returns true when there has not been any voting done

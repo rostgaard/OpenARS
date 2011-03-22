@@ -35,7 +35,7 @@ public class QuestionJSON {
         this.answers = getAnswersArray(question);
         this.responderID = responderID;
         this.question = question.question;
-        this.duration = question.timeRemainingForClient();
+        this.duration = question.timeRemaining();
         this.multipleAllowed = question.multipleAllowed;
 
     }

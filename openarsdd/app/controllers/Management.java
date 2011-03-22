@@ -43,9 +43,9 @@ public class Management extends Controller {
             question.generateAdminKey(8);
             question.save();
 
-            // send mail to the creator of question
-            MailNotifier.sendPollIDLink(question);
-            MailNotifier.sendAdminLink(question);
+            // send mail to the creator of question !!!!!!!!!!!!!!!!!!!!!!!
+//            MailNotifier.sendPollIDLink(question);
+//            MailNotifier.sendAdminLink(question);
 
             // retrieve answers from JSON and save them into database
             for (String a : questionMsg.getAnswers()) {
