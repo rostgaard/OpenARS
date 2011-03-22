@@ -13,11 +13,11 @@ import Utility.RestClient;
 import com.google.gson.Gson;
 
 public class CreatePoll extends Controller {
-	public static void index(String question, String[] answer) {
+	public static void index(String email, String question, String[] answer) {
 		if (answer == null) {
 			answer = new String[] { "", "" };
 		}
-		render(question, answer);
+		render(email, question, answer);
 	}
 
 	public static void success(String pollID, String adminkey) {
@@ -54,7 +54,7 @@ public class CreatePoll extends Controller {
 		if (validation.hasErrors()) {
 			params.flash();
 			validation.keep();
-			index(question, answer);
+			index(email, question, answer);
 			return;
 		}
 
