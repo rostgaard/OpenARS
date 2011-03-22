@@ -47,16 +47,6 @@ public class QuestionActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         
-        
-        WifiManager wifiMan = (WifiManager) getApplication().getSystemService(
-        		Context.WIFI_SERVICE);
-        
-        //WifiManager wifiMan = (WifiManager) this.getSystemService(
-        //		Context.WIFI_SERVICE);
-        WifiInfo wifiInf = wifiMan.getConnectionInfo();
-        String macAddr = wifiInf.getMacAddress();
-
-        
         //get Extras from previous Activity
         pollID = this.getIntent().getExtras().getLong("pollID");
         
@@ -101,6 +91,7 @@ public class QuestionActivity extends ListActivity {
 			    	 
 			    	 if(!statisticsDisplayed) {
 			    		 statisticsDisplayed =  true;
+			    		 Log.i("QA - finished","starting StatisticsActivity");
 				    	 Intent intent = new Intent(QuestionActivity.this, StatisticsActivity.class);					
 				    	 intent.putExtra("pollID", pollID);
 				    	 startActivity(intent);
@@ -108,7 +99,6 @@ public class QuestionActivity extends ListActivity {
 			    	 }
 			     }
 			}.start();
-		
         } catch(Exception e) { //JsonSyntaxException
     		e.printStackTrace();
     		
@@ -235,7 +225,7 @@ public class QuestionActivity extends ListActivity {
 						Toast.makeText(ctx, R.string.choose, duration).show();
 					}
 				} catch(JsonSyntaxException e) {
-					e.printStackTrace();
+					//e.printStackTrace();
 					
 					//ALREADY VOTED IN THIS ROUND
 					if(voteResponseJSON.equals("already voted")) {

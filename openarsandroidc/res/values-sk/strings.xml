@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">openARS</string>
-    <string name="thanks"> Ďakujeme za hlasovanie!</string>
+    <string name="settings">nastavenia</string>
+    <string name="save">uložiť</string>
+    <string name="settings_saved">Nastavenia boli uložené.</string>
+    <string name="thanks">Ďakujeme za hlasovanie!</string>
     <string name="error">Nastala chyba!</string>
     <string name="choose">Prosím, zvoľte si otázku!</string>
     <string name="enter_poll_id">Zadajte ID ankety!</string>

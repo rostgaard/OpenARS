@@ -3,12 +3,8 @@ package dossee.droids;
 import java.util.UUID;
 
 import dossee.droids.R;
-import dossee.droids.rest.RestClient;
 import android.app.*;
-import android.content.Context;
 import android.content.Intent;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,15 +14,23 @@ import android.widget.*;
 
 public class openarsActivity extends Activity {
 	String macAddr;
-    Button btn_go;
     UUID uuid;
    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        //set contentView to main screen
         setContentView(R.layout.main);
         
-        btn_go = (Button)findViewById(R.id.btn_go);
+        //set settings listener
+        TextView tv_settings = (TextView)findViewById(R.id.tv_settings);
+        ImageView iv_gear = (ImageView)findViewById(R.id.iv_gear);
+        tv_settings.setOnClickListener(SettingsListener);
+        iv_gear.setOnClickListener(SettingsListener);
+        
+        //set go listener
+        Button btn_go = (Button)findViewById(R.id.btn_go);
         btn_go.setOnClickListener(GoBtnListener);
     }
     
@@ -58,5 +62,18 @@ public class openarsActivity extends Activity {
 				}
 			}
    };
+   
+   
+   private OnClickListener SettingsListener = 
+	   	new OnClickListener(){
+
+			public void onClick(View v) {
+				//create new intent
+				Intent intent = new Intent(openarsActivity.this, SettingsActivity.class);
+				
+				//start QuestionActivity
+				startActivity(intent);
+			}
+  };
     
 }

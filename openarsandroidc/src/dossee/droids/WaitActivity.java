@@ -28,7 +28,7 @@ public class WaitActivity extends Activity {
         //CountDownTimer
         final TextView tv_duration = (TextView)findViewById(R.id.tv_duration);
 
-        CountDownTimer cdt = new CountDownTimer((remainingTime)* 1000, 1000) {
+        new CountDownTimer((remainingTime)* 1000, 1000) {
 
         	public void onTick(long millisUntilFinished) {
         		tv_duration.setText(Long.toString(millisUntilFinished / 1000));
@@ -39,11 +39,11 @@ public class WaitActivity extends Activity {
         		//on countdown finish start StatisticsActivity
         		Intent intent = new Intent(WaitActivity.this, StatisticsActivity.class);					
         		intent.putExtra("pollID", pollID);
+        		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         		startActivity(intent);
         		WaitActivity.this.finish();
         	}
         }.start();
 		
-        
     }
 }

@@ -56,9 +56,11 @@ public class ErrorActivity extends Activity {
 
 			public void onClick(View v) {
 				Log.i("Refresh (ErrorActivity)","onClick");
+				Toast.makeText(getApplicationContext(), R.string.refreshing, 2000).show();
+				
 				Intent intent = new Intent(ErrorActivity.this, QuestionActivity.class);
 				intent.putExtra("pollID", pollID);
-				Toast.makeText(getApplicationContext(), R.string.refreshing, 2000).show();
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 				ErrorActivity.this.finish();
 		}

@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         
+        <activity android:name="SettingsActivity"></activity>
         <activity android:name="QuestionActivity"></activity>
         <activity android:name="WaitActivity"></activity>
         <activity android:name="ErrorActivity"></activity>

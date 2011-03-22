@@ -12,4 +12,5 @@
     <string name="no_poll">Опроса с данным номером не существует.</string>
     <string name="refreshing">Обновляется...</string>
     <string name="error">Произошла ошибка!</string>
+     
 </resources>

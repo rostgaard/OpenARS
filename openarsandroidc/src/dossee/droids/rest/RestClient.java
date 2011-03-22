@@ -23,10 +23,10 @@ public class RestClient{
 	//private static String server_address = "http://devel2.openars.dk";
     //private static String server_address = "http://78.47.162.117";
     //private static String server_address = "http://192.168.0.2";
-    private static String server_address = "http://172.29.40.161";
-    //private static String server_address = "http://json.openars.dk";
-    //private static int server_port = 80;
-    private static int server_port = 9000;
+    //private static String server_address = "http://172.29.40.161";
+    private static String server_address = "http://json.openars.dk";
+    private static int server_port = 80;
+    //private static int server_port = 9000;
     private String response;
     private final String tag = "RestClient";
 
@@ -51,6 +51,22 @@ public class RestClient{
     	return instance;
     }
 
+    public void setServerURL(String serverURL) {
+    	server_address = serverURL;
+    }
+    
+    public void setServerPort(Integer port) {
+    	server_port = port;
+    }
+    
+    public String getServerURL() {
+    	return server_address;
+    }
+    
+    public Integer getServerPort() {
+    	return server_port;
+    }
+    
     /**
      * This method provide hard assembled process to connect to server
      * @param service

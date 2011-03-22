@@ -3,36 +3,67 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="center">
+>
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:padding="10px">
 
-    <ImageView 
-    	android:src="@drawable/logo_transparent_hd" 
-    	android:layout_width="wrap_content" 
-    	android:layout_height="wrap_content" 
-    	android:id="@+id/iv_logo"
-    	android:layout_margin="17dip"
-    	>
-    </ImageView>
-    <EditText 
-    	android:hint="@string/enter_poll_id"
-    	android:layout_width="wrap_content" 
-    	android:id="@+id/et_pollID" 
-    	android:layout_height="wrap_content"
-    	android:width="130dip" 
-    	android:layout_margin="7dip"
-    	android:maxLines="1"
-	    android:inputType="number"></EditText>
-
-    <Button 
-    	android:id="@+id/btn_go" 
-    	android:layout_width="wrap_content" 
-    	android:text="@string/go" 
-    	android:textStyle="bold"
-    	android:textColor="#000000"
-    	android:textSize="25sp"
-    	android:typeface="sans"
-    	android:layout_height="wrap_content" 
-    	android:width="130dip" 
-    	android:height="40dip">
-    </Button>
+	    <TextView android:id="@+id/tv_settings" 
+	            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content" 
+	            android:layout_alignParentRight="true"
+	            android:layout_marginLeft="8px"
+	            android:textSize="14sp"
+	            android:text="@string/settings" />
+		
+		<ImageView 
+	    	android:src="@drawable/gear_white_icon_32px" 
+	    	android:layout_width="wrap_content" 
+	    	android:layout_height="wrap_content" 
+	    	android:id="@+id/iv_gear"
+	    	android:layout_toLeftOf="@id/tv_settings"
+			android:layout_alignTop="@id/tv_settings"
+	    	>
+	    </ImageView>
+	</RelativeLayout>
+	
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:gravity="center"
+	    android:layout_marginTop="-50dip">
+	
+	    <ImageView 
+	    	android:src="@drawable/logo_transparent_hd" 
+	    	android:layout_width="wrap_content" 
+	    	android:layout_height="wrap_content" 
+	    	android:id="@+id/iv_logo"
+	    	android:layout_margin="17dip"
+	    	>
+	    </ImageView>
+	    <EditText 
+	    	android:hint="@string/enter_poll_id"
+	    	android:layout_width="wrap_content" 
+	    	android:id="@+id/et_pollID" 
+	    	android:layout_height="wrap_content"
+	    	android:width="130dip" 
+	    	android:layout_margin="7dip"
+	    	android:maxLines="1"
+		    android:inputType="number"></EditText>
+	
+	    <Button 
+	    	android:id="@+id/btn_go" 
+	    	android:layout_width="wrap_content" 
+	    	android:text="@string/go" 
+	    	android:textStyle="bold"
+	    	android:textColor="#000000"
+	    	android:textSize="25sp"
+	    	android:typeface="sans"
+	    	android:layout_height="wrap_content" 
+	    	android:width="130dip" 
+	    	android:height="40dip">
+	    </Button>
+	</LinearLayout>
 </LinearLayout>
