@@ -17,8 +17,6 @@
 	<string name="settings"></string>
     <string name="save"></string>
     <string name="settings_saved"></string>
-    <string name="wait"></string>
     <string name="already_voted"></string>
-    <string name="remaining"></string>
 </resources>
 
