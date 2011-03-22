@@ -15,6 +15,7 @@ import jsons.QuestionJSON;
 import models.Answer;
 import models.Question;
 import models.VotingRound;
+import notifiers.MailNotifier;
 import play.mvc.Controller;
 
 /**
@@ -44,6 +45,8 @@ public class Management extends Controller {
 
             question.adminKey = Question.generateAdminKey(8);
             question.save();
+            MailNotifier.sendPollIDLink(question);
+            MailNotifier.sendAdminLink(question);
 
             // retrieve answers from JSON and save them into database
             for (String a : questionMsg.getAnswers()) {
