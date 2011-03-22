@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import play.db.jpa.*;
@@ -21,5 +22,21 @@ public class Answer extends Model {
     public Answer(Question question, String answer) {
         this.question = question;
         this.answer = answer;
+    }
+
+    public boolean containsLatestVotes() {
+        VotingRound vr = question.getLastVotingRound();
+        return !vr.votes.isEmpty();
+    }
+
+    public List<Vote> latestVotes() {
+        VotingRound lastRound = question.getLastVotingRound();
+        List<Vote> latestVotes = new ArrayList<Vote>();
+        for (Vote vote : votes) {
+            if (vote.votingRound == lastRound) {
+                latestVotes.add(vote);
+            }
+        }
+        return latestVotes;
     }
 }

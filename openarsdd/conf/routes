@@ -1,18 +1,21 @@
 # Routes
-# This file defines all application routes (Higher priority routes first)
+# This file defines all Voting routes (Higher priority routes first)
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
+#GET     /                                       Voting.index
+#GET     /hello                                  Voting.sayHello
+
 GET     /mailtest                               Mailtest.welcome
-GET     /hello                                  Application.sayHello
-GET     /{<[0-9]+>id}                           Application.requestQuestion
-POST    /newPoll                                Application.createQuestion
-POST    /vote/{<[0-9]+>id}                      Application.vote
-GET     /getResults/{<[0-9]+>id}                Application.getResults
+
+POST    /newPoll                                Management.createQuestion
+POST    /activation/{<[0-9]+>id}/{adminKey}     Management.activation
+GET     /{<[0-9]+>id}                           Voting.getQuestion
+POST    /vote/{<[0-9]+>id}                      Voting.vote
+GET     /getResults/{<[0-9]+>id}                Voting.getResults
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+#*       /{controller}/{action}                  {controller}.{action}

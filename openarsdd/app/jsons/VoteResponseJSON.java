@@ -4,6 +4,7 @@ package jsons;
  * @author veri
  */
 public class VoteResponseJSON {
+
     private boolean voteSuccessful;
 
     /**
@@ -13,8 +14,6 @@ public class VoteResponseJSON {
         this.voteSuccessful = voteSuccessful;
     }
 
-    
-
     public boolean getStatus() {
         return voteSuccessful;
     }
@@ -22,6 +21,4 @@ public class VoteResponseJSON {
     public void setStatus(boolean status) {
         this.voteSuccessful = status;
     }
-
-
 }

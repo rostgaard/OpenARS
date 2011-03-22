@@ -26,4 +26,9 @@ public class Vote extends Model {
         this.count = count;
         this.votingRound = votingRound;
     }
+
+    public Vote(Answer answer, VotingRound votingRound) {
+        this(answer, 1, votingRound);
+    }
+
 }
