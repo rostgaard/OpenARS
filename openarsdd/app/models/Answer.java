@@ -38,9 +38,12 @@ public class Answer extends Model {
     public List<Vote> latestVotes() {
         VotingRound lastRound = question.getLastVotingRound();
         List<Vote> latestVotes = new ArrayList<Vote>();
-        for (Vote vote : votes) {
-            if (vote.votingRound == lastRound) {
-                latestVotes.add(vote);
+
+        if (!votes.isEmpty()) {
+            for (Vote vote : votes) {
+                if (vote.votingRound.equals(lastRound)) {
+                    latestVotes.add(vote);
+                }
             }
         }
         return latestVotes;
