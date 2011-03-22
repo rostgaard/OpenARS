@@ -5,8 +5,6 @@ import play.mvc.Controller;
 
 public class ManagePoll extends Controller {
 	public static void index(String pollID, String adminkey) {
-		System.out.println(pollID);
-		System.out.println(adminkey);
 		render(pollID, adminkey);
 	}
 
