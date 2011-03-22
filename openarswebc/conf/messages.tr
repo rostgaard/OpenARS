@@ -1,0 +1,67 @@
+# You can specialize this file for each language.
+# For example, for French create a messages.fr file
+#
+# how to use it -> <h1>&{'password'}</h1>
+password=Sifre
+language=Dil: 
+join_poll=Ankete katil
+join_poll_pollid=Anket#
+join_poll_teaser=Katilmak istediginiz anket ID'sini giriniz
+join_poll_submit=Ankete katil &raquo;
+create_poll=Anket Yarat
+create_poll_teaser=Bir anket pek cok senaryo, ders, presentasyon hatta iddia icin yerel bir barda kullanilabilir. Sadece bir kac dakikanizi alir. Anketi olusturdugunuzda, bu ankete link olarak kullanabileceginiz bir id elde edeceksiniz. Burada yeni bir tane yaratabilirsiniz.
+create_poll_link=Anket yarat &raquo;
+manage_poll=Anketi duzenle
+manage_poll_teaser=Hazir anketiniz varsa ve eger aktiflestirmek, duzenlemek ya da istatistiklerini gormek istiyorsaniz, anket IDsini anketi yaratirken edindiginiz sifreyle birlikte giriniz.
+manage_poll_pollid=Anket ID:
+manage_poll_password=Sifre:
+manage_poll_submit=Oturum ac &raquo;
+question=Soru
+answer=Cevap
+name=Isim
+option=Secenek
+poll_keyword=Anket Anahtari
+submit=Gonder
+edit=Duzenle
+stats=Istatistikler
+activate=Actiflestir!
+poll=Anket
+poll=Anket ID
+total=Toplam
+validation.required.atLeastTwo=En az iki tane girmelisiniz
+validation.required=Bos olmamali
+createpoll.success.header=Anket yaratildi
+createpoll.success.text=Tebrikler! Anketiniz yaratildi. Asagidaki bilgilerle tarafiniza bir e-mail gonderildi. Lutfen not alin.<br /><br />You can log in and manage your poll by going to <a href="/">openARS.dk</a> and entering the following information under "manage poll":
+createpoll.manage_poll_now=Anketi simdi duzenle &raquo;
+createpoll.form.email=e-mail:
+createpoll.form.question=Sorular:
+createpoll.form.answers=Cevaplar:
+createpoll.form.removeAnswer=x
+createpoll.form.addAnswer=Cevap ekle
+createpoll.form.pollType=Anket tipi
+createpoll.form.pollType.single=Tek (her soru icin tek bir cevap)
+createpoll.form.pollType.multiple=Coklu (her soru icin birden fazla cevap)
+createpoll.form.submit=Soru olustur
+createpoll.form.cancel=Iptal
+createpoll.errors.errorsinform= Formda hata olustu, lutfen gozden gecirip hatayi duzeltin.
+vote=Oyla!
+joinpoll.voterecieved.header=Basariyla oylandi
+joinpoll.voterecieved.text=Oyunuz veritabanina aktarildi. Anket suresi doldugunda sonuclar burada gosterilecektir.
+loading=Yukleniyor...
+joinpoll.nopoll.header=Boyle bir anket yok %s
+joinpoll.nopoll.text=Su anda bu ID ile belirlenmis hic bir aktif anket yok. Lutfen ID nizi kontrol edin.
+joinpoll.nopoll.retry=Tekrar dene
+joinpoll.success.yAxis=Oy sayisi
+joinpoll.success.votes=oylar
+managepoll.activatepoll.header=Aktif Anket
+managepoll.activatepoll.text= Burada anketinizi belli bir sure icin aktif hale getirebilirsiniz. Aktif oldugu sure icinde oylamak mumkun olacaktir.
+managepoll.activatepoll.form.minutes=Dakika
+managepoll.activatepoll.form.seconds=Saniye
+managepoll.editpoll=Anketi duzenle &raquo;
+managepoll.editpoll.header=Anketi duzenle
+managepoll.editpoll.text=Anketi duzenlemek isterseniz asagidaki butonu kullanin. Cevaplari, Sorulari ve Anket Tipi'ni degistirebilirsiniz.
+managepoll.pollstatistics=Istatistiklere bak &raquo;
+managepoll.pollstatistics.header=Anket istatistikleri
+managepoll.pollstatistics.text=Anket istatistiklerini gormek icin asagidaki butonu kullanin. Istatistikler her 5 sn'de guncellenir, boylece sonuclari canli olarak takip edebilirsiniz.
+managepoll.activate.pollStarted.header=Anket: %s basladi!
+managepoll.activate.pollStarted.text=Oylamak icin <b>openars.dk/%s</b> 'a gidin, ya da Android istemcisinde <b>%s</b> girin.
