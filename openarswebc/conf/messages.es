@@ -63,3 +63,5 @@ managepoll.editpoll.text=If you wish to edit the poll, use the button below. You
 managepoll.pollstatistics=View statistics &raquo;
 managepoll.pollstatistics.header=Poll statistics
 managepoll.pollstatistics.text=If you wish to see the statistics for your poll, then use the button below. The statistics are updated each 5 seconds, so it's possible to follow the poll results live.
+managepoll.activate.pollStarted.header=Poll %s started!
+managepoll.activate.pollStarted.text=Go to <b>openars.dk/%s</b> to vote, or enter <b>%s</b> into the android client.
