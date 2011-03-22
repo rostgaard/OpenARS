@@ -28,9 +28,6 @@ public class Management extends Controller {
 
     public static void createQuestion() {
 
-
-        // RequestNew message to test:  {"responderID":6547,"pollID":2345}
-
         BufferedReader reader = new BufferedReader(new InputStreamReader(request.body));
         try {
             String json = reader.readLine();
@@ -45,7 +42,7 @@ public class Management extends Controller {
 
             question.generateAdminKey(8);
             question.save();
-            
+
             // send mail to the creator of question
             MailNotifier.sendPollIDLink(question);
             MailNotifier.sendAdminLink(question);
@@ -98,6 +95,24 @@ public class Management extends Controller {
         } catch (IOException ex) {
             ex.printStackTrace();
             renderJSON(new String());
+        }
+    }
+
+    public static void checkAdminLink() {
+        long urlID = params.get("id", Long.class).longValue();
+        String adminKey = params.get("adminKey");
+
+        // retrieve and activate the question
+        Question question = Question.find("byPollID", urlID).first();
+
+        if (question == null) {
+            renderJSON(false);
+        }
+
+        if (adminKey != null && question.adminKey.equals(adminKey)) {
+            renderJSON(true);
+        }else {
+            renderJSON(false);
         }
     }
 }

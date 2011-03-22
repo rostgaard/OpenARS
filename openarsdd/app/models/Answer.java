@@ -24,9 +24,15 @@ public class Answer extends Model {
         this.answer = answer;
     }
 
-    public boolean containsLatestVotes() {
+    public boolean alreadyInLatestRound() {
         VotingRound vr = question.getLastVotingRound();
-        return !vr.votes.isEmpty();
+        List<Vote> latestVotes = vr.votes;
+        for (Vote vote : latestVotes) {
+            if (vote.answer.equals(this)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<Vote> latestVotes() {

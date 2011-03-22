@@ -26,4 +26,8 @@ public class Test extends Controller {
         render();
     }
 
+    public static void index() {
+        renderJSON("no such page");
+    }
+
 }

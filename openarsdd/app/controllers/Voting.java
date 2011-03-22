@@ -11,6 +11,8 @@ import jsons.VoteResponseJSON;
 import models.Answer;
 import models.Question;
 import models.Vote;
+import models.VotingRound;
+import play.cache.Cache;
 import play.mvc.*;
 
 //import models.*;
@@ -49,20 +51,22 @@ public class Voting extends Controller {
             System.out.println("JSON:" + json);
             VoteJSON vote = gson.fromJson(json, VoteJSON.class);
 
-
             Question question = Question.find("id = ? AND pollID = ?", vote.getQuestionID(), vote.getPollID()).first();
-
-
-
             if (question == null) {
                 renderJSON("No such question!");
             } else if (!question.isActive()) {
                 renderJSON("inactive"); // question not activated yet
             }
 
-//            String responderID = vote.getResponderID();
-//            Cache.add(responderID, vote, json);
-//            Cache.
+            String responderID = vote.getResponderID();
+            System.out.println("ResponderID: " + responderID);
+            
+            if (Cache.get(responderID, VotingRound.class) == null) {
+                Cache.add(responderID, question.getLastVotingRound(), question.timeRemaining() + "s");
+            } else {
+                renderJSON("already voted");
+            }
+
 
 //            for (String string : vote.getAnswers()) {
 //                System.out.println("Answer: " + string);
@@ -70,7 +74,7 @@ public class Voting extends Controller {
 
             // we need to store votes for all provided answers in array
             for (String answer : vote.getAnswers()) {
-//                System.out.println("answer: " + answer);
+                System.out.println("answer: " + answer);
                 // find a question to vote for iteration variable answer
                 Answer selectedAnswer = null;
                 for (Answer a : question.answers) {
@@ -78,9 +82,9 @@ public class Voting extends Controller {
                         selectedAnswer = a;
                     }
                 }
-
+                System.out.println("selectedAnswer:" + selectedAnswer.answer);
                 // if there are no votes for this answer in DB, create one
-                if (!selectedAnswer.containsLatestVotes()) {
+                if (!selectedAnswer.alreadyInLatestRound()) {
                     new Vote(selectedAnswer, question.getLastVotingRound()).save();
                 } else {
                     // otherwise just increment the count value
@@ -101,25 +105,31 @@ public class Voting extends Controller {
 
     public static void getResults() {
         long urlID = params.get("id", Long.class).longValue();
+        String adminKey = params.get("adminKey");
         // retrieve the question from DB
         Question question = Question.find("byPollID", urlID).first();
         if (question == null) {
             renderJSON("");
         }
 
-//        if (!question.isActive()) {
-//            renderJSON("inactive");
-//        }
+        if ((adminKey != null && question.adminKey.equals(adminKey)) || !question.isActive()) {
 
-        // vote counts
-        int[] votes = new int[question.answers.size()];
+            // vote counts
+            int[] votes = new int[question.answers.size()];
 
-        // provide question counts only when there was some voting done
-        if (!question.isFresh()) {
-            votes = question.getVoteCounts();
+            // provide question counts only when there was some voting done
+            if (!question.isFresh()) {
+                votes = question.getVoteCounts();
+            }
+
+            ResultsJSON result = new ResultsJSON(urlID, question.id, question.question, question.getAnswersArray(), votes);
+            renderJSON(result);
+
         }
 
-        ResultsJSON result = new ResultsJSON(urlID, question.id, question.question, question.getAnswersArray(), votes);
-        renderJSON(result);
+        if (question.isActive()) {
+            renderJSON("voting in progress");
+        }
+
     }
 }
