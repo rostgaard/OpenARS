@@ -8,6 +8,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
+/***
+ * @author Erik Telepovsky
+ * 
+ * ErrorActivity shows corresponding error if there is something wrong
+ */
 public class ErrorActivity extends Activity {
 	private long pollID;
 	private String error = null;
@@ -17,7 +22,7 @@ public class ErrorActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //get Extras from previous Activity
+        //get pollID and error message from previous Activity
         pollID = this.getIntent().getExtras().getLong("pollID");
         error = this.getIntent().getExtras().getString("error");
 
@@ -27,7 +32,7 @@ public class ErrorActivity extends Activity {
     	//set poll id
 		((TextView)findViewById(R.id.tv_pollID)).setText("Poll #" + pollID);
 			
-		// set message
+		// set corresponding message
 		
 		//INACTIVE POLL SCREEN
 		if(error.equals("inactive")) {
@@ -51,16 +56,21 @@ public class ErrorActivity extends Activity {
 		return;
     }
     
+    /***
+	 * OnClickListener for Refresh (try again) button.
+	 * Application will try to do last action (join the poll) again
+	 */
     private OnClickListener RefreshBtnListener = 
 	   	new OnClickListener(){
 
 			public void onClick(View v) {
-				Log.i("Refresh (ErrorActivity)","onClick");
+				//show toast (trying again)
 				Toast.makeText(getApplicationContext(), R.string.refreshing, 2000).show();
 				
+				//start the QuestionActivity again
 				Intent intent = new Intent(ErrorActivity.this, QuestionActivity.class);
 				intent.putExtra("pollID", pollID);
-				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 				ErrorActivity.this.finish();
 		}

@@ -1,8 +1,9 @@
 package dossee.droids.entities;
 
 /**
- *
- * @author veri
+ * @author Tomas Verescak
+ * 
+ * Question retrieved from server is encapsulated in this object
  */
 public class QuestionJSON {
 

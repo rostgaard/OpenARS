@@ -1,8 +1,9 @@
 package dossee.droids.entities;
 
 /**
- *
- * @author veri
+ * @author Tomas Verescak
+ * 
+ * Vote is encapsulated in this object
  */
 public class VoteJSON {
 

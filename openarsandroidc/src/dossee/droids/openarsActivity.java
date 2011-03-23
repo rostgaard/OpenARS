@@ -11,7 +11,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
-
+/***
+ * @author Erik Telepovsky
+ *
+ * application startup activity
+ * user interface for joining the poll
+ */
 public class openarsActivity extends Activity {
 	String macAddr;
     UUID uuid;
@@ -34,20 +39,24 @@ public class openarsActivity extends Activity {
         btn_go.setOnClickListener(GoBtnListener);
     }
     
+    /***
+	 * OnClickListener for Go button (join the poll).
+	 * Application will send request to the server 
+	 * if pollID was entered
+	 */
     private OnClickListener GoBtnListener = 
 	   	new OnClickListener(){
 
 			public void onClick(View v) {
-				Log.i("VoteBtnListener - openarsActivity","onClick");
+				//get pollID from input
 				EditText et_pollID = (EditText)findViewById(R.id.et_pollID);
 				String pollID = et_pollID.getText().toString();
 				
+				//if pollID is empty, show Toast with message
 				if(pollID.length() == 0) {
 					Toast.makeText(getApplicationContext(), "Please, enter the poll ID", 2000).show();
+				//if it is entered properly
 				} else {
-					Log.i("VoteBtnListener - openarsActivity","startActivity");
-					
-					
 					//put Extra variables into intent
 					Intent intent = new Intent(openarsActivity.this, QuestionActivity.class);
 					intent.putExtra("pollID", Long.parseLong(pollID));
@@ -57,13 +66,15 @@ public class openarsActivity extends Activity {
 					
 					//set TextView to default value
 					et_pollID.setText("");
-					
-					//openarsActivity.this.finish();
 				}
 			}
    };
    
-   
+   /***
+	 * OnClickListener for Settings.
+	 * If settings label or gear icon is pressed
+	 * the SettingsActivity will start
+	 */
    private OnClickListener SettingsListener = 
 	   	new OnClickListener(){
 
@@ -71,7 +82,7 @@ public class openarsActivity extends Activity {
 				//create new intent
 				Intent intent = new Intent(openarsActivity.this, SettingsActivity.class);
 				
-				//start QuestionActivity
+				//start SettingsActivity
 				startActivity(intent);
 			}
   };

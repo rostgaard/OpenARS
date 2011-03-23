@@ -15,8 +15,6 @@ import dossee.droids.rest.RestClient;
 import android.app.*;
 import android.content.Context;
 import android.content.Intent;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -25,7 +23,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
-
+/*** 
+ * @author Erik Telepovsky
+ *
+ * QuestionActivity shows the actual question of activated poll
+ * with all possible answers. There is also displayed a remaining
+ * time (duration) of the poll.
+ */
 public class QuestionActivity extends ListActivity {
 	private long pollID;
 	private long questionID;
@@ -45,20 +49,21 @@ public class QuestionActivity extends ListActivity {
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         
-        //get Extras from previous Activity
-        pollID = this.getIntent().getExtras().getLong("pollID");
-        
-        //get question JSON from server
         String questionString = null;
         
+        //get LayoutInflater
+        vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        
+        //get pollID from previous Activity
+        pollID = this.getIntent().getExtras().getLong("pollID");
+        
         try {
+        	//retrieve question from the server
         	questionString = RestClient.getInstance().getPoll(Long.toString(pollID));
-            Log.i("guestionString",questionString);
-            
+        	
+        	//and make an instance of QuestionJSON class
         	QuestionJSON questionJSON = gson.fromJson(questionString, QuestionJSON.class);
-	        Log.i("questionJSON",questionJSON.toString());
 	        	
 	        //get data from JSON
 	        question = questionJSON.getQuestion();
@@ -67,7 +72,7 @@ public class QuestionActivity extends ListActivity {
 			multipleAllowed = questionJSON.isMultipleAllowed();
 			duration = questionJSON.getDuration();
 
-			//QUESTION SCREEN
+			//build data and show QUESTION SCREEN
         	setContentView(R.layout.question_main);
         	merged_lv = (ListView)findViewById(android.R.id.list);
         	adapter = new MergeAdapter();
@@ -76,22 +81,23 @@ public class QuestionActivity extends ListActivity {
     		adapter.addView(buildButton(), true);
     		setListAdapter(adapter);
         	
-	        //CountDownTimer
+	        //CountDownTimer of remaining time (question duration)
     		final TextView tv_duration = (TextView) (adapter.getView(0, null, null).findViewById(R.id.tv_duration));
 			
     		new CountDownTimer((duration + 1)* 1000, 1000) {
-
+    			
+    			 //refresh the remaining time every second
 			     public void onTick(long millisUntilFinished) {
 			    	 remainingTime = millisUntilFinished / 1000;
 			    	 tv_duration.setText(Long.toString(remainingTime));
 			     }
 
+			   //StatisticsActivity starts on countdown finish
 			     public void onFinish() {
-			    	 //on countdown finish start StatisticsActivity
-			    	 
+			    
+			    	 //show the statistics if it is not displayed already
 			    	 if(!statisticsDisplayed) {
 			    		 statisticsDisplayed =  true;
-			    		 Log.i("QA - finished","starting StatisticsActivity");
 				    	 Intent intent = new Intent(QuestionActivity.this, StatisticsActivity.class);					
 				    	 intent.putExtra("pollID", pollID);
 				    	 startActivity(intent);
@@ -99,6 +105,7 @@ public class QuestionActivity extends ListActivity {
 			    	 }
 			     }
 			}.start();
+			
         } catch(Exception e) { //JsonSyntaxException
     		e.printStackTrace();
     		
@@ -114,7 +121,12 @@ public class QuestionActivity extends ListActivity {
 		}*/
     }
     
-    
+    /***
+     * Build the answer list of question.
+     * If multiple answers are allowed, build list with checkboxes
+     * otherwise with radio buttons.
+     * @return ArrayAdapter with possible options
+     */
     private ArrayAdapter<String> buildList() {
 		
     	int resource = 0;
@@ -138,6 +150,10 @@ public class QuestionActivity extends ListActivity {
 	}
 
 	
+    /***
+     * Builds the Vote Button with listener
+     * @return View
+     */
 	private View buildButton() {
 		Button result=new Button(this);
 		result.setText(R.string.vote);
@@ -146,6 +162,11 @@ public class QuestionActivity extends ListActivity {
 		return(result);
 	}
 	
+	/***
+	 * Builds the header of layout.
+	 * (pollID, question and duration are displayed)
+	 * @return
+	 */
 	private View buildHeader() {
 		//get header layout
 		View v = vi.inflate(R.layout.question_header, null);		
@@ -157,7 +178,12 @@ public class QuestionActivity extends ListActivity {
 		return(v);
 	}
     
-   private OnClickListener VoteBtnListener = 
+	/***
+	 * OnClickListener for Vote button.
+	 * Application will send vote to the server 
+	 * if at least one answer is selected.
+	 */
+	private OnClickListener VoteBtnListener = 
 	   	new OnClickListener(){
 
 			public void onClick(View v) {
@@ -170,15 +196,18 @@ public class QuestionActivity extends ListActivity {
 					List<String> answersList = new ArrayList<String>();
 					answersList.clear();
 					
-					//get selected answers					
+					//get selected answers			
 					for(int i = 1; i < answers.length + 1; i++) {
+						
+						//if option is marked / selected
 						if(merged_lv.getCheckedItemPositions().get(i)) {
+							
+							//get answer on actual position of cycle
 							String selectedAnswer = (String) merged_lv.getItemAtPosition(i);
+							//insert it into vote answers
 							answersList.add(selectedAnswer);
 						}
 					}
-					
-					Log.i("answersList size", Integer.toString(answersList.size()));
 		
 					//if there is at least one selected answer, VOTE!
 					if (answersList.size() != 0) {
@@ -198,15 +227,16 @@ public class QuestionActivity extends ListActivity {
 						
 						//send vote to server
 						voteResponseJSON = RestClient.getInstance().sendVote(pollID, voteJSON);
-						Log.i("sendVote result",voteResponseJSON);
 						gson = new Gson();
 						VoteResponseJSON voteResponse = gson.fromJson(voteResponseJSON, VoteResponseJSON.class); 
 				
-						//show Toast
+						//if voting was successful
 						if(voteResponse.isVoteSuccessful()) {
+							
+							//show thanks toast
 							Toast.makeText(ctx, R.string.thanks, duration).show();
 							
-							//on countdown finish start StatisticsActivity
+							//show the statistics if it is not displayed already
 							if(!statisticsDisplayed) {
 					    		statisticsDisplayed =  true;
 						    	Intent intent = new Intent(QuestionActivity.this, WaitActivity.class);					
@@ -216,6 +246,8 @@ public class QuestionActivity extends ListActivity {
 						    	QuestionActivity.this.finish();
 							}
 						} else {
+							//if error occured (voteResponse is not successful)
+							//show error
 							Toast.makeText(ctx, R.string.error, duration).show();
 						}
 						
@@ -229,6 +261,7 @@ public class QuestionActivity extends ListActivity {
 					
 					//ALREADY VOTED IN THIS ROUND
 					if(voteResponseJSON.equals("already voted")) {
+						//start ErrorActivity
 						Intent intent = new Intent(QuestionActivity.this, ErrorActivity.class);
 						intent.putExtra("pollID", pollID);
 						intent.putExtra("error", voteResponseJSON);

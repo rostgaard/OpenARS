@@ -17,16 +17,17 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
 
+/***
+ * @author Erik Telepovsky
+ *
+ * RestClient class provides the communication 
+ * between application (android / web) and server
+ */
 public class RestClient{
 
     private static RestClient instance;
-	//private static String server_address = "http://devel2.openars.dk";
-    //private static String server_address = "http://78.47.162.117";
-    //private static String server_address = "http://192.168.0.2";
-    //private static String server_address = "http://172.29.40.161";
     private static String server_address = "http://json.openars.dk";
     private static int server_port = 80;
-    //private static int server_port = 9000;
     private String response;
     private final String tag = "RestClient";
 
@@ -70,10 +71,12 @@ public class RestClient{
     /**
      * This method provide hard assembled process to connect to server
      * @param service
+     * @param JSON as string
      */
     private void executeRequest(HttpRequestBase method, String service, String stringJSON) {
         DefaultHttpClient client = new DefaultHttpClient();
         StringBuilder sb = new StringBuilder();
+        
         try {
         	String url = server_address + ":" + Integer.toString(server_port) + "/" + service;
         	URI u = new URI(url);

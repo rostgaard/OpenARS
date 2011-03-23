@@ -8,12 +8,16 @@ import dossee.droids.rest.RestClient;
 
 import android.app.*;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
-
+/*** 
+ * @author Erik Telepovsky
+ *
+ * StatisticsActivity shows the results 
+ * of voting in last poll.
+ */
 public class StatisticsActivity extends Activity {
 	private long pollID;
 	private String question;
@@ -25,16 +29,15 @@ public class StatisticsActivity extends Activity {
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //get Extras from previous Activity
-        Log.i("WaitActivity","start");
-        pollID = this.getIntent().getExtras().getLong("pollID");
-        Log.i("pollID",Long.toString(pollID));
         
-        //get question JSON from server
+        //get pollID from previous Activity
+        pollID = this.getIntent().getExtras().getLong("pollID");
+        
         try {
+        	//if voting round is finished
+        	//retrieve poll results from the server
+        	
         	String resultsString = RestClient.getInstance().getResults(pollID);
-        	Log.i("resultsJSON",resultsString);
         	gson = new Gson();
         	ResultsJSON resultsJSON = gson.fromJson(resultsString, ResultsJSON.class);
         	
@@ -57,16 +60,24 @@ public class StatisticsActivity extends Activity {
 	    	int counter = 0;
 	    	for(String answer : answers) {
 	    		
+	    		//create new TextView
 	    		tv = new TextView(getApplicationContext(), null);
 	    		
 	    		int countAnswerVotes = votes[counter]; 
 	    		
+	    		//if there is only one vote, label will be "vote"
+	    		//otherwise "votes"
 	    		String voteString = "vote";
 	    		if(countAnswerVotes != 1)
 	    			voteString += "s";
 	    			
+	    		//set text of new created TextView
 	    		tv.setText(answer + ": " + countAnswerVotes + " " + voteString);
-			    ll.addView(tv);
+			    
+	    		//show it in the results list
+	    		ll.addView(tv);
+	    		
+	    		//increment counter of question answers
 			    counter++;
 	    	}
 	    	 
@@ -78,12 +89,16 @@ public class StatisticsActivity extends Activity {
 			e.printStackTrace();
 		}
     }
-			    	 
-   private OnClickListener ExitBtnListener = 
-	   	new OnClickListener(){
 
-			public void onClick(View v) {
-				StatisticsActivity.this.finish();
-			}
-   };
+    /***
+	 * OnClickListener for Exit button.
+	 * Close StatisticsActivity.
+	 */
+	 private OnClickListener ExitBtnListener = 
+		 new OnClickListener(){
+	
+		 public void onClick(View v) {
+			 StatisticsActivity.this.finish();
+		 }
+	 };
 }
