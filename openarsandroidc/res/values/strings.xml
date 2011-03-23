@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">openARS</string>
     <string name="settings">settings</string>
-    <string name="save">save</string>
+    <string name="save">SAVE</string>
     <string name="settings_saved">Settings have been saved.</string>
     <string name="thanks">Thank you for voting!</string>
     <string name="error">Error occurred!</string>

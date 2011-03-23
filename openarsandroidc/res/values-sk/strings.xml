@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">openARS</string>
     <string name="settings">nastavenia</string>
-    <string name="save">uložiť</string>
+    <string name="save">ULOŽIŤ</string>
     <string name="settings_saved">Nastavenia boli uložené.</string>
     <string name="thanks">Ďakujeme za hlasovanie!</string>
     <string name="error">Nastala chyba!</string>
