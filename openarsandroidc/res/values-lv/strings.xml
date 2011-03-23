@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">openARS</string>
+    <string name="settings">Uzstādījumi</string>
+    <string name="save">Saglābāt</string>
+    <string name="settings_saved">Uzstādījumi ir saglabāti.</string>
     <string name="thanks">Paldies par balsojumu!</string>
+    <string name="error">Kļūda</string>
     <string name="choose">Lūdzu, izvēlēties Jūsu atbildi!</string>
     <string name="enter_poll_id">Ievadiet balsojuma numuru</string>
     <string name="go">Ienākt</string>
     <string name="vote">Balsot</string>
     <string name="exit">Iziet</string>
     <string name="inactive">Intervija vēl nav aktivēta.</string>
-    <string name="refresh">Atjaunot</string>
-    <string name="no_poll">Intervija ar šo numuru neeksistē.</string>
-  	<string name="refreshing">Atjaunojas...</string>
-    <string name="error">Kļūda</string>
-    <string name="settings">Uzstādījumi</string>
-    <string name="save">Saglābāt</string>
-    <string name="settings_saved">Uzstādījumi ir saglabāti.</string>
     <string name="wait">Lūdzu, uzgaidiet. Rezultāti tiks rādīti pēc dažām sekundēm</string>
-    <string name="already_voted">Jūs jau piedalījaties šajā balsojumā!</string>
     <string name="remaining">palika:</string>
+    <string name="refresh">Atjaunot</string>
+    <string name="refreshing">Atjaunojas...</string>
+    <string name="no_poll">Intervija ar šo numuru neeksistē.</string>
+	<string name="already_voted">Jūs jau piedalījaties šajā balsojumā!</string>
 </resources>
