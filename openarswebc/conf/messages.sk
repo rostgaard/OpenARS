@@ -31,7 +31,7 @@ total=Spolu
 validation.required.atLeastTwo=Je potrebné zadať minimálne dve možnosti
 validation.required=Toto pole nemôže byť prázdne
 createpoll.success.header=Anketa je vytvorená
-createpoll.success.text=Gratulujeme! Vaša anketa bola vytvorená. Email s nasledujúcimi informáciami bol odoslaný na vašu adresu, napriek tomu si tieto údaje uložte pre prípad, keby email nebol doručený. <br />< br />Prihlásiť sa a spravovať vašu anketu môžete na stránke <a href="/">openARS.dk</a> po zadaní nasledujúcich údajov v časti "Správa ankety":    
+createpoll.success.text=Gratulujeme! Vaša anketa bola vytvorená. Email s nasledujúcimi informáciami bol odoslaný na vašu adresu, napriek tomu si tieto údaje uložte pre prípad, keby email nebol doručený. <br /><br />Prihlásiť sa a spravovať vašu anketu môžete na stránke <a href="/">openARS.dk</a> po zadaní nasledujúcich údajov v časti "Správa ankety":    
 createpoll.manage_poll_now=Spravovať anketu teraz &raquo;
 createpoll.form.email=Email:
 createpoll.form.question=Otázka:
