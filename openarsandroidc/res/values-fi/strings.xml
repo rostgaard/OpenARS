@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">openARS</string>
-    <string name="settings">settings</string>
-    <string name="save">SAVE</string>
-    <string name="settings_saved">Settings have been saved.</string>
+    <string name="settings">asetukset</string>
+    <string name="save">TALLENNA</string>
+    <string name="settings_saved">Asetukset tallennettu.</string>
     <string name="thanks">Kiitos äänestäsi!</string>
     <string name="error">Virhe!</string>
     <string name="choose">Valitse vastauksesi!</string>
@@ -12,10 +12,10 @@
     <string name="vote">Äänestä</string>
     <string name="exit">Poistu</string>
     <string name="inactive">Tämä äänestys on suljettu.</string>
-    <string name="wait">Please wait, the results will be displayed in a few seconds</string>
+    <string name="wait">Ole hyvä ja odota, tulokset näytetään hetken päästä</string>
     <string name="remaining">Aikaa jäljellä:</string>
     <string name="refresh">Yritä uudelleen</string>
     <string name="refreshing">Yritä uudestaan</string>
     <string name="no_poll">Äänestystä ei löytynyt.</string>
-    <string name="already_voted">You have already voted in this round!</string>
+    <string name="already_voted">Olet jo äänestänyt tällä kierroksella!</string>
 </resources>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">openARS</string>
-    <string name="settings">settings</string>
-    <string name="save">SAVE</string>
-    <string name="settings_saved">Settings have been saved.</string>
+    <string name="settings">indstillinger</string>
+    <string name="save">GEM</string>
+    <string name="settings_saved">Indstillingerne er gemt.</string>
     <string name="thanks">Tak for din stemme!</string>
     <string name="error">Der opstod en fejl!</string>
     <string name="choose">Vælg dit svar!</string>
@@ -12,10 +12,10 @@
     <string name="vote">Stem</string>
     <string name="exit">Afslut</string>
     <string name="inactive">Denne afstemning er inaktiv.</string>
-    <string name="wait">Please wait, the results will be displayed in a few seconds</string>
+    <string name="wait">Vent venligst, resultatet bliver vist om lidt</string>
     <string name="remaining">time remaining:</string>
     <string name="refresh">Genindlæs</string>
     <string name="refreshing">Prøv igen</string>
     <string name="no_poll">Afstemningen eksisterer ikke.</string>
-    <string name="already_voted">You have already voted in this round!</string>
+    <string name="already_voted">Du har allerede stemt i denne runde!</string>
 </resources>

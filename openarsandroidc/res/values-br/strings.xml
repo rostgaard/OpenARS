@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">openARS</string>
-    <string name="settings">settings</string>
-    <string name="save">SAVE</string>
-    <string name="settings_saved">Settings have been saved.</string>
+    <string name="settings">configurações</string>
+    <string name="save">GUARDAR</string>
+    <string name="settings_saved">As configurações foram salvas.</string>
     <string name="thanks">Obrigado pelo seu voto!</string>
     <string name="error">Erro!</string>
     <string name="choose">Por favor, marque sua resposta!</string>
@@ -17,6 +17,6 @@
     <string name="refresh">Tentar novamente</string>
     <string name="refreshing">Tentando novamente</string>
     <string name="no_poll">A enquete selecionada não existe.</string>
-    <string name="already_voted">You have already voted in this round!</string>
+    <string name="already_voted">Você já votou nesta rodada!</string>
 </resources>
 
