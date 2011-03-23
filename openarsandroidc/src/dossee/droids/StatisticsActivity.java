@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
-/*** 
+/**
  * @author Erik Telepovsky
  *
  * StatisticsActivity shows the results 
@@ -90,7 +90,7 @@ public class StatisticsActivity extends Activity {
 		}
     }
 
-    /***
+    /**
 	 * OnClickListener for Exit button.
 	 * Close StatisticsActivity.
 	 */

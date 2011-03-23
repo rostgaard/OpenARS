@@ -17,7 +17,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
 
-/***
+/**
  * @author Erik Telepovsky
  *
  * RestClient class provides the communication 

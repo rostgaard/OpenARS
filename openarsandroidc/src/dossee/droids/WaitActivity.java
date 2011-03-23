@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.*;
 
-/*** 
+/**
  * @author Erik Telepovsky
  *
  * WaitActivity is displayed if user has voted in the poll

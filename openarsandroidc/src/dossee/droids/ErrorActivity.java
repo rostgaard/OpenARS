@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
-/***
+/**
  * @author Erik Telepovsky
  * 
  * ErrorActivity shows corresponding error if there is something wrong
@@ -56,7 +56,7 @@ public class ErrorActivity extends Activity {
 		return;
     }
     
-    /***
+    /**
 	 * OnClickListener for Refresh (try again) button.
 	 * Application will try to do last action (join the poll) again
 	 */

@@ -6,20 +6,17 @@ import dossee.droids.R;
 import android.app.*;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
-/***
+/**
  * @author Erik Telepovsky
  *
  * application startup activity
  * user interface for joining the poll
  */
 public class openarsActivity extends Activity {
-	String macAddr;
-    UUID uuid;
    
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +36,7 @@ public class openarsActivity extends Activity {
         btn_go.setOnClickListener(GoBtnListener);
     }
     
-    /***
+    /**
 	 * OnClickListener for Go button (join the poll).
 	 * Application will send request to the server 
 	 * if pollID was entered
@@ -54,7 +51,7 @@ public class openarsActivity extends Activity {
 				
 				//if pollID is empty, show Toast with message
 				if(pollID.length() == 0) {
-					Toast.makeText(getApplicationContext(), "Please, enter the poll ID", 2000).show();
+					Toast.makeText(getApplicationContext(), R.string.enter_poll_id, 2000).show();
 				//if it is entered properly
 				} else {
 					//put Extra variables into intent
@@ -70,11 +67,11 @@ public class openarsActivity extends Activity {
 			}
    };
    
-   /***
-	 * OnClickListener for Settings.
-	 * If settings label or gear icon is pressed
-	 * the SettingsActivity will start
-	 */
+   /**
+	* OnClickListener for Settings.
+	* If settings label or gear icon is pressed
+	* the SettingsActivity will start
+	*/
    private OnClickListener SettingsListener = 
 	   	new OnClickListener(){
 

@@ -7,6 +7,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
+/**
+ * @author Erik Telepovsky
+ * 
+ * SettingsActivity allows user 
+ * to change server url and port of communication
+ */
 public class SettingsActivity extends Activity {
 	
 	private EditText et_serverURL;
@@ -39,7 +45,7 @@ public class SettingsActivity extends Activity {
         btn_save.setOnClickListener(SaveBtnListener);
     }
     
-    /***
+    /**
 	 * OnClickListener for Save button.
 	 * New settings will be saved in the RestClient class
 	 */

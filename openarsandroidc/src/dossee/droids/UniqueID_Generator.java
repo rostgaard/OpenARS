@@ -7,7 +7,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.content.ContextWrapper;
 
-/***
+/**
  * @author Erik Telepovsky
  *
  * This class generates the unique ID.
@@ -48,7 +48,7 @@ public class UniqueID_Generator {
     	return instance;
     }
     
-    /***
+    /**
      * get the unique ID of the UniqueID_Generator instance
      * @return unique ID
      */

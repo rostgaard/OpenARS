@@ -23,7 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
-/*** 
+/** 
  * @author Erik Telepovsky
  *
  * QuestionActivity shows the actual question of activated poll
@@ -121,7 +121,7 @@ public class QuestionActivity extends ListActivity {
 		}*/
     }
     
-    /***
+    /**
      * Build the answer list of question.
      * If multiple answers are allowed, build list with checkboxes
      * otherwise with radio buttons.
@@ -150,7 +150,7 @@ public class QuestionActivity extends ListActivity {
 	}
 
 	
-    /***
+    /**
      * Builds the Vote Button with listener
      * @return View
      */
@@ -162,7 +162,7 @@ public class QuestionActivity extends ListActivity {
 		return(result);
 	}
 	
-	/***
+	/**
 	 * Builds the header of layout.
 	 * (pollID, question and duration are displayed)
 	 * @return
@@ -178,7 +178,7 @@ public class QuestionActivity extends ListActivity {
 		return(v);
 	}
     
-	/***
+	/**
 	 * OnClickListener for Vote button.
 	 * Application will send vote to the server 
 	 * if at least one answer is selected.
