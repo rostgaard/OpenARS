@@ -29,9 +29,9 @@ public class Question extends Model {
 
     /**
      * @param pollID
-     * @param question
-     * @param MultipleAllowed
-     * @param email
+     * @param question Text of the question
+     * @param MultipleAllowed whether there are multiple options allowed or not
+     * @param email e-mail address of the poll creator
      */
     public Question(long pollID, String question, boolean MultipleAllowed, String email) {
         this.pollID = pollID;
@@ -41,12 +41,13 @@ public class Question extends Model {
     }
 
     /**
-     * Activates the question for provided number of seconds
-     * @param duration int seconds
+     * Activates the question for provided number of seconds.
+     * If the question is in active state, it changes the activation duration,
+     * otherwise it creates new voting round.
+     * @param duration number of seconds to activate the question for
+     * @return activated Question object - does not have to be used
      */
     public Question activateFor(int duration) {
-        System.out.println("isActive(): " + isActive());
-        System.out.println("TimeRemaining(): " + timeRemaining());
         if (isActive()) {
             VotingRound lastRound = getLastVotingRound();
             lastRound.startDateTime = new Date(System.currentTimeMillis());
@@ -55,7 +56,7 @@ public class Question extends Model {
         } else {
             new VotingRound(duration, this).save();
         }
-        return null;
+        return this;
     }
 
     /**
@@ -106,15 +107,10 @@ public class Question extends Model {
         return timeRemaining() > 0;
     }
 
-//    /**
-//     * Can be used to determine if the question is activated or not
-//     * @return boolean activation status
-//     */
-//    public boolean isActive(int secondsAllowed) {
-//        return timeRemaining() + secondsAllowed > 0;
-//    }
     /**
-     * Returns remaining time for which the question is activated. It can
+     * Returns remaining time for which the question is activated. This value
+     * should be sent to the clients so that they can set the countdown. It is
+     * also used by bethod isActive() to determine the activation state.
      * @return
      */
     public int timeRemaining() {
@@ -130,17 +126,8 @@ public class Question extends Model {
         return (difference > 0) ? difference : 0;
     }
 
-//    /**
-//     * Time remaining for client is decremented by 3 seconds
-//     * @return
-//     */
-//    public int timeRemainingForClient() {
-//        int timeRemaining = timeRemaining() - 3;
-//        return (timeRemaining > 0) ? timeRemaining : 0;
-//    }
-
     /**
-     * Returns true when there has not been any voting done
+     * Returns true when there has not been any voting done yet
      * @return true when there is no voting round
      */
     public boolean isFresh() {
@@ -154,6 +141,10 @@ public class Question extends Model {
     public int[] getVoteCounts() {
         int index = 0;
         int[] votes = new int[answers.size()];
+
+        if (isFresh()) {
+            return votes;
+        }
 
         for (Answer answer : answers) {
             List<Vote> votesList = answer.latestVotes();

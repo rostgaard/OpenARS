@@ -4,15 +4,11 @@
  */
 package jsons;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import models.Answer;
 import models.Question;
 
 /**
- *
- * @author veri
+ * JSON that holds all information information about question
+ * @author OpenARS Server API team
  */
 public class QuestionJSON {
 
@@ -25,23 +21,17 @@ public class QuestionJSON {
     private int duration;
     private String email;
 
+
     /**
-     * @param question
-     * @param responderID
+     * @param question Question object (model) to create JSON from
      */
-    public QuestionJSON(Question question, String responderID) {
+    public QuestionJSON(Question question) {
         this.pollID = question.pollID;
         this.questionID = question.id;
         this.answers = getAnswersArray(question);
-        this.responderID = responderID;
         this.question = question.question;
         this.duration = question.timeRemaining();
         this.multipleAllowed = question.multipleAllowed;
-
-    }
-
-    public QuestionJSON(Question question) {
-        this(question, null);
     }
 
     public void setAnswers(String[] answers) {
@@ -123,20 +113,6 @@ public class QuestionJSON {
     }
 
     /**
-     * Gets all answers from JSON to be inserted into Question (model)
-     * @param question
-     * @return
-     */
-    public final List<Answer> getAnswersList(Question question) {
-        List<Answer> list = new ArrayList<Answer>();
-        for (int i = 0; i < answers.length; i++) {
-            Answer a = new Answer(question, answers[i]);
-            list.add(a);
-        }
-        return list;
-    }
-
-    /**
      * Makes Question object (model) from JSON object
      * @return
      */
@@ -144,6 +120,4 @@ public class QuestionJSON {
         Question q = new Question(pollID, question, multipleAllowed, email);
         return q;
     }
-
-   
 }

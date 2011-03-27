@@ -12,7 +12,6 @@ import play.db.jpa.*;
 @Entity
 public class Answer extends Model {
 
-//    public String studentLink;
     @ManyToOne
     public Question question;
     public String answer;
@@ -24,6 +23,10 @@ public class Answer extends Model {
         this.answer = answer;
     }
 
+    /**
+     * Used to determine whether this answer was voted for in the last/current voting round
+     * @return boolean true when it was voted for already or false otherwise
+     */
     public boolean alreadyInLatestRound() {
         VotingRound vr = question.getLastVotingRound();
         List<Vote> latestVotes = vr.votes;
@@ -35,6 +38,10 @@ public class Answer extends Model {
         return false;
     }
 
+    /**
+     * Returns list of votes that are associated with the last/current voting round.
+     * @return List<Vote> list of latest votes
+     */
     public List<Vote> latestVotes() {
         VotingRound lastRound = question.getLastVotingRound();
         List<Vote> latestVotes = new ArrayList<Vote>();

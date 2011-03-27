@@ -14,18 +14,23 @@ import jsons.CreateResponseJSON;
 import jsons.QuestionJSON;
 import models.Answer;
 import models.Question;
-import models.VotingRound;
 import notifiers.MailNotifier;
 import play.mvc.Controller;
 
 /**
- *
- * @author veri
+ * Controller which takes care of functions that poll administrator uses
+ * @author OpenARS Server API team
  */
 public class Management extends Controller {
 
     private static Gson gson = new Gson();
 
+    /**
+     * Method for creating a question
+     * URL: <server>/newPoll
+     * Method: POST
+     * Request body: QuestionJSON with these fields set: question, answers, multipleAllowed, email
+     */
     public static void createQuestion() {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(request.body));
@@ -43,13 +48,12 @@ public class Management extends Controller {
             question.generateAdminKey(8);
             question.save();
 
-            // send mail to the creator of question !!!!!!!!!!!!!!!!!!!!!!!
-//            MailNotifier.sendPollIDLink(question);
-//            MailNotifier.sendAdminLink(question);
+            // send mail to the creator of question 
+            MailNotifier.sendPollIDLink(question);
+            MailNotifier.sendAdminLink(question);
 
             // retrieve answers from JSON and save them into database
             for (String a : questionMsg.getAnswers()) {
-                System.out.println("Answer: " + a);
                 new Answer(question, a).save();
             }
 
@@ -63,8 +67,14 @@ public class Management extends Controller {
     }
 
     /**
-     * Method for activating the question.
-     * URL: <server>/activation/{id}/{adminKey}
+     * Method for activating the question. It responds with "activated" when
+     * adminKey is correct, "not activated" when it is not correct or 
+     * "The question does not exist!" if the poll does not exist. <br/>
+     * URL: <server>/activation/{id}/{adminKey} <br/>
+     * Method: POST <br/>
+     * Parameter {id} - poll ID <br/>
+     * Parameter {adminKey} - randomly generated string at question creation <br/>
+     * Request body: ActivationJSON with duration set
      */
     public static void activation() {
         long urlID = params.get("id", Long.class).longValue();
@@ -98,6 +108,14 @@ public class Management extends Controller {
         }
     }
 
+    /**
+     * Method used to check if admin link for the question is correct.
+     * It responds with true if it is correct or false otherwise. <br/>
+     * URL: <server>/checkAdminKey/{id}/{adminKey} <br/>
+     * Method: GET
+     * Parameter {id} - poll ID <br/>
+     * Parameter {adminKey} - randomly generated string at question creation <br/>
+     */
     public static void checkAdminLink() {
         long urlID = params.get("id", Long.class).longValue();
         String adminKey = params.get("adminKey");
@@ -111,7 +129,7 @@ public class Management extends Controller {
 
         if (adminKey != null && question.adminKey.equals(adminKey)) {
             renderJSON(true);
-        }else {
+        } else {
             renderJSON(false);
         }
     }
