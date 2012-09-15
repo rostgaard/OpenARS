@@ -1,7 +1,7 @@
 OpenARS is a complete Audience Response System consisting of the following components.
 
- - Data daemon feeding the clients with the data via a REST protocol
- - Web client
- - Android client
+ - Data daemon feeding the clients with the data via a REST protocol (openarsdd)
+ - Web client (openarswebc)
+ - Android client (openarsandroidc)
 
-Everything is GPL'ed, but alas, the files need to be tagged with appropriate headers.
+For license information, see license.txt
